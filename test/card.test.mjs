@@ -351,3 +351,13 @@ test("Tractive buzzer: turned on to ring, turned off when it is already on; the 
   same(hass.calls.at(-1), ["switch", "turn_off", { entity_id: "switch.collar_dog_buzzer" }]);
   assert.equal(card._rang, null);
 });
+
+test("Tractive: a buzzer already on reads as ringing, and a click stops it", async () => {
+  const { card, hass, html } = await mount();
+  hass.states["switch.collar_dog_buzzer"] = { ...hass.states["switch.collar_dog_buzzer"], state: "on" };
+  card.hass = { ...hass };
+  assert.match(html(), /aria-label="Ringing · Dog"/);
+  click(card, { action: "ring", entity: "switch.collar_dog_buzzer" });
+  same(hass.calls.at(-1), ["switch", "turn_off", { entity_id: "switch.collar_dog_buzzer" }]);
+  clearTimeout(card._ringTimer);
+});

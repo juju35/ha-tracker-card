@@ -2542,7 +2542,8 @@ class TrackerCard extends CardBase {
   _ringBtn(it, round = false) {
     const id = ringer(it);
     if (!id) return "";
-    const ringing = this._ringing(it);
+    // A buzzer already on (from the app, or left on) is ringing: a click stops it.
+    const ringing = this._ringing(it) || (id === it.buzzer && this._s(id)?.state === "on");
     const label = `${this._t(ringing ? "ringing" : "ring_it")} · ${it.name}`;
     const off = this._s(id)?.state === "unavailable" ? " disabled" : "";
     return round
