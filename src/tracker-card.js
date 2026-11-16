@@ -106,6 +106,10 @@ const STRINGS = {
     farthest: "farthest {name} {dist}",
     all_seen: "All seen in the last {span}",
     marked_lost: "Marked as lost",
+    lost_inline: "not seen for {span}",
+    marked_lost_inline: "marked as lost",
+    battery_inline: "battery {pct}",
+    low_battery_inline: "low battery",
     cancel: "Cancel",
     left: "{time} left",
     today_at: "today {time}",
@@ -155,6 +159,10 @@ const STRINGS = {
     farthest: "le plus loin : {name} {dist}",
     all_seen: "Tous vus ces dernières {span}",
     marked_lost: "Signalé perdu",
+    lost_inline: "pas vu depuis {span}",
+    marked_lost_inline: "signalé perdu",
+    battery_inline: "batterie {pct}",
+    low_battery_inline: "batterie faible",
     cancel: "Annuler",
     left: "{time} restantes",
     today_at: "aujourd'hui {time}",
@@ -204,6 +212,10 @@ const STRINGS = {
     farthest: "am weitesten: {name} {dist}",
     all_seen: "Alle in den letzten {span} gesehen",
     marked_lost: "Als verloren markiert",
+    lost_inline: "seit {span} nicht gesehen",
+    marked_lost_inline: "als verloren markiert",
+    battery_inline: "Akku {pct}",
+    low_battery_inline: "Akku schwach",
     cancel: "Abbrechen",
     left: "Noch {time}",
     today_at: "heute {time}",
@@ -253,6 +265,10 @@ const STRINGS = {
     farthest: "el más lejano: {name} {dist}",
     all_seen: "Todos vistos en las últimas {span}",
     marked_lost: "Marcado como perdido",
+    lost_inline: "sin ver desde hace {span}",
+    marked_lost_inline: "marcado como perdido",
+    battery_inline: "batería {pct}",
+    low_battery_inline: "batería baja",
     cancel: "Cancelar",
     left: "Quedan {time}",
     today_at: "hoy {time}",
@@ -302,6 +318,10 @@ const STRINGS = {
     farthest: "il più lontano: {name} {dist}",
     all_seen: "Tutti visti nelle ultime {span}",
     marked_lost: "Segnalato come perso",
+    lost_inline: "non visto da {span}",
+    marked_lost_inline: "segnalato come perso",
+    battery_inline: "batteria {pct}",
+    low_battery_inline: "batteria scarica",
     cancel: "Annulla",
     left: "{time} rimanenti",
     today_at: "oggi {time}",
@@ -351,6 +371,10 @@ const STRINGS = {
     farthest: "verst weg: {name} {dist}",
     all_seen: "Alles gezien in de laatste {span}",
     marked_lost: "Gemeld als verloren",
+    lost_inline: "al {span} niet gezien",
+    marked_lost_inline: "gemeld als verloren",
+    battery_inline: "batterij {pct}",
+    low_battery_inline: "batterij bijna leeg",
     cancel: "Annuleren",
     left: "Nog {time}",
     today_at: "vandaag {time}",
@@ -400,6 +424,10 @@ const STRINGS = {
     farthest: "o mais longe: {name} {dist}",
     all_seen: "Todos vistos nas últimas {span}",
     marked_lost: "Marcado como perdido",
+    lost_inline: "não visto há {span}",
+    marked_lost_inline: "marcado como perdido",
+    battery_inline: "bateria {pct}",
+    low_battery_inline: "bateria fraca",
     cancel: "Cancelar",
     left: "Faltam {time}",
     today_at: "hoje {time}",
@@ -449,6 +477,10 @@ const STRINGS = {
     farthest: "najdalej: {name} {dist}",
     all_seen: "Wszystkie widziane w ciągu ostatnich {span}",
     marked_lost: "Oznaczony jako zgubiony",
+    lost_inline: "niewidziany od {span}",
+    marked_lost_inline: "oznaczony jako zgubiony",
+    battery_inline: "bateria {pct}",
+    low_battery_inline: "słaba bateria",
     cancel: "Anuluj",
     left: "Pozostało {time}",
     today_at: "dziś {time}",
@@ -498,6 +530,10 @@ const STRINGS = {
     farthest: "најдаље: {name} {dist}",
     all_seen: "Сви виђени у последњих {span}",
     marked_lost: "Означен као изгубљен",
+    lost_inline: "није виђен {span}",
+    marked_lost_inline: "означен као изгубљен",
+    battery_inline: "батерија {pct}",
+    low_battery_inline: "слаба батерија",
     cancel: "Откажи",
     left: "Преостало {time}",
     today_at: "данас {time}",
@@ -547,6 +583,10 @@ const STRINGS = {
     farthest: "najdalje: {name} {dist}",
     all_seen: "Svi viđeni u poslednjih {span}",
     marked_lost: "Označen kao izgubljen",
+    lost_inline: "nije viđen {span}",
+    marked_lost_inline: "označen kao izgubljen",
+    battery_inline: "baterija {pct}",
+    low_battery_inline: "slaba baterija",
     cancel: "Otkaži",
     left: "Preostalo {time}",
     today_at: "danas {time}",
@@ -596,6 +636,10 @@ const STRINGS = {
     farthest: "cel mai departe: {name} {dist}",
     all_seen: "Toate văzute în ultimele {span}",
     marked_lost: "Marcat ca pierdut",
+    lost_inline: "nevăzut de {span}",
+    marked_lost_inline: "marcat ca pierdut",
+    battery_inline: "baterie {pct}",
+    low_battery_inline: "baterie descărcată",
     cancel: "Anulează",
     left: "Mai sunt {time}",
     today_at: "azi {time}",
@@ -645,6 +689,10 @@ const STRINGS = {
     farthest: "længst væk: {name} {dist}",
     all_seen: "Alle set inden for de sidste {span}",
     marked_lost: "Markeret som mistet",
+    lost_inline: "ikke set i {span}",
+    marked_lost_inline: "markeret som mistet",
+    battery_inline: "batteri {pct}",
+    low_battery_inline: "lavt batteri",
     cancel: "Annuller",
     left: "{time} tilbage",
     today_at: "i dag {time}",
@@ -694,6 +742,10 @@ const STRINGS = {
     farthest: "längst bort: {name} {dist}",
     all_seen: "Alla sedda de senaste {span}",
     marked_lost: "Markerad som förlorad",
+    lost_inline: "inte sedd på {span}",
+    marked_lost_inline: "markerad som förlorad",
+    battery_inline: "batteri {pct}",
+    low_battery_inline: "låg batterinivå",
     cancel: "Avbryt",
     left: "{time} kvar",
     today_at: "i dag {time}",
@@ -743,6 +795,10 @@ const STRINGS = {
     farthest: "най-далеч: {name} {dist}",
     all_seen: "Всички видени през последните {span}",
     marked_lost: "Отбелязан като изгубен",
+    lost_inline: "не е виждан от {span}",
+    marked_lost_inline: "отбелязан като изгубен",
+    battery_inline: "батерия {pct}",
+    low_battery_inline: "слаба батерия",
     cancel: "Отказ",
     left: "Остават {time}",
     today_at: "днес {time}",
@@ -792,6 +848,10 @@ const STRINGS = {
     farthest: "дальше всех: {name} {dist}",
     all_seen: "Все замечены за последние {span}",
     marked_lost: "Отмечен как потерянный",
+    lost_inline: "не виден {span}",
+    marked_lost_inline: "отмечен как потерянный",
+    battery_inline: "батарея {pct}",
+    low_battery_inline: "низкий заряд",
     cancel: "Отмена",
     left: "Осталось {time}",
     today_at: "сегодня {time}",
@@ -841,6 +901,10 @@ const STRINGS = {
     farthest: "найдалі: {name} {dist}",
     all_seen: "Усі помічені за останні {span}",
     marked_lost: "Позначено як загублений",
+    lost_inline: "не видно {span}",
+    marked_lost_inline: "позначено як загублений",
+    battery_inline: "батарея {pct}",
+    low_battery_inline: "низький заряд",
     cancel: "Скасувати",
     left: "Залишилось {time}",
     today_at: "сьогодні {time}",
@@ -890,6 +954,10 @@ const STRINGS = {
     farthest: "legtávolabb: {name} {dist}",
     all_seen: "Mind látva az elmúlt {span} alatt",
     marked_lost: "Elveszettként megjelölve",
+    lost_inline: "{span} óta nem látott",
+    marked_lost_inline: "elveszettként megjelölve",
+    battery_inline: "akkumulátor {pct}",
+    low_battery_inline: "alacsony töltöttség",
     cancel: "Mégse",
     left: "Még {time}",
     today_at: "ma {time}",
@@ -939,6 +1007,10 @@ const STRINGS = {
     farthest: "najďalej: {name} {dist}",
     all_seen: "Všetky videné za posledných {span}",
     marked_lost: "Označený ako stratený",
+    lost_inline: "nevidený {span}",
+    marked_lost_inline: "označený ako stratený",
+    battery_inline: "batéria {pct}",
+    low_battery_inline: "slabá batéria",
     cancel: "Zrušiť",
     left: "Zostáva {time}",
     today_at: "dnes {time}",
@@ -988,6 +1060,10 @@ const STRINGS = {
     farthest: "nejdál: {name} {dist}",
     all_seen: "Všechny viděny za posledních {span}",
     marked_lost: "Označen jako ztracený",
+    lost_inline: "neviděn {span}",
+    marked_lost_inline: "označen jako ztracený",
+    battery_inline: "baterie {pct}",
+    low_battery_inline: "slabá baterie",
     cancel: "Zrušit",
     left: "Zbývá {time}",
     today_at: "dnes {time}",
@@ -1037,6 +1113,10 @@ const STRINGS = {
     farthest: "najdlje: {name} {dist}",
     all_seen: "Vsi videni v zadnjih {span}",
     marked_lost: "Označen kot izgubljen",
+    lost_inline: "ni viden {span}",
+    marked_lost_inline: "označen kot izgubljen",
+    battery_inline: "baterija {pct}",
+    low_battery_inline: "šibka baterija",
     cancel: "Prekliči",
     left: "Še {time}",
     today_at: "danes {time}",
@@ -1086,6 +1166,10 @@ const STRINGS = {
     farthest: "vistālāk: {name} {dist}",
     all_seen: "Visi redzēti pēdējo {span} laikā",
     marked_lost: "Atzīmēts kā pazudis",
+    lost_inline: "nav redzēts {span}",
+    marked_lost_inline: "atzīmēts kā pazudis",
+    battery_inline: "akumulators {pct}",
+    low_battery_inline: "zems akumulatora līmenis",
     cancel: "Atcelt",
     left: "Atlikušas {time}",
     today_at: "šodien {time}",
@@ -1135,6 +1219,10 @@ const STRINGS = {
     farthest: "πιο μακριά: {name} {dist}",
     all_seen: "Όλα εντοπίστηκαν τις τελευταίες {span}",
     marked_lost: "Σημειώθηκε ως χαμένο",
+    lost_inline: "δεν εντοπίστηκε για {span}",
+    marked_lost_inline: "σημειώθηκε ως χαμένο",
+    battery_inline: "μπαταρία {pct}",
+    low_battery_inline: "χαμηλή μπαταρία",
     cancel: "Ακύρωση",
     left: "Απομένουν {time}",
     today_at: "σήμερα {time}",
@@ -2105,9 +2193,29 @@ const visible = (hass, id) => {
   return !e || (!e.hidden && !e.hidden_by && !e.entity_category);
 };
 
-// The buttons that make an item ring: a sound first (play sound, ring, beep, buzz), locating it otherwise; never one that stops a sound.
-const RING_FIRST = /play_sound|ring|sound|beep|buzz/;
-const RING_ELSE = /alarm|find|identify|locate/;
+// The buttons that make an item ring: a sound first (play sound, ring, beep, buzz), locating it otherwise; never one that stops a sound. Matched as
+// whole words of the button's own name (translation key, entity id and name without the device's name): a device called "Keyring" rings nothing.
+const RING_FIRST = /(^|_)(play_sound|ring|sound|beep|buzz)(_|$)/;
+const RING_ELSE = /(^|_)(alarm|find|identify|locate)(_|$)/;
+const STOP = /(^|_)stop(_|$)/;
+const snake = (t) =>
+  String(t || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_|_$/g, "");
+// The words of an entity's own name, without its device's name.
+const ownKeys = (hass, x) => {
+  const dev = snake(devName(hass.devices?.[x.device_id]));
+  let id = x.entity_id.split(".")[1] || "";
+  if (dev && id.startsWith(`${dev}_`)) id = id.slice(dev.length + 1);
+  return [snake(x.translation_key), id, snake(shortName(hass, x.entity_id))].filter(Boolean);
+};
+const ownMatch = (hass, x, re) => ownKeys(hass, x).some((k) => re.test(k));
+// A binary sensor saying the item is lost; not a lost connection or signal.
+const isLostFlag = (x) => {
+  const id = x.entity_id.split(".")[1] || "";
+  return x.translation_key === "lost" || (/_lost$/.test(id) && !/(connection|signal|link)_lost$/.test(id));
+};
 
 // The entities of an item's device that the card reads: its battery, its Bermuda area, its "last seen" time, its estimated distance (Private BLE
 // Device, iBeacon), its lost flag and the button (or the Tractive buzzer switch) that makes it ring.
@@ -2123,9 +2231,9 @@ const companions = (hass, id) => {
   const seen =
     of("sensor").find((x) => deviceClass(hass, x.entity_id) === "timestamp" && /last_seen|last_located|last_update|seen|located/.test(keyText(x, hass)))?.entity_id || null;
   const estimate = of("sensor").find((x) => x.translation_key === "estimated_distance" || /estimated_distance$/.test(x.entity_id))?.entity_id || null;
-  const lostFlag = of("binary_sensor").find((x) => x.translation_key === "lost" || /_lost$/.test(x.entity_id))?.entity_id || null;
-  const buttons = of("button").filter((x) => !/stop/.test(keyText(x, hass)));
-  const button = (buttons.find((x) => RING_FIRST.test(keyText(x, hass))) || buttons.find((x) => RING_ELSE.test(keyText(x, hass))))?.entity_id || null;
+  const lostFlag = of("binary_sensor").find(isLostFlag)?.entity_id || null;
+  const buttons = of("button").filter((x) => !ownMatch(hass, x, STOP));
+  const button = (buttons.find((x) => ownMatch(hass, x, RING_FIRST)) || buttons.find((x) => ownMatch(hass, x, RING_ELSE)))?.entity_id || null;
   const buzzer = of("switch").find((x) => x.translation_key === "tracker_buzzer" || /buzzer/.test(keyText(x, hass)))?.entity_id || null;
   return { battery, area, seen, estimate, lost: lostFlag, button, buzzer };
 };
@@ -2222,6 +2330,9 @@ const TRACKER_STYLE = `
   button.pill { border: none; font: inherit; font-size: 12px; cursor: pointer; }
   button.pill:disabled { opacity: .45; cursor: default; }
   button.pill:focus-visible { outline: 2px solid var(--primary-color, var(--tk-accent)); outline-offset: 1px; }
+  /* The ring buttons: the accent mixed with the text colour, readable in the dark theme too. */
+  .pill.accent { color: color-mix(in srgb, var(--tk-accent) 40%, var(--primary-text-color)); }
+  .pill.accent .icon, .btn.ring .icon { color: color-mix(in srgb, var(--tk-accent) 55%, var(--primary-text-color)); }
   .pill.ringing .icon { animation: tk-shake .9s ease-in-out infinite; transform-origin: 50% 10%; }
   .btn.ringing .icon { animation: tk-shake .9s ease-in-out infinite; transform-origin: 50% 10%; }
   @keyframes tk-shake { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-16deg); } 20%, 40% { transform: rotate(16deg); } }
@@ -2236,6 +2347,9 @@ const TRACKER_STYLE = `
     .hero-art { width: 120px; margin: 0 auto; }
     .mini .hero { flex-direction: row; align-items: center; }
     .mini .hero-art { display: none; }
+  }
+  @container (max-width: 200px) {
+    .mini .btn.ring { display: none; }
   }
 `;
 
@@ -2382,7 +2496,27 @@ class TrackerCard extends CardBase {
       const d = scale(r.km);
       blips.push({ r, x: c + d * Math.sin(r.angle), y: c - d * Math.cos(r.angle) });
     }
-    const br = 15;
+    // Smaller dots on the mini radar; a dot that would cover another one is moved out along its bearing, and every dot stays inside the disc.
+    const br = mini ? 11 : 14;
+    const placed = [];
+    for (const b of blips) {
+      const dx = b.x - c;
+      const dy = b.y - c;
+      let d = Math.hypot(dx, dy);
+      const ux = d ? dx / d : 1;
+      const uy = d ? dy / d : 0;
+      for (let k = 0; k < 8 && placed.some((p) => Math.hypot(p.x - b.x, p.y - b.y) < br * 2); k++) {
+        d += br;
+        b.x = c + ux * d;
+        b.y = c + uy * d;
+      }
+      const lim = R - br;
+      if (d > lim) {
+        b.x = c + ux * lim;
+        b.y = c + uy * lim;
+      }
+      placed.push(b);
+    }
     for (const { r, x, y } of blips) {
       const label = `${r.it.name} · ${this._placeText(r)}${r.km ? ` · ${this._dist(r.km)}` : ""}`;
       const s = 20 / 24;
@@ -2412,7 +2546,7 @@ class TrackerCard extends CardBase {
     const label = `${this._t(ringing ? "ringing" : "ring_it")} · ${it.name}`;
     const off = this._s(id)?.state === "unavailable" ? " disabled" : "";
     return round
-      ? `<button class="btn round${ringing ? " ringing active" : ""}" data-action="ring" data-entity="${esc(id)}" title="${esc(this._t("ring_it"))}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}</button>`
+      ? `<button class="btn round ring${ringing ? " ringing active" : ""}" data-action="ring" data-entity="${esc(id)}" title="${esc(label)}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}</button>`
       : `<button class="pill accent${ringing ? " ringing" : ""}" data-action="ring" data-entity="${esc(id)}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}${esc(this._t(ringing ? "ringing" : "ring_it"))}</button>`;
   }
 
@@ -2460,12 +2594,12 @@ class TrackerCard extends CardBase {
       out.push(`<div class="line active">${svgIcon(ICONS.tracker)}<span>${esc(text)}</span></div>`);
     }
     for (const r of sum.lost) {
-      const why = r.flagged ? this._t("marked_lost") : this._t("lost", { span: fmtSpan(this._hass, c, Date.now() - r.seen) });
+      const why = r.flagged ? this._t("marked_lost_inline") : this._t("lost_inline", { span: fmtSpan(this._hass, c, Date.now() - r.seen) });
       out.push(`<div class="line crit">${svgIcon(ICONS.signal_off)}<span>${esc(`${r.it.name}: ${why}`)}</span></div>`);
     }
     if (c.show_battery !== false) {
       for (const r of sum.low.filter((x) => !x.lost))
-        out.push(`<div class="line warn">${svgIcon(ICONS.battery_low)}<span>${esc(`${r.it.name}: ${this._t("battery").toLowerCase()} ${r.battery !== null ? `${fmtNum(r.battery, 0, this._locale())} %` : this._t("low_battery").toLowerCase()}`)}</span></div>`);
+        out.push(`<div class="line warn">${svgIcon(ICONS.battery_low)}<span>${esc(`${r.it.name}: ${r.battery !== null ? this._t("battery_inline", { pct: `${fmtNum(r.battery, 0, this._locale())} %` }) : this._t("low_battery_inline")}`)}</span></div>`);
     }
     const seen = sum.rows.map((r) => r.seen).filter((x) => x !== null);
     if (!sum.lost.length && seen.length && c.show_seen !== false) {
@@ -2499,11 +2633,22 @@ class TrackerCard extends CardBase {
       </ha-card>`;
   }
 
+  _onDisconnect() {
+    clearTimeout(this._ringTimer);
+  }
+
   _action(action, el) {
     if (action !== "ring") return false;
     const id = el.dataset.entity;
     // A button is pressed (play sound…), a buzzer switch turned on (Tractive).
     const domain = domainOf(id);
+    // A buzzer already on is turned off (stopped), without the ringing bell.
+    if (domain === "switch" && this._s(id)?.state === "on") {
+      this._call("switch", "turn_off", { entity_id: id });
+      this._rang = null;
+      this._update();
+      return true;
+    }
     if (domain === "switch") this._call("switch", "turn_on", { entity_id: id });
     else this._call(domain === "input_button" ? "input_button" : "button", "press", { entity_id: id });
     this._rang = { id, at: Date.now() };

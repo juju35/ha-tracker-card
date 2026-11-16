@@ -5,7 +5,7 @@
 ### Features
 - New look, common to the other cards: the radar as the card's illustration next to how many items are home, with lines for those away (and the farthest), the items not seen or with a low battery and when they were all last seen.
 - Items as tiles: grey at home, tinted blue when away, amber with a low battery, red when not seen; pills for the last seen time and the battery, and a *Ring* pill whose bell shakes while it rings.
-- Mini card: the small radar, the same lines and a round button to ring the first item away.
+- Mini card: the small radar, the same lines and a round button to ring an item: the first one not seen, else away, else at home (its name in the button's tooltip).
 
 ### Fixes
 - Ring button: the button that plays a sound is chosen first, a locate button only when there is none, and never one that stops the sound (Google Find My Device has play sound, stop sound and locate).
@@ -13,6 +13,9 @@
 - Not seen: an item marked as lost by its integration (an `is_lost` attribute or a *lost* binary sensor) counts as not seen, whenever it was last seen.
 - Private BLE Device and iBeacon: the estimated distance is shown next to the place.
 - Bermuda: the tracker's `area` attribute gives the room when there is no area sensor.
+- Ring button: matched on the button's own name, so a device called *Keyring* no longer rings with its *Restart* button; a lost connection or signal no longer counts as lost.
+- Tractive: a click on a buzzer already on turns it off.
+- Dark theme: the *Ring* pill and the bell read better; the radar's dots no longer cover each other and stay inside the disc.
 
 ## 1.0.0 - 2026-11-16
 
