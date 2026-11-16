@@ -65,7 +65,7 @@ test("the trackers of tag, collar and GPS integrations are found, not the phones
       ["Backpack", "bermuda"],
       ["Bike", "paj_gps"],
       ["Dog", "tractive"],
-      ["Keys", "tile"],
+      ["Keys", "private_ble_device"],
       ["Suitcase", "findmy"],
       ["Wallet", "googlefindmy"],
     ],
@@ -74,8 +74,10 @@ test("the trackers of tag, collar and GPS integrations are found, not the phones
 
 test("their devices give the battery, the Bermuda area and the ring button", () => {
   const hass = makeHass();
-  same(tk.companions(hass, "device_tracker.gps_bike"), { battery: "sensor.gps_bike_battery", area: null, seen: null, button: null });
-  same(tk.companions(hass, "device_tracker.ble_backpack"), { battery: null, area: "sensor.ble_backpack_area", seen: null, button: null });
+  const none = { battery: null, area: null, seen: null, estimate: null, lost: null, button: null, buzzer: null };
+  same(tk.companions(hass, "device_tracker.gps_bike"), { ...none, battery: "sensor.gps_bike_battery" });
+  same(tk.companions(hass, "device_tracker.ble_backpack"), { ...none, area: "sensor.ble_backpack_area" });
+  // Play sound, not the stop sound or locate buttons listed before it.
   assert.equal(tk.companions(hass, "device_tracker.fmd_wallet").button, "button.fmd_wallet_play_sound");
   assert.equal(tk.companions(hass, "device_tracker.airtag_suitcase").button, "button.airtag_suitcase_play_sound");
 });
@@ -124,7 +126,54 @@ test("ring: presses the device's button and the bell shakes for a while", async 
   click(card, { action: "ring", entity: "button.fmd_wallet_play_sound" });
   same(hass.calls.at(-1), ["button", "press", { entity_id: "button.fmd_wallet_play_sound" }]);
   assert.match(html(), /pill accent ringing"[^>]*data-entity="button\.fmd_wallet_play_sound"[^>]*>.*Ringing/s);
-  assert.equal((html().match(/data-action="ring"/g) || []).length, 2);
+  assert.equal((html().match(/data-action="ring"/g) || []).length, 3);
+});
+
+test("ring button: a sound first, locate only as a fallback, never a stop button", () => {
+  const hass = makeHass();
+  delete hass.states["button.fmd_wallet_play_sound"];
+  assert.equal(tk.companions(hass, "device_tracker.fmd_wallet").button, "button.fmd_wallet_locate_device");
+  delete hass.states["button.fmd_wallet_locate_device"];
+  assert.equal(tk.companions(hass, "device_tracker.fmd_wallet").button, null);
+});
+
+test("Tractive: the buzzer switch rings the collar", async () => {
+  assert.equal(tk.companions(makeHass(), "device_tracker.collar_dog").buzzer, "switch.collar_dog_buzzer");
+  const { card, hass, html } = await mount();
+  assert.match(html(), /data-action="ring" data-entity="switch\.collar_dog_buzzer"/);
+  click(card, { action: "ring", entity: "switch.collar_dog_buzzer" });
+  same(hass.calls.at(-1), ["switch", "turn_on", { entity_id: "switch.collar_dog_buzzer" }]);
+  assert.match(html(), /pill accent ringing"[^>]*data-entity="switch\.collar_dog_buzzer"/);
+  clearTimeout(card._ringTimer);
+});
+
+test("lost: an is_lost attribute or a lost binary sensor marks an item lost, seen or not", async () => {
+  const { card, hass, html } = await mount();
+  hass.states["device_tracker.airtag_suitcase"] = { ...hass.states["device_tracker.airtag_suitcase"], attributes: { ...hass.states["device_tracker.airtag_suitcase"].attributes, is_lost: true } };
+  card.hass = { ...hass };
+  assert.match(html(), /chip crit[^>]*>.*Not seen/s);
+  assert.match(html(), /Suitcase: Marked as lost/);
+  assert.match(html(), /tile crit tint/);
+  const h2 = makeHass();
+  h2.states["binary_sensor.collar_dog_lost"] = { entity_id: "binary_sensor.collar_dog_lost", state: "on", attributes: {}, last_changed: "", last_updated: "" };
+  h2.entities["binary_sensor.collar_dog_lost"] = { entity_id: "binary_sensor.collar_dog_lost", device_id: "dev_collar_dog", platform: "tractive", translation_key: "lost" };
+  assert.equal(tk.companions(h2, "device_tracker.collar_dog").lost, "binary_sensor.collar_dog_lost");
+});
+
+test("Private BLE Device and iBeacon: the estimated distance next to the place", async () => {
+  assert.equal(tk.companions(makeHass(), "device_tracker.tag_keys").estimate, "sensor.tag_keys_estimated_distance");
+  const { html } = await mount();
+  assert.match(html(), /row-state ok">Home · ≈ 3\.2 m</);
+  const off = await mount({ show_distance: false });
+  assert.doesNotMatch(off.html(), /≈ 3\.2 m/);
+});
+
+test("Bermuda: the tracker's area attribute when there is no area sensor", async () => {
+  const { card, hass, html } = await mount();
+  delete hass.states["sensor.ble_backpack_area"];
+  hass.states["device_tracker.ble_backpack"] = { ...hass.states["device_tracker.ble_backpack"], attributes: { ...hass.states["device_tracker.ble_backpack"].attributes, area: "Office" } };
+  card.hass = { ...hass };
+  assert.match(html(), /row-state ok">Home · Office</);
 });
 
 test("a tap on an item or a blip opens its more-info", async () => {
@@ -174,8 +223,8 @@ test("mini card: a small radar, the items away first; the detail button shows th
   assert.match(html(), /class="radar"/);
   assert.match(html(), /3 away · farthest Suitcase/);
   assert.match(html(), /Dog: battery 18 %/);
-  // The ring button of the first item away that can ring.
-  assert.match(html(), /btn round"[^>]*data-entity="button\.airtag_suitcase/);
+  // The ring button of the first item away that can ring (the dog's buzzer).
+  assert.match(html(), /btn round"[^>]*data-entity="switch\.collar_dog_buzzer/);
   click(card, { action: "zoom" });
   assert.match(html(), /class="tiles items"/);
   card._unzoom.tap({ composedPath: () => [] });

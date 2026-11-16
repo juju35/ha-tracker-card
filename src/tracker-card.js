@@ -105,6 +105,7 @@ const STRINGS = {
     at_home: "at home",
     farthest: "farthest {name} {dist}",
     all_seen: "All seen in the last {span}",
+    marked_lost: "Marked as lost",
     cancel: "Cancel",
     left: "{time} left",
     today_at: "today {time}",
@@ -153,6 +154,7 @@ const STRINGS = {
     at_home: "à la maison",
     farthest: "le plus loin : {name} {dist}",
     all_seen: "Tous vus ces dernières {span}",
+    marked_lost: "Signalé perdu",
     cancel: "Annuler",
     left: "{time} restantes",
     today_at: "aujourd'hui {time}",
@@ -201,6 +203,7 @@ const STRINGS = {
     at_home: "zuhause",
     farthest: "am weitesten: {name} {dist}",
     all_seen: "Alle in den letzten {span} gesehen",
+    marked_lost: "Als verloren markiert",
     cancel: "Abbrechen",
     left: "Noch {time}",
     today_at: "heute {time}",
@@ -249,6 +252,7 @@ const STRINGS = {
     at_home: "en casa",
     farthest: "el más lejano: {name} {dist}",
     all_seen: "Todos vistos en las últimas {span}",
+    marked_lost: "Marcado como perdido",
     cancel: "Cancelar",
     left: "Quedan {time}",
     today_at: "hoy {time}",
@@ -297,6 +301,7 @@ const STRINGS = {
     at_home: "a casa",
     farthest: "il più lontano: {name} {dist}",
     all_seen: "Tutti visti nelle ultime {span}",
+    marked_lost: "Segnalato come perso",
     cancel: "Annulla",
     left: "{time} rimanenti",
     today_at: "oggi {time}",
@@ -345,6 +350,7 @@ const STRINGS = {
     at_home: "thuis",
     farthest: "verst weg: {name} {dist}",
     all_seen: "Alles gezien in de laatste {span}",
+    marked_lost: "Gemeld als verloren",
     cancel: "Annuleren",
     left: "Nog {time}",
     today_at: "vandaag {time}",
@@ -393,6 +399,7 @@ const STRINGS = {
     at_home: "em casa",
     farthest: "o mais longe: {name} {dist}",
     all_seen: "Todos vistos nas últimas {span}",
+    marked_lost: "Marcado como perdido",
     cancel: "Cancelar",
     left: "Faltam {time}",
     today_at: "hoje {time}",
@@ -441,6 +448,7 @@ const STRINGS = {
     at_home: "w domu",
     farthest: "najdalej: {name} {dist}",
     all_seen: "Wszystkie widziane w ciągu ostatnich {span}",
+    marked_lost: "Oznaczony jako zgubiony",
     cancel: "Anuluj",
     left: "Pozostało {time}",
     today_at: "dziś {time}",
@@ -489,6 +497,7 @@ const STRINGS = {
     at_home: "код куће",
     farthest: "најдаље: {name} {dist}",
     all_seen: "Сви виђени у последњих {span}",
+    marked_lost: "Означен као изгубљен",
     cancel: "Откажи",
     left: "Преостало {time}",
     today_at: "данас {time}",
@@ -537,6 +546,7 @@ const STRINGS = {
     at_home: "kod kuće",
     farthest: "najdalje: {name} {dist}",
     all_seen: "Svi viđeni u poslednjih {span}",
+    marked_lost: "Označen kao izgubljen",
     cancel: "Otkaži",
     left: "Preostalo {time}",
     today_at: "danas {time}",
@@ -585,6 +595,7 @@ const STRINGS = {
     at_home: "acasă",
     farthest: "cel mai departe: {name} {dist}",
     all_seen: "Toate văzute în ultimele {span}",
+    marked_lost: "Marcat ca pierdut",
     cancel: "Anulează",
     left: "Mai sunt {time}",
     today_at: "azi {time}",
@@ -633,6 +644,7 @@ const STRINGS = {
     at_home: "hjemme",
     farthest: "længst væk: {name} {dist}",
     all_seen: "Alle set inden for de sidste {span}",
+    marked_lost: "Markeret som mistet",
     cancel: "Annuller",
     left: "{time} tilbage",
     today_at: "i dag {time}",
@@ -681,6 +693,7 @@ const STRINGS = {
     at_home: "hemma",
     farthest: "längst bort: {name} {dist}",
     all_seen: "Alla sedda de senaste {span}",
+    marked_lost: "Markerad som förlorad",
     cancel: "Avbryt",
     left: "{time} kvar",
     today_at: "i dag {time}",
@@ -729,6 +742,7 @@ const STRINGS = {
     at_home: "у дома",
     farthest: "най-далеч: {name} {dist}",
     all_seen: "Всички видени през последните {span}",
+    marked_lost: "Отбелязан като изгубен",
     cancel: "Отказ",
     left: "Остават {time}",
     today_at: "днес {time}",
@@ -777,6 +791,7 @@ const STRINGS = {
     at_home: "дома",
     farthest: "дальше всех: {name} {dist}",
     all_seen: "Все замечены за последние {span}",
+    marked_lost: "Отмечен как потерянный",
     cancel: "Отмена",
     left: "Осталось {time}",
     today_at: "сегодня {time}",
@@ -825,6 +840,7 @@ const STRINGS = {
     at_home: "вдома",
     farthest: "найдалі: {name} {dist}",
     all_seen: "Усі помічені за останні {span}",
+    marked_lost: "Позначено як загублений",
     cancel: "Скасувати",
     left: "Залишилось {time}",
     today_at: "сьогодні {time}",
@@ -873,6 +889,7 @@ const STRINGS = {
     at_home: "otthon",
     farthest: "legtávolabb: {name} {dist}",
     all_seen: "Mind látva az elmúlt {span} alatt",
+    marked_lost: "Elveszettként megjelölve",
     cancel: "Mégse",
     left: "Még {time}",
     today_at: "ma {time}",
@@ -921,6 +938,7 @@ const STRINGS = {
     at_home: "doma",
     farthest: "najďalej: {name} {dist}",
     all_seen: "Všetky videné za posledných {span}",
+    marked_lost: "Označený ako stratený",
     cancel: "Zrušiť",
     left: "Zostáva {time}",
     today_at: "dnes {time}",
@@ -969,6 +987,7 @@ const STRINGS = {
     at_home: "doma",
     farthest: "nejdál: {name} {dist}",
     all_seen: "Všechny viděny za posledních {span}",
+    marked_lost: "Označen jako ztracený",
     cancel: "Zrušit",
     left: "Zbývá {time}",
     today_at: "dnes {time}",
@@ -1017,6 +1036,7 @@ const STRINGS = {
     at_home: "doma",
     farthest: "najdlje: {name} {dist}",
     all_seen: "Vsi videni v zadnjih {span}",
+    marked_lost: "Označen kot izgubljen",
     cancel: "Prekliči",
     left: "Še {time}",
     today_at: "danes {time}",
@@ -1065,6 +1085,7 @@ const STRINGS = {
     at_home: "mājās",
     farthest: "vistālāk: {name} {dist}",
     all_seen: "Visi redzēti pēdējo {span} laikā",
+    marked_lost: "Atzīmēts kā pazudis",
     cancel: "Atcelt",
     left: "Atlikušas {time}",
     today_at: "šodien {time}",
@@ -1113,6 +1134,7 @@ const STRINGS = {
     at_home: "στο σπίτι",
     farthest: "πιο μακριά: {name} {dist}",
     all_seen: "Όλα εντοπίστηκαν τις τελευταίες {span}",
+    marked_lost: "Σημειώθηκε ως χαμένο",
     cancel: "Ακύρωση",
     left: "Απομένουν {time}",
     today_at: "σήμερα {time}",
@@ -2083,8 +2105,12 @@ const visible = (hass, id) => {
   return !e || (!e.hidden && !e.hidden_by && !e.entity_category);
 };
 
-// The entities of an item's device that the card reads: its battery, its Bermuda area, its "last seen" time and the
-// button that makes it ring.
+// The buttons that make an item ring: a sound first (play sound, ring, beep, buzz), locating it otherwise; never one that stops a sound.
+const RING_FIRST = /play_sound|ring|sound|beep|buzz/;
+const RING_ELSE = /alarm|find|identify|locate/;
+
+// The entities of an item's device that the card reads: its battery, its Bermuda area, its "last seen" time, its estimated distance (Private BLE
+// Device, iBeacon), its lost flag and the button (or the Tractive buzzer switch) that makes it ring.
 const companions = (hass, id) => {
   const e = hass.entities?.[id];
   const list = (e?.device_id && byDevice(hass).get(e.device_id)) || [];
@@ -2096,9 +2122,16 @@ const companions = (hass, id) => {
   const area = of("sensor").find((x) => x.translation_key === "area" || /_area$/.test(x.entity_id))?.entity_id || null;
   const seen =
     of("sensor").find((x) => deviceClass(hass, x.entity_id) === "timestamp" && /last_seen|last_located|last_update|seen|located/.test(keyText(x, hass)))?.entity_id || null;
-  const button = of("button").find((x) => /sound|ring|play|locate|alarm|buzz|beep|find|identify/.test(keyText(x, hass)))?.entity_id || null;
-  return { battery, area, seen, button };
+  const estimate = of("sensor").find((x) => x.translation_key === "estimated_distance" || /estimated_distance$/.test(x.entity_id))?.entity_id || null;
+  const lostFlag = of("binary_sensor").find((x) => x.translation_key === "lost" || /_lost$/.test(x.entity_id))?.entity_id || null;
+  const buttons = of("button").filter((x) => !/stop/.test(keyText(x, hass)));
+  const button = (buttons.find((x) => RING_FIRST.test(keyText(x, hass))) || buttons.find((x) => RING_ELSE.test(keyText(x, hass))))?.entity_id || null;
+  const buzzer = of("switch").find((x) => x.translation_key === "tracker_buzzer" || /buzzer/.test(keyText(x, hass)))?.entity_id || null;
+  return { battery, area, seen, estimate, lost: lostFlag, button, buzzer };
 };
+
+// What rings an item: its button, else its buzzer switch (Tractive).
+const ringer = (it) => it.button || it.buzzer || null;
 
 const _cache = new WeakMap();
 
@@ -2224,7 +2257,7 @@ class TrackerCard extends CardBase {
   }
 
   _entityIds(m) {
-    return ["zone.home", ...m.items.flatMap((it) => [it.entity, it.battery, it.area, it.seen, it.button].filter(Boolean))];
+    return ["zone.home", ...m.items.flatMap((it) => [it.entity, it.battery, it.area, it.seen, it.estimate, it.lost, it.button, it.buzzer].filter(Boolean))];
   }
 
   _extraDeps() {
@@ -2259,11 +2292,17 @@ class TrackerCard extends CardBase {
     }
     if (place === "home") km = has && home ? km : 0;
     const areaState = it.area ? this._s(it.area) : null;
-    const area = areaState && valid(areaState) && !["not_home", "away", "unknown"].includes(String(areaState.state).toLowerCase()) ? areaState.state : null;
+    const rawArea = areaState && valid(areaState) ? areaState.state : typeof a.area === "string" ? a.area : null;
+    const area = rawArea && !["not_home", "away", "unknown", ""].includes(String(rawArea).toLowerCase()) ? rawArea : null;
     const seenState = it.seen ? this._s(it.seen) : null;
     const seen = parseTime(seenState?.state) ?? parseTime(a.last_seen) ?? parseTime(a.last_timestamp) ?? parseTime(a.last_update) ?? parseTime(s?.last_updated);
     const lostAfter = Number(this._config.lost_after ?? 24) * 3.6e6;
-    const lost = lostAfter > 0 && seen !== null && Date.now() - seen > lostAfter;
+    const unseen = lostAfter > 0 && seen !== null && Date.now() - seen > lostAfter;
+    // Marked as lost by the integration: an `is_lost` attribute or a "lost" binary sensor of the device.
+    const flagged = a.is_lost === true || (it.lost ? this._s(it.lost)?.state === "on" : false);
+    const lost = unseen || flagged;
+    const es = it.estimate ? this._s(it.estimate) : null;
+    const estimate = es && Number.isFinite(num(es)) ? { v: num(es), unit: es.attributes?.unit_of_measurement || "m" } : null;
     const bs = it.battery ? this._s(it.battery) : null;
     let battery = null;
     let low = false;
@@ -2272,7 +2311,7 @@ class TrackerCard extends CardBase {
       battery = bs ? num(bs) : Number.isFinite(Number(a.battery_level ?? a.battery)) ? Number(a.battery_level ?? a.battery) : null;
       low = battery !== null && battery <= Number(this._config.battery_threshold ?? 20);
     }
-    return { place, zone: place === "zone" ? s.state : null, area, km, angle, seen, lost, battery, low };
+    return { place, zone: place === "zone" ? s.state : null, area, km, angle, seen, lost, flagged: flagged && !unseen, estimate, battery, low };
   }
 
   _summary(m) {
@@ -2356,7 +2395,7 @@ class TrackerCard extends CardBase {
   }
 
   _ringing(it) {
-    return this._rang?.id === it.button && Date.now() - this._rang.at < RING_MS;
+    return this._rang?.id === ringer(it) && Date.now() - this._rang.at < RING_MS;
   }
 
   // The state of an item: lost (not seen) first, then a low battery, away, at home.
@@ -2367,13 +2406,14 @@ class TrackerCard extends CardBase {
   }
 
   _ringBtn(it, round = false) {
-    if (!it.button) return "";
+    const id = ringer(it);
+    if (!id) return "";
     const ringing = this._ringing(it);
     const label = `${this._t(ringing ? "ringing" : "ring_it")} · ${it.name}`;
-    const off = this._s(it.button)?.state === "unavailable" ? " disabled" : "";
+    const off = this._s(id)?.state === "unavailable" ? " disabled" : "";
     return round
-      ? `<button class="btn round${ringing ? " ringing active" : ""}" data-action="ring" data-entity="${esc(it.button)}" title="${esc(this._t("ring_it"))}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}</button>`
-      : `<button class="pill accent${ringing ? " ringing" : ""}" data-action="ring" data-entity="${esc(it.button)}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}${esc(this._t(ringing ? "ringing" : "ring_it"))}</button>`;
+      ? `<button class="btn round${ringing ? " ringing active" : ""}" data-action="ring" data-entity="${esc(id)}" title="${esc(this._t("ring_it"))}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}</button>`
+      : `<button class="pill accent${ringing ? " ringing" : ""}" data-action="ring" data-entity="${esc(id)}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}${esc(this._t(ringing ? "ringing" : "ring_it"))}</button>`;
   }
 
   // An item as a tile: grey at home, tinted when away (blue), with a low battery (amber) or not seen (red); its last seen, battery and ring button below.
@@ -2383,11 +2423,12 @@ class TrackerCard extends CardBase {
     const st = this._state(r);
     const where = [this._placeText(r)];
     if (c.show_distance !== false && r.km !== null && r.place !== "home") where.push(this._dist(r.km));
+    else if (c.show_distance !== false && r.estimate) where.push(`≈ ${fmtNum(r.estimate.v, r.estimate.v < 10 ? 1 : 0, this._locale())} ${r.estimate.unit}`);
     const pills = [];
-    if (c.show_seen !== false && r.seen !== null) {
+    if (c.show_seen !== false && (r.seen !== null || r.flagged)) {
       pills.push(
         r.lost
-          ? `<span class="pill crit">${svgIcon(ICONS.signal_off)}${esc(fmtSpan(this._hass, c, Date.now() - r.seen))}</span>`
+          ? `<span class="pill crit">${svgIcon(ICONS.signal_off)}${esc(r.flagged ? this._t("marked_lost") : fmtSpan(this._hass, c, Date.now() - r.seen))}</span>`
           : `<span class="pill idle" title="${esc(this._t("seen", { when: fmtRelative(this._hass, c, r.seen) }))}">${svgIcon(ICONS.clock)}${esc(fmtRelative(this._hass, c, r.seen))}</span>`,
       );
     }
@@ -2418,7 +2459,10 @@ class TrackerCard extends CardBase {
       const text = far && c.show_distance !== false ? `${this._t("sum_away", { n: away.length })} · ${this._t("farthest", { name: far.it.name, dist: this._dist(far.km) })}` : this._t("sum_away", { n: away.length });
       out.push(`<div class="line active">${svgIcon(ICONS.tracker)}<span>${esc(text)}</span></div>`);
     }
-    for (const r of sum.lost) out.push(`<div class="line crit">${svgIcon(ICONS.signal_off)}<span>${esc(`${r.it.name}: ${this._t("lost", { span: fmtSpan(this._hass, c, Date.now() - r.seen) })}`)}</span></div>`);
+    for (const r of sum.lost) {
+      const why = r.flagged ? this._t("marked_lost") : this._t("lost", { span: fmtSpan(this._hass, c, Date.now() - r.seen) });
+      out.push(`<div class="line crit">${svgIcon(ICONS.signal_off)}<span>${esc(`${r.it.name}: ${why}`)}</span></div>`);
+    }
     if (c.show_battery !== false) {
       for (const r of sum.low.filter((x) => !x.lost))
         out.push(`<div class="line warn">${svgIcon(ICONS.battery_low)}<span>${esc(`${r.it.name}: ${this._t("battery").toLowerCase()} ${r.battery !== null ? `${fmtNum(r.battery, 0, this._locale())} %` : this._t("low_battery").toLowerCase()}`)}</span></div>`);
@@ -2458,7 +2502,10 @@ class TrackerCard extends CardBase {
   _action(action, el) {
     if (action !== "ring") return false;
     const id = el.dataset.entity;
-    this._call("button", "press", { entity_id: id });
+    // A button is pressed (play sound…), a buzzer switch turned on (Tractive).
+    const domain = domainOf(id);
+    if (domain === "switch") this._call("switch", "turn_on", { entity_id: id });
+    else this._call(domain === "input_button" ? "input_button" : "button", "press", { entity_id: id });
     this._rang = { id, at: Date.now() };
     // Drawn again once the bell stops.
     clearTimeout(this._ringTimer);
@@ -2479,7 +2526,7 @@ class TrackerMiniCard extends withMini(TrackerCard) {
   // The mini card's round ring button: the first item not seen, else away, else at home, that can ring.
   _miniRing(sum) {
     const rank = (r) => (r.lost ? 0 : r.place === "home" ? 2 : 1);
-    const r = [...sum.rows].filter((x) => x.it.button).sort((a, b) => rank(a) - rank(b))[0];
+    const r = [...sum.rows].filter((x) => ringer(x.it)).sort((a, b) => rank(a) - rank(b))[0];
     return r ? this._ringBtn(r.it, true) : "";
   }
 

@@ -1,6 +1,6 @@
 // Mock Home Assistant registries and states for the screenshots and the tests: six tracked items around a home —
-// keys with a Tile, a backpack seen by Bermuda in the hallway, a wallet with a Google Find My Device tag (and its play
-// sound button), a bike with a PAJ GPS tracker, a dog with a Tractive collar in the park (battery low) and a suitcase
+// keys with a Private BLE Device tag (and its estimated distance), a backpack seen by Bermuda in the hallway, a wallet with a Google Find My Device tag (and its play
+// sound button), a bike with a PAJ GPS tracker, a dog with a Tractive collar in the park (battery low, its buzzer switch) and a suitcase
 // with an Apple Find My tag far away. Entity ids are neutral on purpose (the cards never rely on them). Every time is
 // relative to NOW, a fixed instant, so that the captures never change. `mockData(variant)` returns everything a card
 // needs for one capture.
@@ -34,14 +34,19 @@ const base = () => {
   const companion = (id, state, attributes, key, platform, translation_key = null) =>
     put(id, state, attributes, { platform, device_id: `dev_${key}`, translation_key });
 
-  item("tag_keys", "Keys", "tile", "home", { ...at(0.01, 80), gps_accuracy: 12, last_timestamp: iso(NOW - 12 * MIN) }, NOW - 12 * MIN);
+  item("tag_keys", "Keys", "private_ble_device", "home", { last_timestamp: iso(NOW - 12 * MIN) }, NOW - 12 * MIN);
+  companion("sensor.tag_keys_estimated_distance", "3.2", { friendly_name: "Keys Estimated distance", unit_of_measurement: "m" }, "tag_keys", "private_ble_device", "estimated_distance");
   item("ble_backpack", "Backpack", "bermuda", "home", {}, NOW - MIN);
   companion("sensor.ble_backpack_area", "Hallway", { friendly_name: "Backpack Area" }, "ble_backpack", "bermuda", "area");
   item("fmd_wallet", "Wallet", "googlefindmy", "home", { ...at(0.02, 200), gps_accuracy: 20 }, NOW - 20 * MIN);
+  // Stop sound and locate come first in the registry: the card still picks play sound.
+  companion("button.fmd_wallet_stop_sound", "unknown", { friendly_name: "Wallet Stop sound" }, "fmd_wallet", "googlefindmy", "stop_sound");
+  companion("button.fmd_wallet_locate_device", "unknown", { friendly_name: "Wallet Locate device" }, "fmd_wallet", "googlefindmy", "locate_device");
   companion("button.fmd_wallet_play_sound", "unknown", { friendly_name: "Wallet Play sound" }, "fmd_wallet", "googlefindmy", "play_sound");
   item("gps_bike", "Bike", "paj_gps", "not_home", { ...at(1.8, 40), gps_accuracy: 8 }, NOW - 4 * MIN);
   companion("sensor.gps_bike_battery", "64", { friendly_name: "Bike Battery", device_class: "battery", unit_of_measurement: "%" }, "gps_bike", "paj_gps");
   item("collar_dog", "Dog", "tractive", "Park", { ...at(0.6, 225), gps_accuracy: 5 }, NOW - 2 * MIN);
+  companion("switch.collar_dog_buzzer", "off", { friendly_name: "Dog Buzzer" }, "collar_dog", "tractive", "tracker_buzzer");
   companion("sensor.collar_dog_battery", "18", { friendly_name: "Dog Battery", device_class: "battery", unit_of_measurement: "%" }, "collar_dog", "tractive");
   item("airtag_suitcase", "Suitcase", "findmy", "not_home", { ...at(230, 70), gps_accuracy: 30 }, NOW - 180 * MIN);
   companion("button.airtag_suitcase_play_sound", "unknown", { friendly_name: "Suitcase Play sound" }, "airtag_suitcase", "findmy", "play_sound");

@@ -52,14 +52,14 @@ The device trackers of tag, collar and GPS tracker integrations are found throug
 | Integration | What the cards use |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/tile.png" alt="" width="16"> [Tile](https://www.home-assistant.io/integrations/tile/) (core) | Tile trackers: position, last seen |
-| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/bermuda.png" alt="" width="16"> [Bermuda BLE Trilateration](https://github.com/agittins/bermuda) (custom) | Bluetooth tags, beacons and devices: home or away, and the **area** they are in |
-| [Private BLE Device](https://www.home-assistant.io/integrations/private_ble_device/) (core) | Apple devices and tags with a rotating address: home or away |
-| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/ibeacon.png" alt="" width="16"> [iBeacon Tracker](https://www.home-assistant.io/integrations/ibeacon/) (core) | iBeacons: home or away |
-| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/googlefindmy.png" alt="" width="16"> [Google Find My Device](https://github.com/BSkando/GoogleFindMy-HA) (custom) | Find My Device tags and phones: position, last seen, **play sound** button |
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/bermuda.png" alt="" width="16"> [Bermuda BLE Trilateration](https://github.com/agittins/bermuda) (custom) | Bluetooth tags, beacons and devices: home or away, and the **area** they are in (its area sensor, else the tracker's `area` attribute) |
+| [Private BLE Device](https://www.home-assistant.io/integrations/private_ble_device/) (core) | Apple devices and tags with a rotating address: home or away, **estimated distance** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/ibeacon.png" alt="" width="16"> [iBeacon Tracker](https://www.home-assistant.io/integrations/ibeacon/) (core) | iBeacons: home or away, **estimated distance** |
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/googlefindmy.png" alt="" width="16"> [Google Find My Device](https://github.com/BSkando/GoogleFindMy-HA) (custom) | Find My Device tags and phones: position, last seen, **play sound** button (locate when there is none) |
 | [SmartThings Find](https://github.com/Vedeneb/HA-SmartThings-Find) (custom) | Galaxy SmartTags: position, battery, **ring** button |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/findmy.png" alt="" width="16"> [Apple Find My](https://github.com/malmeloo/hass-FindMy) (custom) | AirTags and Find My accessories: position, last seen, **play sound** button |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/icloud.png" alt="" width="16"> [Apple iCloud](https://www.home-assistant.io/integrations/icloud/) (core) | iCloud devices: position, battery |
-| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/tractive.png" alt="" width="16"> [Tractive](https://www.home-assistant.io/integrations/tractive/) (core) | Pet collars: position, zone, battery |
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/tractive.png" alt="" width="16"> [Tractive](https://www.home-assistant.io/integrations/tractive/) (core) | Pet collars: position, zone, battery, **buzzer** to ring the collar |
 | [Fressnapf Tracker](https://www.home-assistant.io/integrations/fressnapf_tracker/) (core) | Pet collars: position, battery |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/paj_gps.png" alt="" width="16"> [PAJ GPS](https://www.home-assistant.io/integrations/paj_gps/) (core) | GPS trackers (bikes, cars, luggage): position, battery |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/traccar.png" alt="" width="16"> [Traccar Server](https://www.home-assistant.io/integrations/traccar_server/) (core) | GPS trackers of a Traccar server: position, battery |
@@ -232,8 +232,10 @@ The full card at 6 columns of a phone's Sections view (the radar above its lines
 - **Place**: `home`, a zone's name, or away (`not_home`); an item with a position within the home zone counts as home. Bermuda's **area** sensor of the same device adds the room.
 - **Distance and direction** are computed from the item's `latitude` / `longitude` and those of `zone.home`; the radar's scale is logarithmic, so near and far items both fit.
 - **Last seen**: a last-seen sensor of the device, else the tracker's `last_seen` / `last_timestamp` attribute, else its last update.
+- **Not seen**: not seen for `lost_after` hours, or marked as lost by its integration (an `is_lost` attribute or a *lost* binary sensor of the device).
+- **Estimated distance** (Private BLE Device, iBeacon): the device's estimated distance sensor, shown next to the place when there is no position.
 - **Battery**: a battery sensor (or low-battery binary sensor) of the device, else a `battery_level` attribute.
-- **Ring**: the device's button whose name says sound, ring, play, locate, alarm, beep or identify (`button.press`).
+- **Ring**: the device's button that plays a sound (play sound, ring, beep, buzz), else one that locates it (locate, find, alarm, identify), never a stop button (`button.press`); else the device's buzzer switch, as on Tractive collars (`switch.turn_on`).
 
 ## Development
 
