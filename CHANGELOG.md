@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 - 2026-11-16
+
+### Features
+- New look, common to the other cards: the radar as the card's illustration next to how many items are home, with lines for those away (and the farthest), the items not seen or with a low battery and when they were all last seen.
+- Items as tiles: grey at home, tinted blue when away, amber with a low battery, red when not seen; pills for the last seen time and the battery, and a *Ring* pill whose bell shakes while it rings.
+- Mini card: the small radar, the same lines and a round button to ring the first item away.
+
 ## 1.0.0 - 2026-11-16
 
 First release.

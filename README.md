@@ -34,13 +34,14 @@ The device trackers of tag, collar and GPS tracker integrations are found throug
 ## Features
 
 - Two cards: a full **Tracker Card** (`custom:tracker-card`) and a compact **Tracker Mini Card** (`custom:tracker-mini-card`)
-- A **radar** with home in the middle and each item at its direction and distance, on a log scale (the dog in the park and the suitcase 200 km away on the same radar); the items at home round the house; a beam sweeps it (see [Animations](#animations))
-- Each item with its **place**: home and the **room** Bermuda sees it in, a zone (*Park*, *Work*), away; when it was **last seen**; its **distance** from home; its **battery** (in orange when low)
-- **Ring** an item with its device's button (play sound, ring, locate): the bell shakes for a moment
+- A **radar** next to how many items are home, with home in the middle and each item at its direction and distance, on a log scale (the dog in the park and the suitcase 200 km away on the same radar); the items at home round the house; a beam sweeps it (see [Animations](#animations))
+- Lines next to the radar: how many items are away and the farthest one, the items not seen or with a low battery, when they were all last seen
+- Each item as a **tile**, as on the other cards: grey at home, tinted blue when away, amber with a low battery, red when not seen; its **place** (home and the **room** Bermuda sees it in, a zone such as *Park*, away) and **distance** from home; pills with when it was **last seen** and its **battery**
+- **Ring** an item with its device's button (play sound, ring, locate): the bell of its *Ring* pill shakes for a moment
 - An item **not seen** for a day (`lost_after`) in red, dimmed on the radar, and a *Not seen* chip in the header; else a *Low battery* chip
 - Header icon in a tinted round badge and a subtitle with how many items are home and away
 - Kilometres and metres, or miles and feet when Home Assistant uses them
-- Collapsible radar and items sections, folded back to their default by a click elsewhere on the page
+- Collapsible items section, folded back to its default by a click elsewhere on the page
 - Detail button on the mini card (top right): it switches the mini card to the full card's content and back; a click anywhere outside the card brings the compact view back
 - Visual editor in the dashboard UI for both cards (no YAML needed)
 - Light and dark mode, English, French, German, Spanish, Serbian (Cyrillic and Latin), Italian, Dutch, European Portuguese, Polish, Romanian, Danish, Swedish, Bulgarian, Russian, Ukrainian, Hungarian, Slovak, Czech, Slovenian, Latvian and Greek
@@ -163,13 +164,13 @@ zoom: true
 | `battery_threshold` | both | `20` | Battery level (%) at or below which a battery is low |
 | `lost_after` | both | `24` | Hours without news after which an item counts as not seen (`0`: never) |
 | `radar_range` | both | Automatic | Distance (km) at the radar's edge; by default the first round distance past the farthest item |
-| `show_radar` | both | `true` | The radar |
-| `show_items` | full | `true` | The list of items |
+| `show_radar` | both | `true` | The radar (the lines stay) |
+| `show_items` | full | `true` | The item tiles |
 | `show_distance` | both | `true` | Distances from home |
 | `show_battery` | both | `true` | Batteries (and the *Low battery* chip) |
 | `show_seen` | full | `true` | When each item was last seen |
-| `mini_count` | mini | `3` | Lines on the mini card: the items not seen first, then those away, then those at home |
-| `collapsed` | full | `[]` | Sections folded by default: `radar`, `items`. Click a section's title (or Tab to it and press Enter or Space) to fold or unfold it |
+| `mini_count` | mini | `3` | Lines next to the mini card's radar: those away and the farthest, the items not seen or with a low battery, when they were all last seen |
+| `collapsed` | full | `[]` | Sections folded by default: `items`. Click a section's title (or Tab to it and press Enter or Space) to fold or unfold it |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content (with the same options, which can be set on the mini card too, in its visual editor as well) and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |
 | `language` | both | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 
@@ -218,7 +219,7 @@ The detail button (top right) shows the full card's content:
 
 ### Narrow cards
 
-The full card at 6 columns of a phone's Sections view (the ring button in place of the distance) and the mini card at its minimum width:
+The full card at 6 columns of a phone's Sections view (the radar above its lines, one tile per row) and the mini card at its minimum width:
 
 | Light | Dark |
 |---|---|

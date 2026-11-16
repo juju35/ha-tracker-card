@@ -99,13 +99,15 @@ test("full card: header, radar and the items with place, area, last seen, distan
   assert.match(html(), /class="radar"/);
   assert.match(html(), /class="sweep"/);
   assert.equal((html().match(/class="blip/g) || []).length, 6);
-  assert.match(html(), /Home · Hallway · Seen 1 min\. ago/);
-  assert.match(html(), /Park · Seen 2 min\. ago/);
-  assert.match(html(), /1\.8 km/);
-  assert.match(html(), /600 m/);
-  assert.match(html(), /229 km/);
-  assert.match(html(), /bat warn[^>]*>.*18 %/s);
-  assert.match(html(), />500 km</);
+  assert.match(html(), /<b>3<\/b><span>at home/);
+  assert.match(html(), /3 away · farthest Suitcase 229 km/);
+  assert.match(html(), /line warn">.*Dog: battery 18 %/s);
+  assert.match(html(), /All seen in the last/);
+  assert.match(html(), /row-state ok">Home · Hallway</);
+  assert.match(html(), /row-state warn">Park · 600 m</);
+  assert.match(html(), /tile active tint">.*row-state active">Away · 1\.8 km</s);
+  assert.match(html(), /pill idle"[^>]*>.*1 min\. ago/s);
+  assert.match(html(), /pill warn"[^>]*>.*18 %/s);
 });
 
 test("an item not seen for long: in red, and the header says so", async () => {
@@ -121,7 +123,7 @@ test("ring: presses the device's button and the bell shakes for a while", async 
   const { card, hass, html } = await mount();
   click(card, { action: "ring", entity: "button.fmd_wallet_play_sound" });
   same(hass.calls.at(-1), ["button", "press", { entity_id: "button.fmd_wallet_play_sound" }]);
-  assert.match(html(), /btn round ringing active[^>]*data-entity="button\.fmd_wallet_play_sound"/);
+  assert.match(html(), /pill accent ringing"[^>]*data-entity="button\.fmd_wallet_play_sound"[^>]*>.*Ringing/s);
   assert.equal((html().match(/data-action="ring"/g) || []).length, 2);
 });
 
@@ -147,7 +149,9 @@ test("options: radar, distances, batteries and last seen hidden; sections folded
 test("battery threshold and radar range", async () => {
   const { html } = await mount({ battery_threshold: 10, radar_range: 1000 });
   assert.doesNotMatch(html(), /Low battery/);
-  assert.match(html(), />1,000 km</);
+  const rings = (h) => [...h.matchAll(/class="ringl"[^>]*r="([\d.]+)"/g)].map((m) => m[1]).join();
+  const auto = await mount();
+  assert.notEqual(rings(html()), rings(auto.html()));
 });
 
 test("miles when Home Assistant uses them", async () => {
@@ -168,19 +172,21 @@ test("mini card: a small radar, the items away first; the detail button shows th
   const { card, html } = await mount({}, "default", TrackerMiniCard);
   assert.match(html(), /content mini/);
   assert.match(html(), /class="radar"/);
-  const names = [...html().matchAll(/class="sw"[^>]*><\/span><span>([^<]+)</g)].map((m) => m[1]);
-  same(names, ["Bike", "Dog", "Suitcase"]);
+  assert.match(html(), /3 away · farthest Suitcase/);
+  assert.match(html(), /Dog: battery 18 %/);
+  // The ring button of the first item away that can ring.
+  assert.match(html(), /btn round"[^>]*data-entity="button\.airtag_suitcase/);
   click(card, { action: "zoom" });
-  assert.match(html(), /class="rows"/);
+  assert.match(html(), /class="tiles items"/);
   card._unzoom.tap({ composedPath: () => [] });
   assert.match(html(), /content mini/);
 });
 
 test("mini card: a lost item comes first", async () => {
   const { html } = await mount({ mini_count: 2 }, "lost", TrackerMiniCard);
-  const names = [...html().matchAll(/class="sw"[^>]*><\/span><span>([^<]+)</g)].map((m) => m[1]);
-  same(names, ["Suitcase", "Bike"]);
-  assert.match(html(), /line crit/);
+  const lines = [...html().matchAll(/class="line[^"]*">/g)];
+  assert.equal(lines.length, 2);
+  assert.match(html(), /line crit">.*Suitcase: Not seen for/s);
 });
 
 test("nothing found: a clear message instead of an empty card", () => {

@@ -27,10 +27,10 @@ const CARD_ICONS = {
   umbrella: "M12,2A9,9 0 0,1 21,11H13V19A3,3 0 0,1 10,22A3,3 0 0,1 7,19V18H9V19A1,1 0 0,0 10,20A1,1 0 0,0 11,19V11H3A9,9 0 0,1 12,2Z",
   laptop: "M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z",
   home: "M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z",
+  clock: "M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z",
   bell: "M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21",
   battery_low: "M16,20H8V6H16M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4M15,16H9V19H15V16Z",
   battery: "M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z",
-  radar: "M19.07,4.93L17.66,6.34C19.1,7.79 20,9.79 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12C4,7.92 7.05,4.56 11,4.07V6.09C8.16,6.57 6,9.03 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12C18,10.34 17.33,8.84 16.24,7.76L14.83,9.17C15.55,9.9 16,10.9 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12C8,10.14 9.28,8.59 11,8.14V10.28C10.4,10.63 10,11.26 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12C14,11.26 13.6,10.62 13,10.28V2H12A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,9.24 20.88,6.74 19.07,4.93Z",
   list: "M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z",
   signal_off: "M2.28,3L1,4.27L4.47,7.74C3.55,9 3,10.45 3,12C3,14.47 4.33,16.66 6.36,18.09L7.8,16.65C6.12,15.55 5,13.92 5,12C5,10.93 5.35,9.93 5.94,9.07L8.09,11.22C8.03,11.47 8,11.73 8,12C8,13.29 8.73,14.42 9.85,15L11.38,13.47C10.57,13.2 10,12.66 10,12L10,11.86L20.73,22.59L22,21.32M18.06,16.86L19.48,18.28C20.43,17.06 21,15.6 21,14C21,10.97 19.21,8.38 16.62,7.18L15.17,8.63C17.4,9.54 19,11.63 19,14C19,15.07 18.65,16.07 18.06,16.86Z",
 };
@@ -102,6 +102,9 @@ const STRINGS = {
     show_battery: "Show the batteries",
     show_seen: "Show when last seen",
     mini_count: "Lines on the mini card",
+    at_home: "at home",
+    farthest: "farthest {name} {dist}",
+    all_seen: "All seen in the last {span}",
     cancel: "Cancel",
     left: "{time} left",
     today_at: "today {time}",
@@ -147,6 +150,9 @@ const STRINGS = {
     show_battery: "Afficher les batteries",
     show_seen: "Afficher la dernière détection",
     mini_count: "Lignes de la mini-carte",
+    at_home: "à la maison",
+    farthest: "le plus loin : {name} {dist}",
+    all_seen: "Tous vus ces dernières {span}",
     cancel: "Annuler",
     left: "{time} restantes",
     today_at: "aujourd'hui {time}",
@@ -192,6 +198,9 @@ const STRINGS = {
     show_battery: "Akkus anzeigen",
     show_seen: "Zuletzt gesehen anzeigen",
     mini_count: "Zeilen der Mini-Karte",
+    at_home: "zuhause",
+    farthest: "am weitesten: {name} {dist}",
+    all_seen: "Alle in den letzten {span} gesehen",
     cancel: "Abbrechen",
     left: "Noch {time}",
     today_at: "heute {time}",
@@ -237,6 +246,9 @@ const STRINGS = {
     show_battery: "Mostrar las baterías",
     show_seen: "Mostrar la última detección",
     mini_count: "Líneas de la mini tarjeta",
+    at_home: "en casa",
+    farthest: "el más lejano: {name} {dist}",
+    all_seen: "Todos vistos en las últimas {span}",
     cancel: "Cancelar",
     left: "Quedan {time}",
     today_at: "hoy {time}",
@@ -282,6 +294,9 @@ const STRINGS = {
     show_battery: "Mostra le batterie",
     show_seen: "Mostra l'ultimo rilevamento",
     mini_count: "Righe della mini scheda",
+    at_home: "a casa",
+    farthest: "il più lontano: {name} {dist}",
+    all_seen: "Tutti visti nelle ultime {span}",
     cancel: "Annulla",
     left: "{time} rimanenti",
     today_at: "oggi {time}",
@@ -327,6 +342,9 @@ const STRINGS = {
     show_battery: "Batterijen tonen",
     show_seen: "Laatst gezien tonen",
     mini_count: "Regels van de mini-kaart",
+    at_home: "thuis",
+    farthest: "verst weg: {name} {dist}",
+    all_seen: "Alles gezien in de laatste {span}",
     cancel: "Annuleren",
     left: "Nog {time}",
     today_at: "vandaag {time}",
@@ -372,6 +390,9 @@ const STRINGS = {
     show_battery: "Mostrar as baterias",
     show_seen: "Mostrar a última deteção",
     mini_count: "Linhas do mini cartão",
+    at_home: "em casa",
+    farthest: "o mais longe: {name} {dist}",
+    all_seen: "Todos vistos nas últimas {span}",
     cancel: "Cancelar",
     left: "Faltam {time}",
     today_at: "hoje {time}",
@@ -417,6 +438,9 @@ const STRINGS = {
     show_battery: "Pokaż baterie",
     show_seen: "Pokaż ostatnie wykrycie",
     mini_count: "Wiersze mini karty",
+    at_home: "w domu",
+    farthest: "najdalej: {name} {dist}",
+    all_seen: "Wszystkie widziane w ciągu ostatnich {span}",
     cancel: "Anuluj",
     left: "Pozostało {time}",
     today_at: "dziś {time}",
@@ -462,6 +486,9 @@ const STRINGS = {
     show_battery: "Прикажи батерије",
     show_seen: "Прикажи последње виђење",
     mini_count: "Редови мини картице",
+    at_home: "код куће",
+    farthest: "најдаље: {name} {dist}",
+    all_seen: "Сви виђени у последњих {span}",
     cancel: "Откажи",
     left: "Преостало {time}",
     today_at: "данас {time}",
@@ -507,6 +534,9 @@ const STRINGS = {
     show_battery: "Prikaži baterije",
     show_seen: "Prikaži poslednje viđenje",
     mini_count: "Redovi mini kartice",
+    at_home: "kod kuće",
+    farthest: "najdalje: {name} {dist}",
+    all_seen: "Svi viđeni u poslednjih {span}",
     cancel: "Otkaži",
     left: "Preostalo {time}",
     today_at: "danas {time}",
@@ -552,6 +582,9 @@ const STRINGS = {
     show_battery: "Afișează bateriile",
     show_seen: "Afișează ultima detectare",
     mini_count: "Rânduri ale mini cardului",
+    at_home: "acasă",
+    farthest: "cel mai departe: {name} {dist}",
+    all_seen: "Toate văzute în ultimele {span}",
     cancel: "Anulează",
     left: "Mai sunt {time}",
     today_at: "azi {time}",
@@ -597,6 +630,9 @@ const STRINGS = {
     show_battery: "Vis batterierne",
     show_seen: "Vis senest set",
     mini_count: "Linjer på minikortet",
+    at_home: "hjemme",
+    farthest: "længst væk: {name} {dist}",
+    all_seen: "Alle set inden for de sidste {span}",
     cancel: "Annuller",
     left: "{time} tilbage",
     today_at: "i dag {time}",
@@ -642,6 +678,9 @@ const STRINGS = {
     show_battery: "Visa batterierna",
     show_seen: "Visa senast sedd",
     mini_count: "Rader på minikortet",
+    at_home: "hemma",
+    farthest: "längst bort: {name} {dist}",
+    all_seen: "Alla sedda de senaste {span}",
     cancel: "Avbryt",
     left: "{time} kvar",
     today_at: "i dag {time}",
@@ -687,6 +726,9 @@ const STRINGS = {
     show_battery: "Показване на батериите",
     show_seen: "Показване на последното виждане",
     mini_count: "Редове на мини картата",
+    at_home: "у дома",
+    farthest: "най-далеч: {name} {dist}",
+    all_seen: "Всички видени през последните {span}",
     cancel: "Отказ",
     left: "Остават {time}",
     today_at: "днес {time}",
@@ -732,6 +774,9 @@ const STRINGS = {
     show_battery: "Показывать батареи",
     show_seen: "Показывать последнее обнаружение",
     mini_count: "Строки мини-карточки",
+    at_home: "дома",
+    farthest: "дальше всех: {name} {dist}",
+    all_seen: "Все замечены за последние {span}",
     cancel: "Отмена",
     left: "Осталось {time}",
     today_at: "сегодня {time}",
@@ -777,6 +822,9 @@ const STRINGS = {
     show_battery: "Показувати батареї",
     show_seen: "Показувати останнє виявлення",
     mini_count: "Рядки міні-картки",
+    at_home: "вдома",
+    farthest: "найдалі: {name} {dist}",
+    all_seen: "Усі помічені за останні {span}",
     cancel: "Скасувати",
     left: "Залишилось {time}",
     today_at: "сьогодні {time}",
@@ -822,6 +870,9 @@ const STRINGS = {
     show_battery: "Akkumulátorok megjelenítése",
     show_seen: "Utolsó észlelés megjelenítése",
     mini_count: "A mini kártya sorai",
+    at_home: "otthon",
+    farthest: "legtávolabb: {name} {dist}",
+    all_seen: "Mind látva az elmúlt {span} alatt",
     cancel: "Mégse",
     left: "Még {time}",
     today_at: "ma {time}",
@@ -867,6 +918,9 @@ const STRINGS = {
     show_battery: "Zobraziť batérie",
     show_seen: "Zobraziť posledné videnie",
     mini_count: "Riadky mini karty",
+    at_home: "doma",
+    farthest: "najďalej: {name} {dist}",
+    all_seen: "Všetky videné za posledných {span}",
     cancel: "Zrušiť",
     left: "Zostáva {time}",
     today_at: "dnes {time}",
@@ -912,6 +966,9 @@ const STRINGS = {
     show_battery: "Zobrazit baterie",
     show_seen: "Zobrazit poslední spatření",
     mini_count: "Řádky mini karty",
+    at_home: "doma",
+    farthest: "nejdál: {name} {dist}",
+    all_seen: "Všechny viděny za posledních {span}",
     cancel: "Zrušit",
     left: "Zbývá {time}",
     today_at: "dnes {time}",
@@ -957,6 +1014,9 @@ const STRINGS = {
     show_battery: "Prikaži baterije",
     show_seen: "Prikaži zadnje zaznavanje",
     mini_count: "Vrstice mini kartice",
+    at_home: "doma",
+    farthest: "najdlje: {name} {dist}",
+    all_seen: "Vsi videni v zadnjih {span}",
     cancel: "Prekliči",
     left: "Še {time}",
     today_at: "danes {time}",
@@ -1002,6 +1062,9 @@ const STRINGS = {
     show_battery: "Rādīt akumulatorus",
     show_seen: "Rādīt pēdējo redzēšanu",
     mini_count: "Mini kartītes rindas",
+    at_home: "mājās",
+    farthest: "vistālāk: {name} {dist}",
+    all_seen: "Visi redzēti pēdējo {span} laikā",
     cancel: "Atcelt",
     left: "Atlikušas {time}",
     today_at: "šodien {time}",
@@ -1047,6 +1110,9 @@ const STRINGS = {
     show_battery: "Εμφάνιση των μπαταριών",
     show_seen: "Εμφάνιση του τελευταίου εντοπισμού",
     mini_count: "Γραμμές της μίνι κάρτας",
+    at_home: "στο σπίτι",
+    farthest: "πιο μακριά: {name} {dist}",
+    all_seen: "Όλα εντοπίστηκαν τις τελευταίες {span}",
     cancel: "Ακύρωση",
     left: "Απομένουν {time}",
     today_at: "σήμερα {time}",
@@ -1275,6 +1341,45 @@ const BASE_STYLE = `
   .ring-svg circle { fill: none; }
   .ring-svg .track { stroke: color-mix(in srgb, var(--c, var(--tk-accent)) 18%, transparent); }
   .ring-svg .prog { stroke: var(--c, var(--tk-accent)); stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+  /* Hero, as on the garden and tempo cards: a flat illustration on the left, a big value and a few colored lines on the right. */
+  .hero { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .hero-art { flex: none; width: 120px; display: grid; place-items: center; }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+  .hero-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; }
+  .hero-kick { font-size: 12px; color: var(--secondary-text-color); }
+  .big { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+  .big .icon { width: 24px; height: 24px; align-self: center; color: var(--c, var(--tk-accent)); }
+  .big b { font-size: 30px; font-weight: 400; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .big span { font-size: 14px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero .line { font-size: 12.5px; }
+  /* Rows, as the watering zones: a round icon (grey at rest, tinted otherwise, a ring while it runs), name, colored state, a button. */
+  .row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .row-icon { position: relative; width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
+              --t: var(--c, var(--tk-idle)); background: color-mix(in srgb, var(--t) 18%, transparent); color: color-mix(in srgb, var(--t) 70%, var(--primary-text-color)); }
+  .row-icon.idle { background: color-mix(in srgb, var(--primary-text-color) 8%, transparent); color: var(--secondary-text-color); }
+  .row-icon > .icon, .row-icon > ha-icon { width: 22px; height: 22px; --mdc-icon-size: 22px; }
+  .row-icon .ring-svg { inset: -2px; width: 44px; height: 44px; }
+  .badge { position: absolute; right: -3px; bottom: -3px; width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center;
+           background: var(--b, var(--tk-ok)); color: #fff; box-shadow: 0 0 0 2px var(--ha-card-background, var(--card-background-color, #fff)); }
+  .badge .icon { width: 11px; height: 11px; }
+  .row-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .row-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-state { font-size: 12.5px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row-state.ok, .row-state.warn, .row-state.crit, .row-state.active, .row-state.accent { color: color-mix(in srgb, var(--c) 60%, var(--primary-text-color)); }
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  /* Tiles, as on room overview: grey, tinted with a border when they need a look; small badges below. */
+  .tiles { display: grid; gap: 8px; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); }
+  .tile { min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 10px; box-sizing: border-box;
+          background: var(--secondary-background-color, rgba(127,127,127,.12)); border: 1px solid transparent; }
+  .tile.tint { background: color-mix(in srgb, var(--c) 13%, var(--secondary-background-color, rgba(127,127,127,.12)));
+               border-color: color-mix(in srgb, var(--c) 30%, transparent); }
+  .tile-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .tile .row-icon { width: 30px; height: 30px; } .tile .row-icon > .icon { width: 18px; height: 18px; }
+  .tile .row-state { font-size: 12px; }
+  .badges { display: flex; gap: 4px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; padding: 1px 7px; border-radius: 10px;
+          color: color-mix(in srgb, var(--c, var(--tk-idle)) 60%, var(--primary-text-color)); background: color-mix(in srgb, var(--c, var(--tk-idle)) 14%, transparent); }
+  .pill .icon { width: 14px; height: 14px; color: var(--c, var(--tk-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
   @container (max-width: 230px) {
     .chip { padding: 4px; flex: none; }
@@ -2058,62 +2163,46 @@ const placeOf = (s) => {
 // ---------------------------------------------------------------------------
 
 const TRACKER_STYLE = `
-  .radar { position: relative; width: min(100%, 260px); aspect-ratio: 1; margin: 0 auto; }
+  .radar { position: relative; width: 100%; aspect-ratio: 1; }
   .radar svg { width: 100%; height: 100%; display: block; overflow: visible; }
-  .radar .disc { fill: color-mix(in srgb, var(--tk-accent) 6%, transparent); stroke: color-mix(in srgb, var(--tk-accent) 30%, transparent); stroke-width: 1; }
-  .radar .ringl { fill: none; stroke: color-mix(in srgb, var(--primary-text-color) 14%, transparent); stroke-width: .8; stroke-dasharray: 2 3; }
-  .radar .cross { stroke: color-mix(in srgb, var(--primary-text-color) 8%, transparent); stroke-width: .8; }
-  .radar .homezone { fill: color-mix(in srgb, var(--tk-accent) 14%, transparent); stroke: color-mix(in srgb, var(--tk-accent) 45%, transparent); stroke-width: 1; }
-  .radar .homeicon { fill: var(--tk-accent-text); }
-  .radar .dist { font-size: 7px; fill: var(--secondary-text-color); font-family: inherit; }
-  .radar .north { font-size: 7px; fill: var(--secondary-text-color); font-weight: 500; font-family: inherit; }
+  .radar .disc { fill: color-mix(in srgb, var(--tk-accent) 8%, transparent); stroke: color-mix(in srgb, var(--tk-accent) 35%, transparent); stroke-width: 1; }
+  .radar .ringl { fill: none; stroke: color-mix(in srgb, var(--tk-accent) 30%, transparent); stroke-width: .8; stroke-dasharray: 2 3; }
+  .radar .homezone { fill: color-mix(in srgb, var(--tk-accent) 14%, transparent); stroke: color-mix(in srgb, var(--tk-accent) 40%, transparent); stroke-width: 1; }
+  .radar .homedot { fill: var(--tk-accent); }
+  .radar .homeicon { fill: #fff; }
   .radar .blip { cursor: pointer; }
-  .radar .blip circle { fill: color-mix(in srgb, var(--c) 22%, var(--card-background-color, #fff)); stroke: var(--c); stroke-width: 1.5; }
-  .radar .blip path { fill: color-mix(in srgb, var(--c) 70%, var(--primary-text-color)); }
+  .radar .blip circle { fill: var(--ha-card-background, var(--card-background-color, #fff)); stroke: var(--c); stroke-width: 2.5; }
+  .radar .blip path { fill: color-mix(in srgb, var(--c) 75%, var(--primary-text-color)); }
   .radar .blip.lost { opacity: .45; }
-  .radar .blip.lost circle { stroke-dasharray: 2 2; }
+  .radar .blip.lost circle { stroke-dasharray: 3 3; }
   .radar .blip:focus-visible { outline: none; }
-  .radar .blip:focus-visible circle { stroke-width: 3; }
+  .radar .blip:focus-visible circle { stroke-width: 4; }
   /* The sweep: a beam turns round the radar. */
   .radar .sweep { position: absolute; inset: 4%; border-radius: 50%; pointer-events: none; animation: tk-sweep ${SWEEP_MS}ms linear infinite;
-                  background: conic-gradient(from 0deg, transparent 0deg 300deg, color-mix(in srgb, var(--tk-accent) 6%, transparent) 320deg, color-mix(in srgb, var(--tk-accent) 28%, transparent) 360deg); }
+                  background: conic-gradient(from 0deg, transparent 0deg 300deg, color-mix(in srgb, var(--tk-accent) 6%, transparent) 320deg, color-mix(in srgb, var(--tk-accent) 30%, transparent) 360deg); }
   @keyframes tk-sweep { to { transform: rotate(360deg); } }
-  .rows { display: flex; flex-direction: column; gap: 10px; }
-  .row { display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .tile { position: relative; width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 50%;
-          background: color-mix(in srgb, var(--c) 14%, transparent); color: color-mix(in srgb, var(--c) 65%, var(--primary-text-color)); }
-  .tile > .icon, .tile > ha-icon { width: 20px; height: 20px; --mdc-icon-size: 20px; }
-  .tile.lost { filter: grayscale(.8); opacity: .7; }
-  .tile .at { position: absolute; right: -2px; bottom: -2px; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center;
-              background: var(--card-background-color, #fff); color: var(--tk-accent-text); box-shadow: 0 0 0 1px color-mix(in srgb, var(--tk-accent) 30%, transparent); }
-  .tile .at .icon { width: 11px; height: 11px; }
-  .row .info { gap: 1px; }
-  .row .rname { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .row .meta { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .row .meta.crit { color: color-mix(in srgb, var(--tk-crit) 50%, var(--primary-text-color)); }
-  .row .side { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex: none; }
-  .row .km { font-size: 14px; }
-  .row .bat { display: inline-flex; align-items: center; gap: 2px; font-size: 11px; color: var(--secondary-text-color); }
-  .row .bat .icon { width: 13px; height: 13px; }
-  .row .bat.warn { color: color-mix(in srgb, var(--tk-warn) 55%, var(--primary-text-color)); }
-  .row .bat.warn .icon { color: var(--tk-warn); }
+  .items { --cols: 2; }
+  .tile-head { cursor: pointer; border-radius: 6px; }
+  .tile-head:focus-visible { outline: 2px solid var(--primary-color, var(--tk-accent)); outline-offset: 2px; }
+  .tile .row-text { gap: 0; }
+  .badges .pill .num { font-variant-numeric: tabular-nums; }
+  button.pill { border: none; font: inherit; font-size: 12px; cursor: pointer; }
+  button.pill:disabled { opacity: .45; cursor: default; }
+  button.pill:focus-visible { outline: 2px solid var(--primary-color, var(--tk-accent)); outline-offset: 1px; }
+  .pill.ringing .icon { animation: tk-shake .9s ease-in-out infinite; transform-origin: 50% 10%; }
   .btn.ringing .icon { animation: tk-shake .9s ease-in-out infinite; transform-origin: 50% 10%; }
   @keyframes tk-shake { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-16deg); } 20%, 40% { transform: rotate(16deg); } }
-  .mini .radar { width: 72px; margin: 0; flex: none; }
-  .mini .line .where { margin-left: auto; flex: none; max-width: 50%; }
-  .mini .line .sw { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
-  @container (max-width: 300px) {
-    .row { gap: 8px; }
-    .row .km { font-size: 13px; }
-    .row .btn.round { width: 32px; height: 32px; }
-    /* The ring button takes the place of the distance and battery (the distance stays on the radar). */
-    .row:has(.btn) .side { display: none; }
-    .mini .radar { width: 56px; }
+  .mini .hero-art { width: 84px; }
+  .mini .hero-body { gap: 4px; }
+  @container (max-width: 340px) {
+    .items { --cols: 1; }
+    .hero-art { width: 96px; }
   }
-  @container (max-width: 200px) {
-    .mini .radar { display: none; }
-    .row .tile { width: 34px; height: 34px; }
-    .row .side .bat { display: none; }
+  @container (max-width: 260px) {
+    .hero { flex-direction: column; align-items: stretch; }
+    .hero-art { width: 120px; margin: 0 auto; }
+    .mini .hero { flex-direction: row; align-items: center; }
+    .mini .hero-art { display: none; }
   }
 `;
 
@@ -2226,49 +2315,41 @@ class TrackerCard extends CardBase {
     return svgIcon(ICONS[iconFor(it.name)]);
   }
 
-  // The radar: home in the middle (the ranges written down its south-east side), each item at its bearing and at a distance on a log scale (near items apart, far
-  // ones still in), the items at home round the house.
+  // The radar: home in the middle, each item at its bearing and at a distance on a log scale (near items apart, far ones still in), the items at home round
+  // the house. Small, as the card's illustration: the icons of the items in the full card, plain dots on the mini card.
   _radar(sum, mini = false) {
     const c = RADAR / 2;
-    const R = c - 8;
-    const R0 = R * 0.32;
+    const R = c - 10;
+    const R0 = R * 0.36;
     const far = sum.rows.filter((r) => r.place !== "home" && r.km !== null && r.angle !== null);
     const max = Number(this._config.radar_range) || niceRange(Math.max(0.5, ...far.map((r) => r.km)));
     const unit = 0.05;
     const scale = (km) => R0 + (R - R0) * clamp(Math.log1p(km / unit) / Math.log1p(max / unit), 0, 1);
-    const rings = [max / 100, max / 10, max].filter((d) => d >= 0.1);
     const parts = [`<circle class="disc" cx="${c}" cy="${c}" r="${R}"/>`];
-    if (!mini) parts.push(`<line class="cross" x1="${c}" y1="${c - R}" x2="${c}" y2="${c + R}"/><line class="cross" x1="${c - R}" y1="${c}" x2="${c + R}" y2="${c}"/>`);
-    for (const d of rings) {
+    for (const d of [max / 100, max / 10]) {
       const r = scale(d);
-      if (r >= R - 0.5) continue;
-      parts.push(`<circle class="ringl" cx="${c}" cy="${c}" r="${r.toFixed(1)}"/>`);
-      if (!mini) parts.push(`<text class="dist" x="${(c + r * 0.71 + 1).toFixed(1)}" y="${(c + r * 0.71 + 7).toFixed(1)}">${esc(this._dist(d))}</text>`);
+      if (d >= 0.1 && r < R - 0.5) parts.push(`<circle class="ringl" cx="${c}" cy="${c}" r="${r.toFixed(1)}"/>`);
     }
-    if (!mini) {
-      parts.push(`<text class="dist" x="${(c + R * 0.71 + 1).toFixed(1)}" y="${(c + R * 0.71 + 7).toFixed(1)}">${esc(this._dist(max))}</text>`);
-      parts.push(`<text class="north" x="${c}" y="${c - R - 2}" text-anchor="middle">N</text>`);
-    }
-    parts.push(`<circle class="homezone" cx="${c}" cy="${c}" r="${R0}"/>`);
+    parts.push(`<circle class="homezone" cx="${c}" cy="${c}" r="${R0}"/><circle class="homedot" cx="${c}" cy="${c}" r="12"/>`);
     parts.push(`<path class="homeicon" transform="translate(${c - 8} ${c - 8}) scale(.667)" d="${ICONS.home}"/>`);
     const homes = sum.rows.filter((r) => r.place === "home");
     const blips = [];
     // Round the house, evenly spread (one alone on its right).
     homes.forEach((r, i) => {
       const a = (i / homes.length) * 2 * Math.PI + Math.PI / 2;
-      blips.push({ r, x: c + R0 * 0.68 * Math.sin(a), y: c - R0 * 0.68 * Math.cos(a) });
+      blips.push({ r, x: c + R0 * 0.98 * Math.sin(a), y: c - R0 * 0.98 * Math.cos(a) });
     });
     for (const r of far) {
       const d = scale(r.km);
       blips.push({ r, x: c + d * Math.sin(r.angle), y: c - d * Math.cos(r.angle) });
     }
-    const br = mini ? 12 : 9;
+    const br = 15;
     for (const { r, x, y } of blips) {
       const label = `${r.it.name} · ${this._placeText(r)}${r.km ? ` · ${this._dist(r.km)}` : ""}`;
-      const s = (br * 1.3) / 24;
+      const s = 20 / 24;
       parts.push(`<g class="blip${r.lost ? " lost" : ""}" style="--c: ${esc(r.it.tint)}" role="button" tabindex="0" data-entity="${esc(r.it.entity)}" aria-label="${esc(label)}">
         <title>${esc(label)}</title><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${br}"/>${
-          mini ? "" : `<path transform="translate(${(x - 12 * s).toFixed(2)} ${(y - 12 * s).toFixed(2)}) scale(${s.toFixed(3)})" d="${ICONS[iconFor(r.it.name)]}"/>`
+          mini ? "" : `<path transform="translate(${(x - 10).toFixed(2)} ${(y - 10).toFixed(2)}) scale(${s.toFixed(3)})" d="${ICONS[iconFor(r.it.name)]}"/>`
         }</g>`);
     }
     return `<div class="radar"><svg viewBox="0 0 ${RADAR} ${RADAR}" role="img" aria-label="${esc(this._t("radar"))}">${parts.join("")}</svg><div class="sweep" aria-hidden="true"></div></div>`;
@@ -2278,34 +2359,82 @@ class TrackerCard extends CardBase {
     return this._rang?.id === it.button && Date.now() - this._rang.at < RING_MS;
   }
 
-  _row(r) {
+  // The state of an item: lost (not seen) first, then a low battery, away, at home.
+  _state(r) {
+    if (r.lost) return "crit";
+    if (r.low && this._config.show_battery !== false) return "warn";
+    return r.place === "home" ? "ok" : "active";
+  }
+
+  _ringBtn(it, round = false) {
+    if (!it.button) return "";
+    const ringing = this._ringing(it);
+    const label = `${this._t(ringing ? "ringing" : "ring_it")} · ${it.name}`;
+    const off = this._s(it.button)?.state === "unavailable" ? " disabled" : "";
+    return round
+      ? `<button class="btn round${ringing ? " ringing active" : ""}" data-action="ring" data-entity="${esc(it.button)}" title="${esc(this._t("ring_it"))}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}</button>`
+      : `<button class="pill accent${ringing ? " ringing" : ""}" data-action="ring" data-entity="${esc(it.button)}" aria-label="${esc(label)}"${off}>${svgIcon(ICONS.bell)}${esc(this._t(ringing ? "ringing" : "ring_it"))}</button>`;
+  }
+
+  // An item as a tile: grey at home, tinted when away (blue), with a low battery (amber) or not seen (red); its last seen, battery and ring button below.
+  _tile(r) {
     const c = this._config;
     const it = r.it;
-    const meta = [this._placeText(r)];
-    let crit = false;
+    const st = this._state(r);
+    const where = [this._placeText(r)];
+    if (c.show_distance !== false && r.km !== null && r.place !== "home") where.push(this._dist(r.km));
+    const pills = [];
     if (c.show_seen !== false && r.seen !== null) {
-      if (r.lost) {
-        meta.push(this._t("lost", { span: fmtSpan(this._hass, c, Date.now() - r.seen) }));
-        crit = true;
-      } else meta.push(this._t("seen", { when: fmtRelative(this._hass, c, r.seen) }));
+      pills.push(
+        r.lost
+          ? `<span class="pill crit">${svgIcon(ICONS.signal_off)}${esc(fmtSpan(this._hass, c, Date.now() - r.seen))}</span>`
+          : `<span class="pill idle" title="${esc(this._t("seen", { when: fmtRelative(this._hass, c, r.seen) }))}">${svgIcon(ICONS.clock)}${esc(fmtRelative(this._hass, c, r.seen))}</span>`,
+      );
     }
-    const km = c.show_distance !== false && r.km !== null && r.place !== "home" ? `<span class="km num">${esc(this._dist(r.km))}</span>` : "";
-    const bat =
-      c.show_battery !== false && (r.battery !== null || r.low)
-        ? `<span class="bat${r.low ? " warn" : ""}" title="${esc(this._t("battery"))}">${svgIcon(r.low ? ICONS.battery_low : ICONS.battery)}${r.battery !== null ? `<span class="num">${esc(fmtNum(r.battery, 0, this._locale()))} %</span>` : ""}</span>`
-        : "";
-    const ringing = it.button && this._ringing(it);
-    const bell = it.button
-      ? `<button class="btn round${ringing ? " ringing active" : ""}" data-action="ring" data-entity="${esc(it.button)}" title="${esc(this._t("ring_it"))}" aria-label="${esc(`${this._t(ringing ? "ringing" : "ring_it")} · ${it.name}`)}"${
-          this._s(it.button)?.state === "unavailable" ? " disabled" : ""
-        }>${svgIcon(ICONS.bell)}</button>`
-      : "";
-    return `<div class="row">
-      <div class="tile${r.lost ? " lost" : ""}" style="--c: ${esc(it.tint)}">${this._icon(it)}${r.place === "home" ? `<span class="at">${svgIcon(ICONS.home)}</span>` : ""}</div>
-      <div class="info clickable" role="button" tabindex="0" data-entity="${esc(it.entity)}"><div class="rname">${esc(it.name)}</div><div class="meta${crit ? " crit" : ""}">${esc(meta.join(" · "))}</div></div>
-      ${km || bat ? `<div class="side">${km}${bat}</div>` : ""}
-      ${bell}
+    if (c.show_battery !== false && (r.battery !== null || r.low)) {
+      pills.push(
+        `<span class="pill ${r.low ? "warn" : "ok"}" title="${esc(this._t("battery"))}">${svgIcon(r.low ? ICONS.battery_low : ICONS.battery)}${r.battery !== null ? `<span class="num">${esc(fmtNum(r.battery, 0, this._locale()))} %</span>` : ""}</span>`,
+      );
+    }
+    const bell = this._ringBtn(it);
+    if (bell) pills.push(bell);
+    const tint = st !== "ok";
+    return `<div class="tile ${st}${tint ? " tint" : ""}">
+      <div class="tile-head" role="button" tabindex="0" data-entity="${esc(it.entity)}">
+        <div class="row-icon${r.lost ? " idle" : ""}" style="--c: ${esc(it.tint)}">${this._icon(it)}${r.place === "home" ? `<span class="badge ok" style="--b: var(--tk-ok)">${svgIcon(ICONS.home)}</span>` : ""}</div>
+        <div class="row-text"><div class="row-name">${esc(it.name)}</div><div class="row-state ${st}">${esc(where.join(" · "))}</div></div>
+      </div>
+      ${pills.length ? `<div class="badges">${pills.join("")}</div>` : ""}
     </div>`;
+  }
+
+  // The lines next to the radar: those away (and the farthest), the items not seen or with a low battery, when they were all last seen.
+  _lines(sum, max = 3) {
+    const c = this._config;
+    const out = [];
+    const away = sum.rows.filter((r) => r.place !== "home");
+    const far = away.filter((r) => r.km !== null).sort((a, b) => b.km - a.km)[0];
+    if (away.length) {
+      const text = far && c.show_distance !== false ? `${this._t("sum_away", { n: away.length })} · ${this._t("farthest", { name: far.it.name, dist: this._dist(far.km) })}` : this._t("sum_away", { n: away.length });
+      out.push(`<div class="line active">${svgIcon(ICONS.tracker)}<span>${esc(text)}</span></div>`);
+    }
+    for (const r of sum.lost) out.push(`<div class="line crit">${svgIcon(ICONS.signal_off)}<span>${esc(`${r.it.name}: ${this._t("lost", { span: fmtSpan(this._hass, c, Date.now() - r.seen) })}`)}</span></div>`);
+    if (c.show_battery !== false) {
+      for (const r of sum.low.filter((x) => !x.lost))
+        out.push(`<div class="line warn">${svgIcon(ICONS.battery_low)}<span>${esc(`${r.it.name}: ${this._t("battery").toLowerCase()} ${r.battery !== null ? `${fmtNum(r.battery, 0, this._locale())} %` : this._t("low_battery").toLowerCase()}`)}</span></div>`);
+    }
+    const seen = sum.rows.map((r) => r.seen).filter((x) => x !== null);
+    if (!sum.lost.length && seen.length && c.show_seen !== false) {
+      out.push(`<div class="line">${svgIcon(ICONS.clock)}<span>${esc(this._t("all_seen", { span: fmtSpan(this._hass, c, Date.now() - Math.min(...seen)) }))}</span></div>`);
+    }
+    return out.slice(0, max).join("");
+  }
+
+  _hero(sum, mini = false) {
+    const home = sum.rows.filter((r) => r.place === "home").length;
+    const art = this._config.show_radar !== false && sum.home ? `<div class="hero-art">${this._radar(sum, mini)}</div>` : "";
+    const big = `<div class="big ok">${svgIcon(ICONS.home)}<b>${home}</b><span>${esc(this._t("at_home"))}</span></div>`;
+    return `<div class="hero">${art}<div class="hero-body">${big}${this._lines(sum, mini ? clamp(Number(this._config.mini_count ?? 3), 1, 6) : 3)}</div>${mini ? this._miniRing(sum) : ""}</div>`;
   }
 
   _head(sum, sub) {
@@ -2316,11 +2445,9 @@ class TrackerCard extends CardBase {
   _render() {
     const { m, error } = this._ready();
     if (error) return error;
-    const c = this._config;
     const sum = this._summary(m);
-    const parts = [];
-    if (c.show_radar !== false && sum.home) parts.push(this._section("radar", ICONS.radar, this._t("radar"), "", this._radar(sum)));
-    if (c.show_items !== false) parts.push(this._section("items", ICONS.list, this._t("items"), sum.rows.length, `<div class="rows">${sum.rows.map((r) => this._row(r)).join("")}</div>`));
+    const parts = [this._hero(sum)];
+    if (this._config.show_items !== false) parts.push(this._section("items", ICONS.list, this._t("items"), sum.rows.length, `<div class="tiles items">${sum.rows.map((r) => this._tile(r)).join("")}</div>`));
     return `<style>${BASE_STYLE}${TRACKER_STYLE}</style>
       <ha-card>
         ${this._head(sum, sum.sub)}
@@ -2349,28 +2476,21 @@ class TrackerMiniCard extends withMini(TrackerCard) {
     return document.createElement("tracker-mini-card-editor");
   }
 
+  // The mini card's round ring button: the first item not seen, else away, else at home, that can ring.
+  _miniRing(sum) {
+    const rank = (r) => (r.lost ? 0 : r.place === "home" ? 2 : 1);
+    const r = [...sum.rows].filter((x) => x.it.button).sort((a, b) => rank(a) - rank(b))[0];
+    return r ? this._ringBtn(r.it, true) : "";
+  }
+
   _renderMini() {
     const { m, error } = this._ready();
     if (error) return error;
     const sum = this._summary(m);
-    // Lost items first, then those away, then those at home (`mini_count` lines, 3 by default).
-    const rank = (r) => (r.lost ? 0 : r.place === "home" ? 2 : 1);
-    const n = clamp(Number(this._config.mini_count ?? 3), 1, 6);
-    const lines = [...sum.rows]
-      .sort((a, b) => rank(a) - rank(b))
-      .slice(0, n)
-      .map((r) => {
-        const where = r.lost ? this._t("not_seen") : r.place !== "home" && r.km !== null && this._config.show_distance !== false ? this._dist(r.km) : this._placeText(r);
-        return `<div class="line${r.lost ? " crit" : ""} clickable"${moreInfo(r.it.entity)}><span class="sw" style="--c: ${esc(r.it.tint)}"></span><span>${esc(r.it.name)}</span><span class="where">${esc(where)}</span></div>`;
-      })
-      .join("");
     return `<style>${BASE_STYLE}${TRACKER_STYLE}${MINI_STYLE}</style>
       <ha-card>
         ${this._head(sum, "")}
-        <div class="content mini">
-          ${this._config.show_radar !== false && sum.home ? this._radar(sum, true) : ""}
-          <div class="info">${lines}</div>
-        </div>
+        <div class="content mini">${this._hero(sum, true)}</div>
       </ha-card>`;
   }
 }
@@ -2393,7 +2513,7 @@ class TrackerCardEditor extends EditorBase {
   }
 
   static get sections() {
-    return ["radar", "items"];
+    return ["items"];
   }
 
   _fields() {
