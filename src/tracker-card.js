@@ -1514,21 +1514,27 @@ const BASE_STYLE = `
   .type-icon { position: relative; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none;
                --tk-tint: var(--c, var(--tk-accent)); background: color-mix(in srgb, var(--tk-tint) 16%, transparent); transition: background-color .3s ease; }
   .type-icon .icon { width: 24px; height: 24px; fill: color-mix(in srgb, var(--tk-tint) 60%, var(--primary-text-color)); transition: fill .3s ease; }
-  .titles { flex: 1 1 0; min-width: 5ch; }
+  .titles { flex: 1 1 0; min-width: 0; }
   :host([hide-title]) .titles .name, :host([hide-subtitle]) .titles .sub { display: none; }
-  /* The title row, banner or classic header: the title gives way first (down to 4 characters), the status pill keeps its
-     whole label. The titles are their own container: when the row runs out of room, the pill drops under the subtitle. */
-  .titles { container: tk-titles / inline-size; }
   .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
   .tstack > * { max-width: 100%; }
-  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
-  .trow .name { flex: 0 1 auto; min-width: 4ch; }
-  @container tk-titles (max-width: 180px) {
-    .tstack { display: grid; justify-items: start; row-gap: 1px; }
-    .trow { display: contents; }
-    .trow .name { max-width: 100%; }
-    .chip { order: 3; max-width: 100%; }
-  }
+  /* The status pill, in every header: on the title row right after the title only when the whole title and the pill's
+     whole label fit there; otherwise on its own line under the subtitle, cut to one line; its dot alone, beside the
+     title, when the banner has no room left above its ground strip, or on a card of 200 px or less. Decided by
+     measurement (see _fitPill), so that every language and every width gets it right. */
+  .titles .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
+  .titles .trow > .name { flex: 0 1 auto; min-width: 0; }
+  .titles .trow > .chip { flex: none; max-width: none; margin: 0; align-self: center; }
+  .titles.below { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+  .titles.below > * { max-width: 100%; }
+  .titles.below .trow { display: contents; }
+  .titles.below .trow > .name { max-width: 100%; }
+  .titles.below .trow > .chip { order: 9; max-width: 100%; margin-top: 2px; align-self: flex-start; }
+  /* In the banner, a pill on its own line may run over the picture, up to the banner's edge. */
+  .banner .titles.below .trow > .chip { max-width: none; }
+  .titles.below :is(.sub) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .titles.dotonly .trow > .chip { padding: 4px; } .titles.dotonly .trow > .chip .chip-text { display: none; }
+  @container tk-card (max-width: 200px) { .titles .trow > .chip { padding: 4px; } .titles .trow > .chip .chip-text { display: none; } }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .warning { padding: 16px; color: color-mix(in srgb, var(--tk-warn) 50%, var(--primary-text-color)); }
@@ -1615,8 +1621,6 @@ const BASE_STYLE = `
   .pill .icon { width: 14px; height: 14px; color: var(--c, var(--tk-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
   @container tk-card (max-width: 230px) { .header { gap: 6px; } }
-  /* At 200 px or less, only the pill's dot: its label stays in its title and for screen readers. */
-  @container tk-card (max-width: 200px) { .chip { padding: 4px; } .chip-text { display: none; } }
 `;
 
 // Popup at the top of the card, over a backdrop: it stays in view on a long card.
@@ -1853,6 +1857,18 @@ class CardBase extends HTMLElement {
       if (this._hass) this.hass = this._hass;
     }, 60000);
     this._onConnect?.();
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     this._update();
   }
 
@@ -1866,10 +1882,51 @@ class CardBase extends HTMLElement {
     this._outside?.off();
     window.removeEventListener("keydown", this._onKey);
     this._onDisconnect?.();
+    this._resize?.disconnect();
+    this._fitWidth = null;
     // Left (another dashboard view, a conditional card hidden): back to the defaults, so that the card does not come
     // back unfolded or with its popup open.
     this._toggled = new Map();
     this._dialog = null;
+  }
+
+  // The status pill goes right after the title only when the whole title and the pill's whole label fit on that row;
+  // otherwise it takes a line of its own under the subtitle (.titles.below, the subtitle cut to one line). In the
+  // banner (where that line may run over the picture), when the titles still run below the top of the ground strip or
+  // out of the banner, and in the classic header when the label does not fit even alone, the pill keeps its dot alone,
+  // beside the title (.titles.dotonly). Measured in fractional pixels.
+  _fitPill() {
+    for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
+      const row = t.querySelector(".trow");
+      const chips = row ? [...row.querySelectorAll(":scope > .chip")] : [];
+      if (!chips.length || !row.getBoundingClientRect) continue;
+      t.classList.remove("below", "dotonly");
+      const name = row.querySelector(":scope > .name");
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const widths = chips.map((c) => c.getBoundingClientRect().width);
+      let need = -gap;
+      if (name && getComputedStyle(name).display !== "none") {
+        name.style.flex = "none";
+        need = name.getBoundingClientRect().width;
+        name.style.flex = "";
+      }
+      for (const w of widths) need += gap + w;
+      const room = row.getBoundingClientRect().width + 0.01;
+      if (need <= room) continue;
+      t.classList.add("below");
+      const banner = t.closest(".banner");
+      const cut = !banner && widths.some((w) => w > room);
+      let out = false;
+      if (banner) {
+        const b = banner.getBoundingClientRect();
+        const floor = b.bottom - (banner.querySelector(".ground")?.getBoundingClientRect().height ?? 10) + 0.5;
+        out = [...t.querySelectorAll(".name, .sub, .chip")].some((e) => {
+          const r = e.getBoundingClientRect();
+          return r.height && (r.bottom > floor || r.top < b.top - 0.5 || r.right > b.right + 0.5);
+        });
+      }
+      if (cut || out) t.classList.replace("below", "dotonly");
+    }
   }
 
   _t(key, vars) {
@@ -1926,6 +1983,7 @@ class CardBase extends HTMLElement {
       const kept = this._dialog || this._byPointer ? null : this._focusedSpot();
       this._html = html;
       this.shadowRoot.innerHTML = html;
+      this._fitPill();
       // Fields get back what was typed, and the caret when one had the focus.
       for (const el of this.shadowRoot.querySelectorAll?.("[data-keep]") || []) {
         const v = this._inputs[el.dataset.keep];
@@ -2561,7 +2619,6 @@ const BANNER_STYLE = `
   .banner.night .chip { background: color-mix(in srgb, var(--c, var(--tk-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--tk-accent)) 35%, #ffffff); }
   .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--tk-accent)); }
   .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-  @container tk-card (max-width: 200px) { .banner .chip { padding: 4px; } .banner .chip .chip-text { display: none; } }
   .banner + .content { padding-top: 12px; }
   /* Narrow card: no room for the map beside the text, the background alone stays. */
   /* The mini card: the map steps aside for the detail button in the top-right corner. */
@@ -2855,7 +2912,7 @@ class TrackerCard extends CardBase {
     const title = c.title || this._t("tracked");
     const titles = (icon, text) =>
       `<div class="type-icon ${st}">${svgIcon(icon)}</div><div class="titles"><div class="tstack"><div class="trow"><div class="name">${esc(title)}</div>${this._pill(sum, st)}</div>${
-        text ? `<div class="sub">${esc(text)}</div>` : ""
+        text ? `<div class="sub" title="${esc(text)}">${esc(text)}</div>` : ""
       }</div></div>`;
     // The classic subtitle: where the items are, without the count of those away when the pill says it.
     if (c.illustration === false) return `<div class="header">${titles(ICONS.tracker, sub && st === "active" ? this._bannerSub(sum, st) : sub)}${this._zoomButton()}</div>`;

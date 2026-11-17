@@ -99,7 +99,7 @@ test("full card: header, radar and the items with place, area, last seen, distan
   // The banner: a low battery (amber icon), the item named in the subtitle, a pin per item on the map.
   assert.match(html(), /class="banner st-warn"/);
   assert.match(html(), /type-icon warn/);
-  assert.match(html(), /class="sub">Dog · 18 %</);
+  assert.match(html(), /class="sub"[^>]*>Dog · 18 %</);
   assert.match(html(), /ground g-map/);
   assert.equal((html().match(/class="tk-pin/g) || []).length, 6);
   assert.match(html(), /class="tk-batt"/);
@@ -123,7 +123,7 @@ test("an item not seen for long: in red, and the header says so", async () => {
   assert.match(html(), /class="banner st-crit"/);
   // The pill on the title row says "Not seen", the subtitle which item and for how long.
   assert.match(html(), /class="trow"><div class="name">Tracked items<\/div><span class="chip crit clickable"[^>]*><span class="dot"><\/span><span class="chip-text">Not seen</);
-  assert.match(html(), /class="sub">Suitcase · 2d</);
+  assert.match(html(), /class="sub"[^>]*>Suitcase · 2d</);
   assert.match(html(), /tk-pin away lost/);
   assert.match(html(), /class="tk-pulse"/);
   const classic = await mount({ illustration: false }, "lost");
@@ -164,7 +164,7 @@ test("lost: an is_lost attribute or a lost binary sensor marks an item lost, see
   const { card, hass, html } = await mount();
   hass.states["device_tracker.airtag_suitcase"] = { ...hass.states["device_tracker.airtag_suitcase"], attributes: { ...hass.states["device_tracker.airtag_suitcase"].attributes, is_lost: true } };
   card.hass = { ...hass };
-  assert.match(html(), /class="sub">Suitcase · marked as lost</);
+  assert.match(html(), /class="sub"[^>]*>Suitcase · marked as lost</);
   assert.match(html(), /Suitcase: marked as lost/);
   assert.match(html(), /tile crit tint/);
   const h2 = makeHass();
@@ -248,13 +248,13 @@ test("banner: all at home in green, away in blue; night by the sun, the theme or
   const home = await mount({}, "home");
   assert.match(home.html(), /class="banner st-ok"/);
   assert.match(home.html(), /type-icon ok/);
-  assert.match(home.html(), /class="sub">6 at home</);
+  assert.match(home.html(), /class="sub"[^>]*>6 at home</);
   assert.match(home.html(), /class="chip ok"[^>]*>.*?chip-text">Home</s);
   assert.doesNotMatch(home.html(), /class="tk-pin away|class="tk-route"/);
   const away = await mount({ show_battery: false });
   assert.match(away.html(), /class="banner st-active"/);
   assert.match(away.html(), /class="chip active"[^>]*>.*?chip-text">3 away</s);
-  assert.match(away.html(), /class="sub">3 at home</);
+  assert.match(away.html(), /class="sub"[^>]*>3 at home</);
   assert.doesNotMatch(away.html(), /class="tk-batt"/);
   assert.doesNotMatch((await mount()).html(), /class="banner[^"]*night/);
   const sun = makeHass();
@@ -281,7 +281,7 @@ test("banner: all at home in green, away in blue; night by the sun, the theme or
   const awayC = await mount({ illustration: false, show_battery: false });
   assert.match(awayC.html(), /type-icon active[\s\S]*chip active"[^>]*>.*?3 away</);
   // The pill counts the items away: the subtitle no longer does.
-  assert.match(awayC.html(), /class="sub">3 at home</);
+  assert.match(awayC.html(), /class="sub"[^>]*>3 at home</);
   const homeC = await mount({ illustration: false }, "home");
   assert.match(homeC.html(), /type-icon ok[\s\S]*chip ok"[^>]*>.*?Home</);
   const miniC = await mount({ illustration: false }, "default", TrackerMiniCard);
@@ -307,7 +307,7 @@ test("nothing found: a clear message instead of an empty card", () => {
 test("French: texts and numbers in the card's language", async () => {
   const { html } = await mount({ language: "fr" });
   assert.match(html(), /Objets suivis/);
-  assert.match(html(), /class="sub">Dog · 18 %</);
+  assert.match(html(), /class="sub"[^>]*>Dog · 18 %</);
   const classic = await mount({ language: "fr", illustration: false });
   assert.match(classic.html(), /3 à la maison · 3 dehors/);
   assert.match(html(), /1,8 km/);
