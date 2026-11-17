@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 - 2026-11-17
+
+### Features
+- Illustrated header, 90 px on the full and the mini card: a street map with home in the middle of a radar whose beam sweeps and a pin per item in its own colour (round home, or at its direction and distance when away, with a dashed route to the farthest one), over a 10 px map strip.
+- The header follows the state: all home in green, items away in blue (their pins bob), a low battery in amber (a battery blinks by the pin, the item and its level in the subtitle), an item not seen in red (its pin fades and pulses); the round icon takes the same colour.
+- Day and night pictures: night when `sun.sun` is below the horizon, else with the dark theme; `illustration_theme: day | night` forces one. `illustration: false` keeps the classic header with its status chip. Both options are in the visual editors.
+
 ## 1.1.0 - 2026-11-16
 
 ### Features

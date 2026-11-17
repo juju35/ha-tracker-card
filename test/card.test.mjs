@@ -96,8 +96,14 @@ test("configured trackers keep their order, names and colors", () => {
 test("full card: header, radar and the items with place, area, last seen, distance and battery", async () => {
   const { html } = await mount();
   assert.match(html(), /Tracked items/);
-  assert.match(html(), /3 at home · 3 away/);
-  assert.match(html(), /chip warn[^>]*>.*Low battery/s);
+  // The banner: a low battery (amber icon), the item named in the subtitle, a pin per item on the map.
+  assert.match(html(), /class="banner st-warn"/);
+  assert.match(html(), /type-icon warn/);
+  assert.match(html(), /class="sub">Dog · 18 %</);
+  assert.match(html(), /ground g-map/);
+  assert.equal((html().match(/class="tk-pin/g) || []).length, 6);
+  assert.match(html(), /class="tk-batt"/);
+  assert.match(html(), /class="tk-route"/);
   assert.match(html(), /class="radar"/);
   assert.match(html(), /class="sweep"/);
   assert.equal((html().match(/class="blip/g) || []).length, 6);
@@ -114,7 +120,12 @@ test("full card: header, radar and the items with place, area, last seen, distan
 
 test("an item not seen for long: in red, and the header says so", async () => {
   const { html } = await mount({}, "lost");
-  assert.match(html(), /chip crit[^>]*>.*Not seen/s);
+  assert.match(html(), /class="banner st-crit"/);
+  assert.match(html(), /class="sub">Suitcase · not seen for 2d</);
+  assert.match(html(), /tk-pin away lost/);
+  assert.match(html(), /class="tk-pulse"/);
+  const classic = await mount({ illustration: false }, "lost");
+  assert.match(classic.html(), /chip crit[^>]*>.*Not seen/s);
   assert.match(html(), /Suitcase: not seen for 2d/);
   assert.match(html(), /blip lost/);
   const never = await mount({ lost_after: 0 }, "lost");
@@ -151,7 +162,7 @@ test("lost: an is_lost attribute or a lost binary sensor marks an item lost, see
   const { card, hass, html } = await mount();
   hass.states["device_tracker.airtag_suitcase"] = { ...hass.states["device_tracker.airtag_suitcase"], attributes: { ...hass.states["device_tracker.airtag_suitcase"].attributes, is_lost: true } };
   card.hass = { ...hass };
-  assert.match(html(), /chip crit[^>]*>.*Not seen/s);
+  assert.match(html(), /class="sub">Suitcase · marked as lost</);
   assert.match(html(), /Suitcase: marked as lost/);
   assert.match(html(), /tile crit tint/);
   const h2 = makeHass();
@@ -231,6 +242,34 @@ test("mini card: a small radar, the items away first; the detail button shows th
   assert.match(html(), /content mini/);
 });
 
+test("banner: all at home in green, away in blue; night by the sun, the theme or the option; classic header", async () => {
+  const home = await mount({}, "home");
+  assert.match(home.html(), /class="banner st-ok"/);
+  assert.match(home.html(), /type-icon ok/);
+  assert.match(home.html(), /class="sub">6 at home</);
+  assert.doesNotMatch(home.html(), /class="tk-pin away|class="tk-route"/);
+  const away = await mount({ show_battery: false });
+  assert.match(away.html(), /class="banner st-active"/);
+  assert.match(away.html(), /class="sub">3 at home · 3 away</);
+  assert.doesNotMatch(away.html(), /class="tk-batt"/);
+  assert.doesNotMatch((await mount()).html(), /class="banner[^"]*night/);
+  const sun = makeHass();
+  sun.states["sun.sun"] = { entity_id: "sun.sun", state: "below_horizon", attributes: {} };
+  assert.match((await mount({}, "default", TrackerCard, { data: sun })).html(), /banner st-warn night/);
+  assert.doesNotMatch((await mount({ illustration_theme: "day" }, "default", TrackerCard, { data: sun })).html(), /class="banner[^"]*night/);
+  assert.match((await mount({ illustration_theme: "night" })).html(), /banner st-warn night/);
+  // Each card has its own ids.
+  const a = (await mount()).html().match(/id="(tk-glow-\d+)"/)[1];
+  const b = (await mount()).html().match(/id="(tk-glow-\d+)"/)[1];
+  assert.notEqual(a, b);
+  const classic = await mount({ illustration: false });
+  assert.doesNotMatch(classic.html(), /class="banner|tk-scene/);
+  assert.match(classic.html(), /class="header"/);
+  assert.match(classic.html(), /type-icon warn/);
+  const mini = await mount({}, "default", TrackerMiniCard);
+  assert.match(mini.html(), /class="banner st-warn"[\s\S]*class="zoom"/);
+});
+
 test("mini card: a lost item comes first", async () => {
   const { html } = await mount({ mini_count: 2 }, "lost", TrackerMiniCard);
   const lines = [...html().matchAll(/class="line[^"]*">/g)];
@@ -248,7 +287,9 @@ test("nothing found: a clear message instead of an empty card", () => {
 test("French: texts and numbers in the card's language", async () => {
   const { html } = await mount({ language: "fr" });
   assert.match(html(), /Objets suivis/);
-  assert.match(html(), /3 à la maison · 3 dehors/);
+  assert.match(html(), /class="sub">Dog · 18 %</);
+  const classic = await mount({ language: "fr", illustration: false });
+  assert.match(classic.html(), /3 à la maison · 3 dehors/);
   assert.match(html(), /1,8 km/);
   assert.match(html(), /Maison · Hallway/);
 });
@@ -284,7 +325,10 @@ test("visual editor: defaults left out of the YAML; the mini editor adds the det
     ed.hass = makeHass();
     assert.match(form.computeLabel({ name: "trackers" }), /Trackers/);
     assert.match(form.computeLabel({ name: "lost_after" }), /Not seen after/);
-    form.listeners["value-changed"]({ stopPropagation() {}, detail: { value: { type: "custom:tracker-card", show_radar: true, battery_threshold: 15, trackers: [] } } });
+    assert.match(form.computeLabel({ name: "illustration_theme" }), /Illustration theme/);
+    assert.ok(ed._fields().some((f) => f.name === "illustration_theme"));
+    assert.ok(Editor.toggles.some(([n]) => n === "illustration"));
+    form.listeners["value-changed"]({ stopPropagation() {}, detail: { value: { type: "custom:tracker-card", show_radar: true, illustration: true, illustration_theme: "auto", battery_threshold: 15, trackers: [] } } });
     same(out, { type: "custom:tracker-card", battery_threshold: 15 });
   } finally {
     doc.createElement = create;
