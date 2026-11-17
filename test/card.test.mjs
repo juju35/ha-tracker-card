@@ -270,6 +270,16 @@ test("banner: all at home in green, away in blue; night by the sun, the theme or
   assert.doesNotMatch(classic.html(), /class="banner|tk-scene/);
   assert.match(classic.html(), /class="header"/);
   assert.match(classic.html(), /type-icon warn/);
+  // The classic header has the banner's pill too, right after the title, in the icon's colour.
+  assert.match(classic.html(), /class="trow"><div class="name">Tracked items<\/div><span class="chip warn clickable"[^>]*>.*?Low battery</s);
+  const awayC = await mount({ illustration: false, show_battery: false });
+  assert.match(awayC.html(), /type-icon active[\s\S]*chip active"[^>]*>.*?3 away</);
+  // The pill counts the items away: the subtitle no longer does.
+  assert.match(awayC.html(), /class="sub">3 at home</);
+  const homeC = await mount({ illustration: false }, "home");
+  assert.match(homeC.html(), /type-icon ok[\s\S]*chip ok"[^>]*>.*?Home</);
+  const miniC = await mount({ illustration: false }, "default", TrackerMiniCard);
+  assert.match(miniC.html(), /class="header">[\s\S]*class="trow">[\s\S]*chip warn[\s\S]*class="zoom"/);
   const mini = await mount({}, "default", TrackerMiniCard);
   assert.match(mini.html(), /class="banner st-warn"[\s\S]*class="zoom"/);
 });

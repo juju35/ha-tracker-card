@@ -1506,16 +1506,29 @@ const BASE_STYLE = `
   .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c, var(--tk-ok)); flex: none; display: inline-block; }
   .chip { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; white-space: nowrap;
           background: color-mix(in srgb, var(--c, var(--tk-ok)) 15%, transparent); color: color-mix(in srgb, var(--c, var(--tk-ok)) 50%, var(--primary-text-color));
-          flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; box-sizing: border-box; }
+          flex: 0 0 auto; min-width: 0; max-width: 51%; line-height: 16px; overflow: hidden; box-sizing: border-box; }
   .chip-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .header { display: flex; align-items: center; gap: 10px; padding: 12px 12px 0; }
-  /* The chip sits on the title's line, whether a subtitle follows or not. */
-  .header .chip, .header .zoom { align-self: flex-start; margin-top: 10px; }
+  /* The detail button sits on the title's line, whether a subtitle follows or not. */
+  .header .zoom { align-self: flex-start; margin-top: 10px; }
   .type-icon { position: relative; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none;
                --tk-tint: var(--c, var(--tk-accent)); background: color-mix(in srgb, var(--tk-tint) 16%, transparent); transition: background-color .3s ease; }
   .type-icon .icon { width: 24px; height: 24px; fill: color-mix(in srgb, var(--tk-tint) 60%, var(--primary-text-color)); transition: fill .3s ease; }
   .titles { flex: 1 1 0; min-width: 5ch; }
-  :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
+  :host([hide-title]) .titles .name, :host([hide-subtitle]) .titles .sub { display: none; }
+  /* The title row, banner or classic header: the title gives way first (down to 4 characters), the status pill keeps its
+     whole label. The titles are their own container: when the row runs out of room, the pill drops under the subtitle. */
+  .titles { container: tk-titles / inline-size; }
+  .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
+  .tstack > * { max-width: 100%; }
+  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
+  .trow .name { flex: 0 1 auto; min-width: 4ch; }
+  @container tk-titles (max-width: 180px) {
+    .tstack { display: grid; justify-items: start; row-gap: 1px; }
+    .trow { display: contents; }
+    .trow .name { max-width: 100%; }
+    .chip { order: 3; max-width: 100%; }
+  }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .warning { padding: 16px; color: color-mix(in srgb, var(--tk-warn) 50%, var(--primary-text-color)); }
@@ -1601,11 +1614,9 @@ const BASE_STYLE = `
           color: color-mix(in srgb, var(--c, var(--tk-idle)) 60%, var(--primary-text-color)); background: color-mix(in srgb, var(--c, var(--tk-idle)) 14%, transparent); }
   .pill .icon { width: 14px; height: 14px; color: var(--c, var(--tk-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
-  @container tk-card (max-width: 230px) {
-    .chip { padding: 4px; flex: none; }
-    .chip-text { display: none; }
-    .header { gap: 6px; }
-  }
+  @container tk-card (max-width: 230px) { .header { gap: 6px; } }
+  /* At 200 px or less, only the pill's dot: its label stays in its title and for screen readers. */
+  @container tk-card (max-width: 200px) { .chip { padding: 4px; } .chip-text { display: none; } }
 `;
 
 // Popup at the top of the card, over a backdrop: it stays in view on a long card.
@@ -2087,26 +2098,6 @@ class CardBase extends HTMLElement {
     return `<style>${BASE_STYLE}</style><ha-card><div class="warning">${esc(this._t(key))}</div></ha-card>`;
   }
 
-  // Header: the tinted round icon (its tint follows `cls`), the title and subtitle, the status chip on the title's line.
-  _header({ icon, cls = "accent", title, sub, chip, extra = "" }) {
-    return `
-      <div class="header">
-        <div class="type-icon ${cls}">${extra}${svgIcon(icon)}</div>
-        <div class="titles">
-          <div class="name">${esc(title)}</div>
-          ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
-        </div>
-        ${
-          chip
-            ? `<span class="chip ${chip.cls}${chip.entity ? " clickable" : ""}"${moreInfo(chip.entity)} title="${esc(chip.text)}" aria-label="${esc(
-                chip.text,
-              )}"><span class="dot"></span><span class="chip-text">${esc(chip.text)}</span></span>`
-            : ""
-        }
-        ${this._zoomButton()}
-      </div>`;
-  }
-
   _zoomButton() {
     return "";
   }
@@ -2562,13 +2553,7 @@ const BANNER_STYLE = `
   .banner.night .zoom { color: #ffffff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
   .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #ffffff; }
   .banner .zoom:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 2px; }
-  /* The title row: the title gives way first (down to 4 characters), the status pill keeps its whole label. The titles
-     are their own container: when the row runs out of room, the pill drops under the subtitle. */
-  .htext .titles { container: tk-titles / inline-size; flex: 1 1 0; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
-  .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
-  .tstack > * { max-width: 100%; }
-  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
-  .trow .name { flex: 0 1 auto; min-width: 4ch; }
+  .htext .titles { flex: 1 1 0; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
   /* The status pill on the banner: the status colour on frosted glass. */
   .banner .chip { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; margin: 0; max-width: 51%; padding: 1px 8px; border-radius: 12px;
                   font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; overflow: hidden; box-sizing: border-box;
@@ -2576,12 +2561,6 @@ const BANNER_STYLE = `
   .banner.night .chip { background: color-mix(in srgb, var(--c, var(--tk-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--tk-accent)) 35%, #ffffff); }
   .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--tk-accent)); }
   .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-  @container tk-titles (max-width: 180px) {
-    .tstack { display: grid; justify-items: start; row-gap: 1px; }
-    .trow { display: contents; }
-    .trow .name { max-width: 100%; }
-    .banner .chip { order: 3; max-width: 100%; }
-  }
   @container tk-card (max-width: 200px) { .banner .chip { padding: 4px; } .banner .chip .chip-text { display: none; } }
   .banner + .content { padding-top: 12px; }
   /* Narrow card: no room for the map beside the text, the background alone stays. */
@@ -2868,21 +2847,24 @@ class TrackerCard extends CardBase {
     return sum.rows.some((r) => r.place !== "home") ? "active" : "ok";
   }
 
-  // The header: the illustrated banner (`illustration: false`: the classic header with its chip).
+  // The header: the illustrated banner, or the classic header (`illustration: false`). Both have the same status pill
+  // on the title row, in the icon's colour.
   _head(sum, sub) {
     const c = this._config;
     const st = this._overall(sum);
     const title = c.title || this._t("tracked");
-    if (c.illustration === false) return this._header({ icon: ICONS.tracker, cls: st, title, sub, chip: sum.chip });
+    const titles = (icon, text) =>
+      `<div class="type-icon ${st}">${svgIcon(icon)}</div><div class="titles"><div class="tstack"><div class="trow"><div class="name">${esc(title)}</div>${this._pill(sum, st)}</div>${
+        text ? `<div class="sub">${esc(text)}</div>` : ""
+      }</div></div>`;
+    // The classic subtitle: where the items are, without the count of those away when the pill says it.
+    if (c.illustration === false) return `<div class="header">${titles(ICONS.tracker, sub && st === "active" ? this._bannerSub(sum, st) : sub)}${this._zoomButton()}</div>`;
     const night = isNight(this._hass, c);
-    const text = this._bannerSub(sum, st);
     return `<div class="banner st-${st}${night ? " night" : ""}">${this._scene(sum, st)}<div class="ground g-map"></div>
-      <div class="htext"><div class="type-icon ${st}">${svgIcon(ICONS.home)}</div><div class="titles"><div class="tstack"><div class="trow"><div class="name">${esc(title)}</div>${this._pill(sum, st)}</div>${
-        sub !== false && text ? `<div class="sub">${esc(text)}</div>` : ""
-      }</div></div></div>${this._zoomButton()}</div>`;
+      <div class="htext">${titles(ICONS.home, sub !== false && this._bannerSub(sum, st))}</div>${this._zoomButton()}</div>`;
   }
 
-  // The banner's status pill, in the icon's colour: not seen, low battery, how many are away, or all at home.
+  // The status pill, in the icon's colour: not seen, low battery, how many are away, or all at home.
   _pill(sum, st) {
     const away = sum.rows.filter((r) => r.place !== "home").length;
     const label = sum.chip?.text || (st === "active" ? this._t("sum_away", { n: away }) : this._t("home"));

@@ -7,6 +7,7 @@
 - The header follows the state: all home in green, items away in blue (their pins bob), a low battery in amber (a battery blinks by the pin, the item and its level in the subtitle), an item not seen in red (its pin fades and pulses); the round icon takes the same colour.
 - Day and night pictures: night when `sun.sun` is below the horizon, else with the dark theme; `illustration_theme: day | night` forces one. `illustration: false` keeps the classic header with its status chip. Both options are in the visual editors.
 - The status pill is back in the illustrated header, on the title row right after the title, in the icon's colour (Home, N away, Low battery, Not seen); the subtitle no longer repeats it. It drops under the subtitle when room runs short and keeps only its dot on a very narrow card. The mini card's detail button sits in the banner's top-right corner, in the frosted style of the other cards, the map stepping aside for it.
+- The classic header (`illustration: false`) has the same status pill on the title row, right after the title (under the subtitle when narrow, dot only at 200 px or less); its subtitle no longer counts the items away.
 
 ## 1.1.0 - 2026-11-16
 
