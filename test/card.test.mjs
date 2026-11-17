@@ -262,6 +262,12 @@ test("banner: all at home in green, away in blue; night by the sun, the theme or
   assert.match((await mount({}, "default", TrackerCard, { data: sun })).html(), /banner st-warn night/);
   assert.doesNotMatch((await mount({ illustration_theme: "day" }, "default", TrackerCard, { data: sun })).html(), /class="banner[^"]*night/);
   assert.match((await mount({ illustration_theme: "night" })).html(), /banner st-warn night/);
+  // The dark theme gives the night picture even while the sun is up; a light theme keeps the day; forced wins.
+  const up = (darkMode) => { const h = makeHass(); h.states["sun.sun"] = { entity_id: "sun.sun", state: "above_horizon", attributes: {} }; h.themes = { darkMode }; return h; };
+  assert.match((await mount({}, "default", TrackerCard, { data: up(true) })).html(), /banner st-warn night/);
+  assert.doesNotMatch((await mount({}, "default", TrackerCard, { data: up(false) })).html(), /class="banner[^"]*night/);
+  assert.doesNotMatch((await mount({ illustration_theme: "day" }, "default", TrackerCard, { data: up(true) })).html(), /class="banner[^"]*night/);
+  assert.match((await mount({ illustration_theme: "night" }, "default", TrackerCard, { data: up(false) })).html(), /banner st-warn night/);
   // Each card has its own ids.
   const a = (await mount()).html().match(/id="(tk-glow-\d+)"/)[1];
   const b = (await mount()).html().match(/id="(tk-glow-\d+)"/)[1];

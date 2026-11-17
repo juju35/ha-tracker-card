@@ -2458,13 +2458,13 @@ const TRACKER_STYLE = `
 // Illustrated header: a street map at the right of the banner, home in the middle of a radar, a pin per item
 // ---------------------------------------------------------------------------
 
-// The night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+// The night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark theme
+// (an unavailable sun leaves the theme alone to decide).
 const isNight = (hass, config) => {
   if (config?.illustration_theme === "night") return true;
   if (config?.illustration_theme === "day") return false;
   const sun = hass?.states?.["sun.sun"];
-  if (valid(sun)) return sun.state === "below_horizon";
-  return !!hass?.themes?.darkMode;
+  return (valid(sun) && sun.state === "below_horizon") || !!hass?.themes?.darkMode;
 };
 
 // Home on the map (drawn on 0 0 200 80, shown from x 30): the radar's centre.
