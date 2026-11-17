@@ -127,6 +127,11 @@ const STRINGS = {
     show_subtitle: "Show subtitle",
     no_registry: "This card needs Home Assistant 2024.8 or later.",
     unavailable: "Unavailable",
+    illustration: "Animated illustration",
+    illustration_theme: "Illustration theme",
+    theme_auto: "Automatic (sun or dark theme)",
+    theme_day: "Day",
+    theme_night: "Night",
   },
   fr: {
     tracked: "Objets suivis",
@@ -180,6 +185,11 @@ const STRINGS = {
     show_subtitle: "Afficher le sous-titre",
     no_registry: "Cette carte nécessite Home Assistant 2024.8 ou plus récent.",
     unavailable: "Indisponible",
+    illustration: "Illustration animée",
+    illustration_theme: "Thème de l’illustration",
+    theme_auto: "Automatique (soleil ou thème sombre)",
+    theme_day: "Jour",
+    theme_night: "Nuit",
   },
   de: {
     tracked: "Verfolgte Gegenstände",
@@ -233,6 +243,11 @@ const STRINGS = {
     show_subtitle: "Untertitel anzeigen",
     no_registry: "Diese Karte benötigt Home Assistant 2024.8 oder neuer.",
     unavailable: "Nicht verfügbar",
+    illustration: "Animierte Illustration",
+    illustration_theme: "Thema der Illustration",
+    theme_auto: "Automatisch (Sonne oder dunkles Design)",
+    theme_day: "Tag",
+    theme_night: "Nacht",
   },
   es: {
     tracked: "Objetos rastreados",
@@ -286,6 +301,11 @@ const STRINGS = {
     show_subtitle: "Mostrar subtítulo",
     no_registry: "Esta tarjeta necesita Home Assistant 2024.8 o posterior.",
     unavailable: "No disponible",
+    illustration: "Ilustración animada",
+    illustration_theme: "Tema de la ilustración",
+    theme_auto: "Automático (sol o tema oscuro)",
+    theme_day: "Día",
+    theme_night: "Noche",
   },
   it: {
     tracked: "Oggetti tracciati",
@@ -339,6 +359,11 @@ const STRINGS = {
     show_subtitle: "Mostra sottotitolo",
     no_registry: "Questa scheda richiede Home Assistant 2024.8 o successivo.",
     unavailable: "Non disponibile",
+    illustration: "Illustrazione animata",
+    illustration_theme: "Tema dell’illustrazione",
+    theme_auto: "Automatico (sole o tema scuro)",
+    theme_day: "Giorno",
+    theme_night: "Notte",
   },
   nl: {
     tracked: "Gevolgde voorwerpen",
@@ -392,6 +417,11 @@ const STRINGS = {
     show_subtitle: "Ondertitel tonen",
     no_registry: "Deze kaart vereist Home Assistant 2024.8 of nieuwer.",
     unavailable: "Niet beschikbaar",
+    illustration: "Geanimeerde illustratie",
+    illustration_theme: "Thema van de illustratie",
+    theme_auto: "Automatisch (zon of donker thema)",
+    theme_day: "Dag",
+    theme_night: "Nacht",
   },
   pt: {
     tracked: "Objetos seguidos",
@@ -445,6 +475,11 @@ const STRINGS = {
     show_subtitle: "Mostrar subtítulo",
     no_registry: "Este cartão requer o Home Assistant 2024.8 ou posterior.",
     unavailable: "Indisponível",
+    illustration: "Ilustração animada",
+    illustration_theme: "Tema da ilustração",
+    theme_auto: "Automático (sol ou tema escuro)",
+    theme_day: "Dia",
+    theme_night: "Noite",
   },
   pl: {
     tracked: "Śledzone przedmioty",
@@ -498,6 +533,11 @@ const STRINGS = {
     show_subtitle: "Pokaż podtytuł",
     no_registry: "Ta karta wymaga Home Assistant 2024.8 lub nowszego.",
     unavailable: "Niedostępne",
+    illustration: "Animowana ilustracja",
+    illustration_theme: "Motyw ilustracji",
+    theme_auto: "Automatycznie (słońce lub ciemny motyw)",
+    theme_day: "Dzień",
+    theme_night: "Noc",
   },
   sr: {
     tracked: "Праћени предмети",
@@ -551,6 +591,11 @@ const STRINGS = {
     show_subtitle: "Прикажи поднаслов",
     no_registry: "Ова картица захтева Home Assistant 2024.8 или новији.",
     unavailable: "Недоступно",
+    illustration: "Анимирана илустрација",
+    illustration_theme: "Тема илустрације",
+    theme_auto: "Аутоматски (сунце или тамна тема)",
+    theme_day: "Дан",
+    theme_night: "Ноћ",
   },
   "sr-Latn": {
     tracked: "Praćeni predmeti",
@@ -604,6 +649,11 @@ const STRINGS = {
     show_subtitle: "Prikaži podnaslov",
     no_registry: "Ova kartica zahteva Home Assistant 2024.8 ili noviji.",
     unavailable: "Nedostupno",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Automatski (sunce ili tamna tema)",
+    theme_day: "Dan",
+    theme_night: "Noć",
   },
   ro: {
     tracked: "Obiecte urmărite",
@@ -657,6 +707,11 @@ const STRINGS = {
     show_subtitle: "Afișează subtitlul",
     no_registry: "Acest card necesită Home Assistant 2024.8 sau mai nou.",
     unavailable: "Indisponibil",
+    illustration: "Ilustrație animată",
+    illustration_theme: "Tema ilustrației",
+    theme_auto: "Automat (soare sau temă întunecată)",
+    theme_day: "Zi",
+    theme_night: "Noapte",
   },
   da: {
     tracked: "Sporede genstande",
@@ -710,6 +765,11 @@ const STRINGS = {
     show_subtitle: "Vis undertitel",
     no_registry: "Dette kort kræver Home Assistant 2024.8 eller nyere.",
     unavailable: "Utilgængelig",
+    illustration: "Animeret illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatisk (sol eller mørkt tema)",
+    theme_day: "Dag",
+    theme_night: "Nat",
   },
   sv: {
     tracked: "Spårade föremål",
@@ -763,6 +823,11 @@ const STRINGS = {
     show_subtitle: "Visa undertitel",
     no_registry: "Det här kortet kräver Home Assistant 2024.8 eller senare.",
     unavailable: "Otillgänglig",
+    illustration: "Animerad illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatiskt (sol eller mörkt tema)",
+    theme_day: "Dag",
+    theme_night: "Natt",
   },
   bg: {
     tracked: "Проследявани предмети",
@@ -816,6 +881,11 @@ const STRINGS = {
     show_subtitle: "Покажи подзаглавие",
     no_registry: "Тази карта изисква Home Assistant 2024.8 или по-нов.",
     unavailable: "Недостъпно",
+    illustration: "Анимирана илюстрация",
+    illustration_theme: "Тема на илюстрацията",
+    theme_auto: "Автоматично (слънце или тъмна тема)",
+    theme_day: "Ден",
+    theme_night: "Нощ",
   },
   ru: {
     tracked: "Отслеживаемые предметы",
@@ -869,6 +939,11 @@ const STRINGS = {
     show_subtitle: "Показывать подзаголовок",
     no_registry: "Для этой карточки нужен Home Assistant 2024.8 или новее.",
     unavailable: "Недоступно",
+    illustration: "Анимированная иллюстрация",
+    illustration_theme: "Тема иллюстрации",
+    theme_auto: "Автоматически (солнце или тёмная тема)",
+    theme_day: "День",
+    theme_night: "Ночь",
   },
   uk: {
     tracked: "Відстежувані предмети",
@@ -922,6 +997,11 @@ const STRINGS = {
     show_subtitle: "Показувати підзаголовок",
     no_registry: "Для цієї картки потрібен Home Assistant 2024.8 або новіший.",
     unavailable: "Недоступно",
+    illustration: "Анімована ілюстрація",
+    illustration_theme: "Тема ілюстрації",
+    theme_auto: "Автоматично (сонце або темна тема)",
+    theme_day: "День",
+    theme_night: "Ніч",
   },
   hu: {
     tracked: "Követett tárgyak",
@@ -975,6 +1055,11 @@ const STRINGS = {
     show_subtitle: "Alcím megjelenítése",
     no_registry: "Ehhez a kártyához Home Assistant 2024.8 vagy újabb szükséges.",
     unavailable: "Nem elérhető",
+    illustration: "Animált illusztráció",
+    illustration_theme: "Az illusztráció témája",
+    theme_auto: "Automatikus (nap vagy sötét téma)",
+    theme_day: "Nappal",
+    theme_night: "Éjszaka",
   },
   sk: {
     tracked: "Sledované predmety",
@@ -1028,6 +1113,11 @@ const STRINGS = {
     show_subtitle: "Zobraziť podnadpis",
     no_registry: "Táto karta vyžaduje Home Assistant 2024.8 alebo novší.",
     unavailable: "Nedostupné",
+    illustration: "Animovaná ilustrácia",
+    illustration_theme: "Téma ilustrácie",
+    theme_auto: "Automaticky (slnko alebo tmavá téma)",
+    theme_day: "Deň",
+    theme_night: "Noc",
   },
   cs: {
     tracked: "Sledované předměty",
@@ -1081,6 +1171,11 @@ const STRINGS = {
     show_subtitle: "Zobrazit podtitul",
     no_registry: "Tato karta vyžaduje Home Assistant 2024.8 nebo novější.",
     unavailable: "Nedostupné",
+    illustration: "Animovaná ilustrace",
+    illustration_theme: "Motiv ilustrace",
+    theme_auto: "Automaticky (slunce nebo tmavý motiv)",
+    theme_day: "Den",
+    theme_night: "Noc",
   },
   sl: {
     tracked: "Sledeni predmeti",
@@ -1134,6 +1229,11 @@ const STRINGS = {
     show_subtitle: "Prikaži podnaslov",
     no_registry: "Ta kartica potrebuje Home Assistant 2024.8 ali novejši.",
     unavailable: "Ni na voljo",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Samodejno (sonce ali temna tema)",
+    theme_day: "Dan",
+    theme_night: "Noč",
   },
   lv: {
     tracked: "Izsekotie priekšmeti",
@@ -1187,6 +1287,11 @@ const STRINGS = {
     show_subtitle: "Rādīt apakšvirsrakstu",
     no_registry: "Šai kartītei nepieciešams Home Assistant 2024.8 vai jaunāks.",
     unavailable: "Nav pieejams",
+    illustration: "Animēta ilustrācija",
+    illustration_theme: "Ilustrācijas motīvs",
+    theme_auto: "Automātiski (saule vai tumšais motīvs)",
+    theme_day: "Diena",
+    theme_night: "Nakts",
   },
   el: {
     tracked: "Παρακολουθούμενα αντικείμενα",
@@ -1240,6 +1345,11 @@ const STRINGS = {
     show_subtitle: "Εμφάνιση υπότιτλου",
     no_registry: "Αυτή η κάρτα απαιτεί Home Assistant 2024.8 ή νεότερο.",
     unavailable: "Μη διαθέσιμο",
+    illustration: "Κινούμενη εικονογράφηση",
+    illustration_theme: "Θέμα εικονογράφησης",
+    theme_auto: "Αυτόματα (ήλιος ή σκούρο θέμα)",
+    theme_day: "Ημέρα",
+    theme_night: "Νύχτα",
   },
 };
 
@@ -1383,7 +1493,7 @@ const BASE_STYLE = `
           --tk-crit: var(--error-color, #db4437); --tk-idle: var(--disabled-text-color, #9e9e9e); --tk-active: var(--info-color, #039be5);
           /* Text in a state color is mixed with the text color so that it reads at 4.5:1 at least. */
           --tk-accent-text: color-mix(in srgb, var(--tk-accent) 50%, var(--primary-text-color)); }
-  ha-card { overflow: hidden; container-type: inline-size; }
+  ha-card { overflow: hidden; container: tk-card / inline-size; }
   /* Natural width in a parent that sizes to its content (inline-block, grid "auto" column), without a minimum. */
   :host { display: block; min-width: 0; --tk-natural-width: 380px; }
   :host::before { content: ""; display: grid; grid-template-columns: minmax(0, var(--tk-natural-width)); height: 0; }
@@ -1396,16 +1506,35 @@ const BASE_STYLE = `
   .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c, var(--tk-ok)); flex: none; display: inline-block; }
   .chip { display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; white-space: nowrap;
           background: color-mix(in srgb, var(--c, var(--tk-ok)) 15%, transparent); color: color-mix(in srgb, var(--c, var(--tk-ok)) 50%, var(--primary-text-color));
-          flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; box-sizing: border-box; }
+          flex: 0 0 auto; min-width: 0; max-width: 51%; line-height: 16px; overflow: hidden; box-sizing: border-box; }
   .chip-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .header { display: flex; align-items: center; gap: 10px; padding: 12px 12px 0; }
-  /* The chip sits on the title's line, whether a subtitle follows or not. */
-  .header .chip, .header .zoom { align-self: flex-start; margin-top: 10px; }
+  /* The detail button sits on the title's line, whether a subtitle follows or not. */
+  .header .zoom { align-self: flex-start; margin-top: 10px; }
   .type-icon { position: relative; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none;
                --tk-tint: var(--c, var(--tk-accent)); background: color-mix(in srgb, var(--tk-tint) 16%, transparent); transition: background-color .3s ease; }
   .type-icon .icon { width: 24px; height: 24px; fill: color-mix(in srgb, var(--tk-tint) 60%, var(--primary-text-color)); transition: fill .3s ease; }
-  .titles { flex: 1 1 0; min-width: 5ch; }
-  :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
+  .titles { flex: 1 1 0; min-width: 0; }
+  :host([hide-title]) .titles .name, :host([hide-subtitle]) .titles .sub { display: none; }
+  .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
+  .tstack > * { max-width: 100%; }
+  /* The status pill, in every header: on the title row right after the title only when the whole title and the pill's
+     whole label fit there; otherwise on its own line under the subtitle, cut to one line; its dot alone, beside the
+     title, when the banner has no room left above its ground strip, or on a card of 200 px or less. Decided by
+     measurement (see _fitPill), so that every language and every width gets it right. */
+  .titles .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
+  .titles .trow > .name { flex: 0 1 auto; min-width: 0; }
+  .titles .trow > .chip { flex: none; max-width: none; margin: 0; align-self: center; }
+  .titles.below { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+  .titles.below > * { max-width: 100%; }
+  .titles.below .trow { display: contents; }
+  .titles.below .trow > .name { max-width: 100%; }
+  .titles.below .trow > .chip { order: 9; max-width: 100%; margin-top: 2px; align-self: flex-start; }
+  /* In the banner, a pill on its own line may run over the picture, up to the banner's edge. */
+  .banner .titles.below .trow > .chip { max-width: none; }
+  .titles.below :is(.sub) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .titles.dotonly .trow > .chip { padding: 4px; } .titles.dotonly .trow > .chip .chip-text { display: none; }
+  @container tk-card (max-width: 200px) { .titles .trow > .chip { padding: 4px; } .titles .trow > .chip .chip-text { display: none; } }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .warning { padding: 16px; color: color-mix(in srgb, var(--tk-warn) 50%, var(--primary-text-color)); }
@@ -1491,11 +1620,7 @@ const BASE_STYLE = `
           color: color-mix(in srgb, var(--c, var(--tk-idle)) 60%, var(--primary-text-color)); background: color-mix(in srgb, var(--c, var(--tk-idle)) 14%, transparent); }
   .pill .icon { width: 14px; height: 14px; color: var(--c, var(--tk-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
-  @container (max-width: 230px) {
-    .chip { padding: 4px; flex: none; }
-    .chip-text { display: none; }
-    .header { gap: 6px; }
-  }
+  @container tk-card (max-width: 230px) { .header { gap: 6px; } }
 `;
 
 // Popup at the top of the card, over a backdrop: it stays in view on a long card.
@@ -1527,7 +1652,7 @@ const MINI_STYLE = `
   .mini .info { gap: 4px; }
   .mini .line .icon { width: 14px; height: 14px; }
   .controls { display: flex; gap: 6px; flex: none; }
-  @container (max-width: 300px) {
+  @container tk-card (max-width: 300px) {
     .content.mini { flex-wrap: wrap; row-gap: 8px; }
     .mini .controls { flex-basis: 100%; justify-content: flex-end; }
   }
@@ -1732,6 +1857,18 @@ class CardBase extends HTMLElement {
       if (this._hass) this.hass = this._hass;
     }, 60000);
     this._onConnect?.();
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     this._update();
   }
 
@@ -1745,10 +1882,51 @@ class CardBase extends HTMLElement {
     this._outside?.off();
     window.removeEventListener("keydown", this._onKey);
     this._onDisconnect?.();
+    this._resize?.disconnect();
+    this._fitWidth = null;
     // Left (another dashboard view, a conditional card hidden): back to the defaults, so that the card does not come
     // back unfolded or with its popup open.
     this._toggled = new Map();
     this._dialog = null;
+  }
+
+  // The status pill goes right after the title only when the whole title and the pill's whole label fit on that row;
+  // otherwise it takes a line of its own under the subtitle (.titles.below, the subtitle cut to one line). In the
+  // banner (where that line may run over the picture), when the titles still run below the top of the ground strip or
+  // out of the banner, and in the classic header when the label does not fit even alone, the pill keeps its dot alone,
+  // beside the title (.titles.dotonly). Measured in fractional pixels.
+  _fitPill() {
+    for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
+      const row = t.querySelector(".trow");
+      const chips = row ? [...row.querySelectorAll(":scope > .chip")] : [];
+      if (!chips.length || !row.getBoundingClientRect) continue;
+      t.classList.remove("below", "dotonly");
+      const name = row.querySelector(":scope > .name");
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const widths = chips.map((c) => c.getBoundingClientRect().width);
+      let need = -gap;
+      if (name && getComputedStyle(name).display !== "none") {
+        name.style.flex = "none";
+        need = name.getBoundingClientRect().width;
+        name.style.flex = "";
+      }
+      for (const w of widths) need += gap + w;
+      const room = row.getBoundingClientRect().width + 0.01;
+      if (need <= room) continue;
+      t.classList.add("below");
+      const banner = t.closest(".banner");
+      const cut = !banner && widths.some((w) => w > room);
+      let out = false;
+      if (banner) {
+        const b = banner.getBoundingClientRect();
+        const floor = b.bottom - (banner.querySelector(".ground")?.getBoundingClientRect().height ?? 10) + 0.5;
+        out = [...t.querySelectorAll(".name, .sub, .chip")].some((e) => {
+          const r = e.getBoundingClientRect();
+          return r.height && (r.bottom > floor || r.top < b.top - 0.5 || r.right > b.right + 0.5);
+        });
+      }
+      if (cut || out) t.classList.replace("below", "dotonly");
+    }
   }
 
   _t(key, vars) {
@@ -1805,6 +1983,7 @@ class CardBase extends HTMLElement {
       const kept = this._dialog || this._byPointer ? null : this._focusedSpot();
       this._html = html;
       this.shadowRoot.innerHTML = html;
+      this._fitPill();
       // Fields get back what was typed, and the caret when one had the focus.
       for (const el of this.shadowRoot.querySelectorAll?.("[data-keep]") || []) {
         const v = this._inputs[el.dataset.keep];
@@ -1975,26 +2154,6 @@ class CardBase extends HTMLElement {
 
   _errorCard(key) {
     return `<style>${BASE_STYLE}</style><ha-card><div class="warning">${esc(this._t(key))}</div></ha-card>`;
-  }
-
-  // Header: the tinted round icon (its tint follows `cls`), the title and subtitle, the status chip on the title's line.
-  _header({ icon, cls = "accent", title, sub, chip, extra = "" }) {
-    return `
-      <div class="header">
-        <div class="type-icon ${cls}">${extra}${svgIcon(icon)}</div>
-        <div class="titles">
-          <div class="name">${esc(title)}</div>
-          ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
-        </div>
-        ${
-          chip
-            ? `<span class="chip ${chip.cls}${chip.entity ? " clickable" : ""}"${moreInfo(chip.entity)} title="${esc(chip.text)}" aria-label="${esc(
-                chip.text,
-              )}"><span class="dot"></span><span class="chip-text">${esc(chip.text)}</span></span>`
-            : ""
-        }
-        ${this._zoomButton()}
-      </div>`;
   }
 
   _zoomButton() {
@@ -2338,19 +2497,136 @@ const TRACKER_STYLE = `
   @keyframes tk-shake { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-16deg); } 20%, 40% { transform: rotate(16deg); } }
   .mini .hero-art { width: 84px; }
   .mini .hero-body { gap: 4px; }
-  @container (max-width: 340px) {
+  @container tk-card (max-width: 340px) {
     .items { --cols: 1; }
     .hero-art { width: 96px; }
   }
-  @container (max-width: 260px) {
+  @container tk-card (max-width: 260px) {
     .hero { flex-direction: column; align-items: stretch; }
     .hero-art { width: 120px; margin: 0 auto; }
     .mini .hero { flex-direction: row; align-items: center; }
     .mini .hero-art { display: none; }
   }
-  @container (max-width: 200px) {
+  @container tk-card (max-width: 200px) {
     .mini .btn.ring { display: none; }
   }
+`;
+
+// ---------------------------------------------------------------------------
+// Illustrated header: a street map at the right of the banner, home in the middle of a radar, a pin per item
+// ---------------------------------------------------------------------------
+
+// The night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark theme
+// (an unavailable sun leaves the theme alone to decide).
+const isNight = (hass, config) => {
+  if (config?.illustration_theme === "night") return true;
+  if (config?.illustration_theme === "day") return false;
+  const sun = hass?.states?.["sun.sun"];
+  return (valid(sun) && sun.state === "below_horizon") || !!hass?.themes?.darkMode;
+};
+
+// Home on the map (drawn on 0 0 200 80, shown from x 30): the radar's centre.
+const MAP_HOME = [128, 46];
+const PIN = "M0 0C-5.6 -6.6 -5.6 -13.2 0 -13.2C5.6 -13.2 5.6 -6.6 0 0Z";
+let trackerUid = 0;
+
+// A pin hanging at (x, y): its colour, the item's state (away pins bob, a low battery blinks, a lost one fades and
+// pulses red).
+const mapPin = ({ x, y, tint, away, low, lost }, i) => {
+  const cls = ["tk-pin", away ? "away" : "", lost ? "lost" : ""].filter(Boolean).join(" ");
+  const pulse = lost ? `<circle class="tk-pulse" r="6"/>` : "";
+  const batt = low && !lost ? `<g class="tk-batt" transform="translate(5 -18)"><rect x="0" y="0" width="9" height="5" rx="1"/><rect x="9" y="1.5" width="1.2" height="2"/><rect class="lvl" x="1" y="1" width="2" height="3"/></g>` : "";
+  return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">${pulse}<g class="${cls}" style="--c: ${esc(tint)}; animation-delay: ${(-i * 0.37).toFixed(2)}s"><path d="${PIN}"/><circle cy="-8.6" r="2.2"/></g>${batt}</g>`;
+};
+
+// The map: streets, a park, a pond, the radar round home and its sweep (the state's colour), a route to the farthest
+// item away, home's pin and the items' pins. `uid` keeps each card's ids apart on a page with several cards.
+const trackerScene = ({ uid, state, pins, far }) => {
+  const [hx, hy] = MAP_HOME;
+  const streets = [18, 46, 68].map((y) => `<path d="M0 ${y}H200"/>`).join("") + [30, 80, 130, 172].map((x) => `<path d="M${x} 0V80"/>`).join("");
+  const route = far ? `<path class="tk-route" d="M${hx} ${hy}Q${((hx + far.x) / 2).toFixed(1)} ${(Math.min(hy, far.y) - 14).toFixed(1)} ${far.x.toFixed(1)} ${(far.y - 2).toFixed(1)}"/>` : "";
+  return `<svg class="tk-scene tk-${state}" viewBox="30 0 170 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+    <defs><radialGradient id="tk-glow-${uid}"><stop offset="0" stop-color="var(--tk-st)" stop-opacity=".28"/><stop offset="1" stop-color="var(--tk-st)" stop-opacity="0"/></radialGradient></defs>
+    <g class="tk-streets">${streets}</g>
+    <g class="tk-park"><rect x="36" y="23" width="38" height="17" rx="2"/><rect x="136" y="3" width="30" height="10" rx="2"/><circle cx="56" cy="31" r="3.4"/><circle cx="64" cy="29" r="2.6"/></g>
+    <rect class="tk-pond" x="86" y="52" width="38" height="11" rx="5"/>
+    <circle cx="${hx}" cy="${hy}" r="30" fill="url(#tk-glow-${uid})"/>
+    <g class="tk-radar" transform="translate(${hx} ${hy})"><circle r="30"/><circle r="17"/><g class="tk-sweep"><path d="M0 0L30 0A30 30 0 0 0 21.2 -21.2Z"/></g></g>
+    ${route}
+    ${pins.map(mapPin).join("")}
+    <g class="tk-home" transform="translate(${hx} ${hy})"><path d="M0 0C-6.6 -7.6 -6.6 -15.4 0 -15.4C6.6 -15.4 6.6 -7.6 0 0Z"/><path class="roof" transform="translate(-4 -14) scale(.333)" d="${ICONS.home}"/></g>
+  </svg>`;
+};
+
+const BANNER_STYLE = `
+  .banner { position: relative; overflow: hidden; height: 90px; --g: 10px; --tk-scene-w: min(180px, 50%);
+            background: #eef3e8; color: #0d2a45; }
+  .banner.night { background: #1f2a38; color: #fff; }
+  .banner.st-ok { --tk-st: #43a047; } .banner.st-active { --tk-st: #2f80ed; } .banner.st-warn { --tk-st: #f29d00; } .banner.st-crit { --tk-st: #e53935; }
+  .banner.night.st-active { --tk-st: #4f8fe0; }
+  /* The map fills the right of the banner above the ground strip, fading into the sky under the text. */
+  .tk-scene { position: absolute; right: 0; bottom: var(--g); width: var(--tk-scene-w); height: calc(100% - var(--g)); overflow: hidden;
+              -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%); mask-image: linear-gradient(90deg, transparent 0, #000 14%); }
+  .tk-streets path { stroke: #fff; stroke-width: 4; fill: none; } .night .tk-streets path { stroke: #2e3c50; }
+  .tk-park rect { fill: #cfe5c0; } .tk-park circle { fill: #a9d18f; } .night .tk-park rect { fill: #25384a; } .night .tk-park circle { fill: #2c4a3a; }
+  .tk-pond { fill: #bfe0f7; } .night .tk-pond { fill: #1b3a5a; }
+  .tk-radar circle { fill: none; stroke: var(--tk-st); stroke-opacity: .4; }
+  .tk-sweep { fill: var(--tk-st); opacity: .2; transform-box: view-box; transform-origin: 0 0; animation: tk-turn ${SWEEP_MS}ms linear infinite; }
+  .tk-route { fill: none; stroke: var(--tk-st); stroke-width: 1.4; stroke-dasharray: 3 3; stroke-linecap: round; opacity: .8; animation: tk-flow 1.2s linear infinite; }
+  .tk-pin path { fill: var(--c); stroke: rgba(0,0,0,.18); stroke-width: .5; } .tk-pin circle { fill: #fff; }
+  .tk-pin.away { animation: tk-bob 2.4s ease-in-out infinite; }
+  .tk-pin.lost { opacity: .55; } .tk-pin.lost path { stroke: #e53935; stroke-width: 1; stroke-dasharray: 2 1.4; }
+  .tk-pulse { fill: none; stroke: #e53935; stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: tk-pulse 1.8s ease-out infinite; }
+  .tk-batt rect { fill: #f29d00; } .tk-batt rect:first-child { fill: #fff; stroke: #f29d00; stroke-width: .9; } .tk-batt .lvl { fill: #e53935; }
+  .night .tk-batt rect:first-child { fill: #1f2a38; }
+  .tk-batt { animation: tk-blink 1.2s steps(2) infinite; }
+  .tk-home path { fill: var(--tk-st); stroke: #fff; stroke-width: .8; } .tk-home .roof { fill: #fff; stroke: none; }
+  .night .tk-home path:first-child { stroke: #1f2a38; }
+  @keyframes tk-turn { to { transform: rotate(360deg); } }
+  @keyframes tk-flow { to { stroke-dashoffset: -12; } }
+  @keyframes tk-bob { 50% { transform: translateY(-1.6px); } }
+  @keyframes tk-pulse { from { transform: scale(.5); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+  @keyframes tk-blink { 50% { opacity: .25; } }
+  /* The ground strip: a map edge, light green with the dashed blue line of a route. */
+  .ground { position: absolute; left: 0; right: 0; bottom: 0; height: var(--g); }
+  .g-map { background-color: #dfe8d2; background-image: repeating-linear-gradient(90deg, #2f80ed 0 5px, transparent 5px 10px);
+           background-size: 100% 2px; background-repeat: no-repeat; background-position: 0 55%; box-shadow: inset 0 2px 0 #fff; }
+  .night .g-map { background-color: #22303a; box-shadow: inset 0 2px 0 #2e3c50; }
+  /* The text on the sky at the left: the round icon (its colour follows the state), the title and the subtitle. */
+  .htext { position: absolute; left: 12px; top: 0; bottom: var(--g); right: calc(var(--tk-scene-w) * .7); display: flex; align-items: center; gap: 10px; min-width: 0; z-index: 1; }
+  .htext .titles { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .htext .name { font-size: 16px; font-weight: 500; }
+  .htext .sub { font-size: 13px; color: #3b5b78; }
+  .night .htext .sub { color: rgba(255,255,255,.78); }
+  .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tk-tint) 22%, transparent); }
+  .banner .type-icon .icon { fill: color-mix(in srgb, var(--tk-tint) 82%, #0d2a45); }
+  .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--tk-tint) 62%, #fff); }
+  /* The mini card's detail button: a frosted round button in the banner's top-right corner. */
+  .banner .zoom { all: unset; position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; cursor: pointer; width: 24px; height: 24px;
+                  border-radius: 50%; display: grid; place-items: center; box-sizing: border-box; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .banner .zoom .icon { width: 16px; height: 16px; }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom { color: #ffffff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #ffffff; }
+  .banner .zoom:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 2px; }
+  .htext .titles { flex: 1 1 0; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  /* The status pill on the banner: the status colour on frosted glass. */
+  .banner .chip { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; margin: 0; max-width: 51%; padding: 1px 8px; border-radius: 12px;
+                  font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; overflow: hidden; box-sizing: border-box;
+                  background: color-mix(in srgb, var(--c, var(--tk-accent)) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c, var(--tk-accent)) 45%, #0d2a45); }
+  .banner.night .chip { background: color-mix(in srgb, var(--c, var(--tk-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--tk-accent)) 35%, #ffffff); }
+  .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--tk-accent)); }
+  .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .banner + .content { padding-top: 12px; }
+  /* Narrow card: no room for the map beside the text, the background alone stays. */
+  /* The mini card: the map steps aside for the detail button in the top-right corner. */
+  @container tk-card (min-width: 251px) {
+    .banner:has(> .zoom) .tk-scene { right: 30px; }
+    .banner:has(> .zoom) .htext { right: calc(var(--tk-scene-w) * .7 + 30px); }
+  }
+  @container tk-card (max-width: 250px) { .tk-scene { display: none; } .htext { right: 36px; } }
 `;
 
 // ---------------------------------------------------------------------------
@@ -2358,6 +2634,11 @@ const TRACKER_STYLE = `
 // ---------------------------------------------------------------------------
 
 class TrackerCard extends CardBase {
+  constructor() {
+    super();
+    this._uid = ++trackerUid;
+  }
+
   static getConfigElement() {
     return document.createElement("tracker-card-editor");
   }
@@ -2375,7 +2656,7 @@ class TrackerCard extends CardBase {
   }
 
   _extraDeps() {
-    return [this._rang?.at, this._hass?.config?.unit_system?.length];
+    return [this._rang?.at, this._hass?.config?.unit_system?.length, this._hass?.states?.["sun.sun"]?.state];
   }
 
   _emptyKey(m) {
@@ -2616,9 +2897,79 @@ class TrackerCard extends CardBase {
     return `<div class="hero">${art}<div class="hero-body">${big}${this._lines(sum, mini ? clamp(Number(this._config.mini_count ?? 3), 1, 6) : 3)}</div>${mini ? this._miniRing(sum) : ""}</div>`;
   }
 
+  // The state of the whole: an item not seen (red), a low battery (amber), items away (blue), all at home (green).
+  _overall(sum) {
+    if (sum.lost.length) return "crit";
+    if (sum.low.length && this._config.show_battery !== false) return "warn";
+    return sum.rows.some((r) => r.place !== "home") ? "active" : "ok";
+  }
+
+  // The header: the illustrated banner, or the classic header (`illustration: false`). Both have the same status pill
+  // on the title row, in the icon's colour.
   _head(sum, sub) {
-    const cls = sum.lost.length ? "crit" : "accent";
-    return this._header({ icon: ICONS.tracker, cls, title: this._config.title || this._t("tracked"), sub, chip: sum.chip });
+    const c = this._config;
+    const st = this._overall(sum);
+    const title = c.title || this._t("tracked");
+    const titles = (icon, text) =>
+      `<div class="type-icon ${st}">${svgIcon(icon)}</div><div class="titles"><div class="tstack"><div class="trow"><div class="name">${esc(title)}</div>${this._pill(sum, st)}</div>${
+        text ? `<div class="sub" title="${esc(text)}">${esc(text)}</div>` : ""
+      }</div></div>`;
+    // The classic subtitle: where the items are, without the count of those away when the pill says it.
+    if (c.illustration === false) return `<div class="header">${titles(ICONS.tracker, sub && st === "active" ? this._bannerSub(sum, st) : sub)}${this._zoomButton()}</div>`;
+    const night = isNight(this._hass, c);
+    return `<div class="banner st-${st}${night ? " night" : ""}">${this._scene(sum, st)}<div class="ground g-map"></div>
+      <div class="htext">${titles(ICONS.home, sub !== false && this._bannerSub(sum, st))}</div>${this._zoomButton()}</div>`;
+  }
+
+  // The status pill, in the icon's colour: not seen, low battery, how many are away, or all at home.
+  _pill(sum, st) {
+    const away = sum.rows.filter((r) => r.place !== "home").length;
+    const label = sum.chip?.text || (st === "active" ? this._t("sum_away", { n: away }) : this._t("home"));
+    const entity = sum.chip?.entity;
+    return `<span class="chip ${st}${entity ? " clickable" : ""}"${moreInfo(entity)} title="${esc(label)}" aria-label="${esc(label)}"><span class="dot"></span><span class="chip-text">${esc(label)}</span></span>`;
+  }
+
+  // The banner's subtitle: the item that needs a look (not seen, low battery), else where the items are.
+  _bannerSub(sum, st) {
+    const c = this._config;
+    if (st === "crit") {
+      const r = sum.lost[0];
+      return `${r.it.name} · ${r.flagged ? this._t("marked_lost_inline") : fmtSpan(this._hass, c, Date.now() - r.seen)}`;
+    }
+    if (st === "warn") {
+      const r = sum.low[0];
+      return `${r.it.name} · ${r.battery !== null ? `${fmtNum(r.battery, 0, this._locale())} %` : this._t("low_battery_inline")}`;
+    }
+    // Items away: the pill counts them, the subtitle those at home.
+    const home = sum.rows.filter((r) => r.place === "home").length;
+    return st === "active" ? (home ? this._t("sum_home", { n: home }) : "") : sum.sub;
+  }
+
+  // The map of the banner: home at the radar's centre, the items at home round it, those away at their bearing and
+  // at a distance on a log scale, kept on the map.
+  _scene(sum, st) {
+    const [hx, hy] = MAP_HOME;
+    const homes = sum.rows.filter((r) => r.place === "home");
+    const far = sum.rows.filter((r) => r.place !== "home");
+    const max = Number(this._config.radar_range) || niceRange(Math.max(0.5, ...far.map((r) => r.km ?? 0)));
+    const lowOn = this._config.show_battery !== false;
+    const pins = [];
+    homes.forEach((r, i) => {
+      const a = (i / homes.length) * 2 * Math.PI + Math.PI / 2;
+      pins.push({ r, x: hx + 19 * Math.sin(a), y: hy + 5 - 11 * Math.cos(a) });
+    });
+    far.forEach((r, i) => {
+      // Without a position: spread round home on the radar's outer ring.
+      const angle = r.angle ?? (i / Math.max(1, far.length)) * 2 * Math.PI + 0.6;
+      const k = r.km !== null ? clamp(Math.log1p(r.km / 0.05) / Math.log1p(max / 0.05), 0, 1) : 0.6;
+      const d = 22 + 40 * k;
+      pins.push({ r, x: clamp(hx + d * 1.4 * Math.sin(angle), 46, 172), y: clamp(hy - d * 0.7 * Math.cos(angle), 20, 74) });
+    });
+    const list = pins.map(({ r, x, y }) => ({ x, y, tint: r.it.tint, away: r.place !== "home", low: lowOn && r.low, lost: r.lost }));
+    // Drawn back to front: those lower on the map over those above.
+    list.sort((a, b) => a.y - b.y);
+    const farthest = pins.filter((p) => p.r.place !== "home" && p.r.km !== null).sort((a, b) => b.r.km - a.r.km)[0];
+    return trackerScene({ uid: this._uid, state: st, pins: list, far: farthest });
   }
 
   _render() {
@@ -2627,11 +2978,16 @@ class TrackerCard extends CardBase {
     const sum = this._summary(m);
     const parts = [this._hero(sum)];
     if (this._config.show_items !== false) parts.push(this._section("items", ICONS.list, this._t("items"), sum.rows.length, `<div class="tiles items">${sum.rows.map((r) => this._tile(r)).join("")}</div>`));
-    return `<style>${BASE_STYLE}${TRACKER_STYLE}</style>
+    return `<style>${BASE_STYLE}${TRACKER_STYLE}${this._bannerStyle()}</style>
       <ha-card>
         ${this._head(sum, sum.sub)}
         <div class="content">${parts.join("")}</div>
       </ha-card>`;
+  }
+
+  // The banner's styles, only when it is shown.
+  _bannerStyle() {
+    return this._config.illustration === false ? "" : BANNER_STYLE;
   }
 
   _onDisconnect() {
@@ -2680,9 +3036,9 @@ class TrackerMiniCard extends withMini(TrackerCard) {
     const { m, error } = this._ready();
     if (error) return error;
     const sum = this._summary(m);
-    return `<style>${BASE_STYLE}${TRACKER_STYLE}${MINI_STYLE}</style>
+    return `<style>${BASE_STYLE}${TRACKER_STYLE}${MINI_STYLE}${this._bannerStyle()}</style>
       <ha-card>
-        ${this._head(sum, "")}
+        ${this._head(sum, this._config.illustration === false ? "" : undefined)}
         <div class="content mini">${this._hero(sum, true)}</div>
       </ha-card>`;
   }
@@ -2695,6 +3051,7 @@ class TrackerMiniCard extends withMini(TrackerCard) {
 class TrackerCardEditor extends EditorBase {
   static get toggles() {
     return [
+      ["illustration", true],
       ["show_title", true],
       ["show_subtitle", true],
       ["show_radar", true],
@@ -2715,7 +3072,15 @@ class TrackerCardEditor extends EditorBase {
       { name: "battery_threshold", selector: { number: { min: 0, max: 100, step: 5, mode: "box", unit_of_measurement: "%" } } },
       { name: "lost_after", selector: { number: { min: 0, max: 720, mode: "box", unit_of_measurement: "h" } } },
       { name: "radar_range", selector: { number: { min: 0.5, max: 20000, step: 0.5, mode: "box", unit_of_measurement: "km" } } },
+      {
+        name: "illustration_theme",
+        selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((value) => ({ value, label: t(this._hass, this._config, `theme_${value}`) })) } },
+      },
     ];
+  }
+
+  static get defaults() {
+    return { illustration_theme: "auto" };
   }
 }
 

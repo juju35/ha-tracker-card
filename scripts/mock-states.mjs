@@ -58,8 +58,17 @@ const base = () => {
 // The variants of the captures:
 //   default — as above
 //   lost    — the suitcase has not been seen for two days
+//   home    — every item is back home, every battery fine
 export const mockData = (variant = "default") => {
   const d = base();
+  if (variant === "home") {
+    for (const id of ["device_tracker.gps_bike", "device_tracker.collar_dog", "device_tracker.airtag_suitcase"]) {
+      const s = d.states[id];
+      s.state = "home";
+      s.attributes = { ...s.attributes, ...HOME };
+    }
+    d.states["sensor.collar_dog_battery"].state = "82";
+  }
   if (variant === "lost") {
     const s = d.states["device_tracker.airtag_suitcase"];
     s.last_updated = s.last_changed = iso(NOW - 2 * 24 * 60 * MIN);

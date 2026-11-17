@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 - 2026-11-17
+
+### Features
+- Illustrated header, 90 px on the full and the mini card: a street map with home in the middle of a radar whose beam sweeps and a pin per item in its own colour (round home, or at its direction and distance when away, with a dashed route to the farthest one), over a 10 px map strip.
+- The header follows the state: all home in green, items away in blue (their pins bob), a low battery in amber (a battery blinks by the pin, the item and its level in the subtitle), an item not seen in red (its pin fades and pulses); the round icon takes the same colour.
+- Day and night pictures: night when `sun.sun` is below the horizon or with the dark theme; `illustration_theme: day | night` forces one. `illustration: false` keeps the classic header with its status chip. Both options are in the visual editors.
+- The status pill is back in the illustrated header, in the icon's colour (Home, N away, Low battery, Not seen); the subtitle no longer repeats it. In both headers it is placed by measurement, in every language: on the title row right after the title only when the whole title and its whole label fit there, otherwise on its own line under the subtitle (cut to one line); only its dot when the banner has no room left above its ground strip, and on a card of 200 px or less. The mini card's detail button sits in the banner's top-right corner, in the frosted style of the other cards, the map stepping aside for it.
+- The classic header (`illustration: false`) has the same status pill, placed by the same rule; its subtitle no longer counts the items away.
+- Night picture with the dark theme even while the sun is up (as the other cards).
+
 ## 1.1.0 - 2026-11-16
 
 ### Features

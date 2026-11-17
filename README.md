@@ -38,8 +38,9 @@ The device trackers of tag, collar and GPS tracker integrations are found throug
 - Lines next to the radar: how many items are away and the farthest one, the items not seen or with a low battery, when they were all last seen
 - Each item as a **tile**, as on the other cards: grey at home, tinted blue when away, amber with a low battery, red when not seen; its **place** (home and the **room** Bermuda sees it in, a zone such as *Park*, away) and **distance** from home; pills with when it was **last seen** and its **battery**
 - **Ring** an item with its device's button (play sound, ring, locate): the bell of its *Ring* pill shakes for a moment
-- An item **not seen** for a day (`lost_after`) in red, dimmed on the radar, and a *Not seen* chip in the header; else a *Low battery* chip
-- Header icon in a tinted round badge and a subtitle with how many items are home and away
+- **Illustrated header** (90 px, full and mini card): a street map with home in the middle of a radar whose beam sweeps, a **pin per item** in its own colour (round home, or at its direction and distance when away, with a dashed route to the farthest one), over a 10 px map strip; day and night pictures (`illustration_theme`, by default night when `sun.sun` is below the horizon or with the dark theme)
+- The header follows the state: **all home** in green, items **away** in blue (their pins bob), a **low battery** in amber (a battery blinks by the pin, the item and its level in the subtitle), an item **not seen** in red (its pin fades and pulses, the subtitle says since when); the round icon takes the same colour
+- An item **not seen** for a day (`lost_after`) in red and dimmed on the radar; `illustration: false` brings back the classic header with a *Not seen* or *Low battery* chip
 - Kilometres and metres, or miles and feet when Home Assistant uses them
 - Collapsible items section, folded back to its default by a click elsewhere on the page
 - Detail button on the mini card (top right): it switches the mini card to the full card's content and back; a click anywhere outside the card brings the compact view back
@@ -136,6 +137,8 @@ trackers:
 battery_threshold: 20
 lost_after: 24
 radar_range: 50
+illustration: true
+illustration_theme: auto
 show_title: true
 show_subtitle: true
 show_radar: true
@@ -158,8 +161,10 @@ zoom: true
 | Option | Card | Default | Description |
 |---|---|---|---|
 | `title` | both | Tracked items | Card title |
+| `illustration` | both | `true` | The illustrated header (map, radar and pins); `false`: the classic header with a status chip |
+| `illustration_theme` | both | `auto` | The header's picture: `auto` (night when `sun.sun` is below the horizon or with the dark theme, even while the sun is up), `day` or `night` |
 | `show_title` | both | `true` | Show the title in the header |
-| `show_subtitle` | full | `true` | Show the subtitle (how many items are home and away) |
+| `show_subtitle` | both | `true` | Show the subtitle (how many items are home and away, or the item that needs a look) |
 | `trackers` | both | Every tracker found | Device trackers: entity ids, or objects with `entity`, `name`, `icon`, `color`, `battery`, `area` and `button` |
 | `battery_threshold` | both | `20` | Battery level (%) at or below which a battery is low |
 | `lost_after` | both | `24` | Hours without news after which an item counts as not seen (`0`: never) |
@@ -180,7 +185,7 @@ zoom: true
 
 ### Animations
 
-The radar's beam sweeps round home; an item rings: the bell of its button shakes. Both honour `prefers-reduced-motion`:
+The radar's beam sweeps round home, in the card and on the header's map (where the pins away bob, the route to the farthest one flows and a low battery blinks); an item rings: the bell of its button shakes. All honour `prefers-reduced-motion`:
 
 | Light | Dark |
 |---|---|
@@ -197,6 +202,12 @@ Six items: keys, a backpack in the hallway, a wallet at home; a bike, the dog in
 | Light | Dark |
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/screenshots/card.png" alt="tracker card" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/screenshots/card-dark.png" alt="tracker card dark" width="400"> |
+
+Every item back home (the header in green):
+
+| Light | Dark |
+|---|---|
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/screenshots/card-home.png" alt="every item at home" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/screenshots/card-home-dark.png" alt="every item at home dark" width="400"> |
 
 The suitcase not seen for two days (radar hidden):
 

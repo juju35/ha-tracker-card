@@ -5,6 +5,7 @@ const twins = (list) => list.flatMap((s) => [{ ...s, theme: "light" }, { ...s, f
 
 export const shots = twins([
   { file: "card", type: "tracker-card", width: 460, config: {} },
+  { file: "card-home", type: "tracker-card", width: 460, config: { show_items: false }, variant: "home" },
   { file: "card-lost", type: "tracker-card", width: 460, config: { show_radar: false }, variant: "lost" },
   { file: "mini-card", type: "tracker-mini-card", width: 380, config: {} },
   { file: "mini-card-lost", type: "tracker-mini-card", width: 380, config: {}, variant: "lost" },
@@ -15,7 +16,7 @@ export const shots = twins([
 ]);
 
 // One looping GIF per distinct animated state:
-//   radar — the radar's beam sweeps round home
+//   radar — the radar's beam sweeps round home, and the header's map moves (beam, bobbing pins, route, blinking battery)
 //   ring  — an item rings: the bell of its button shakes
 export const gifs = twins([
   { file: "radar", type: "tracker-card", width: 460, config: { show_items: false }, seconds: 4 },
