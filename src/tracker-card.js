@@ -1493,7 +1493,7 @@ const BASE_STYLE = `
           --tk-crit: var(--error-color, #db4437); --tk-idle: var(--disabled-text-color, #9e9e9e); --tk-active: var(--info-color, #039be5);
           /* Text in a state color is mixed with the text color so that it reads at 4.5:1 at least. */
           --tk-accent-text: color-mix(in srgb, var(--tk-accent) 50%, var(--primary-text-color)); }
-  ha-card { overflow: hidden; container-type: inline-size; }
+  ha-card { overflow: hidden; container: tk-card / inline-size; }
   /* Natural width in a parent that sizes to its content (inline-block, grid "auto" column), without a minimum. */
   :host { display: block; min-width: 0; --tk-natural-width: 380px; }
   :host::before { content: ""; display: grid; grid-template-columns: minmax(0, var(--tk-natural-width)); height: 0; }
@@ -1601,7 +1601,7 @@ const BASE_STYLE = `
           color: color-mix(in srgb, var(--c, var(--tk-idle)) 60%, var(--primary-text-color)); background: color-mix(in srgb, var(--c, var(--tk-idle)) 14%, transparent); }
   .pill .icon { width: 14px; height: 14px; color: var(--c, var(--tk-idle)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
-  @container (max-width: 230px) {
+  @container tk-card (max-width: 230px) {
     .chip { padding: 4px; flex: none; }
     .chip-text { display: none; }
     .header { gap: 6px; }
@@ -1637,7 +1637,7 @@ const MINI_STYLE = `
   .mini .info { gap: 4px; }
   .mini .line .icon { width: 14px; height: 14px; }
   .controls { display: flex; gap: 6px; flex: none; }
-  @container (max-width: 300px) {
+  @container tk-card (max-width: 300px) {
     .content.mini { flex-wrap: wrap; row-gap: 8px; }
     .mini .controls { flex-basis: 100%; justify-content: flex-end; }
   }
@@ -2448,17 +2448,17 @@ const TRACKER_STYLE = `
   @keyframes tk-shake { 0%, 50%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(-16deg); } 20%, 40% { transform: rotate(16deg); } }
   .mini .hero-art { width: 84px; }
   .mini .hero-body { gap: 4px; }
-  @container (max-width: 340px) {
+  @container tk-card (max-width: 340px) {
     .items { --cols: 1; }
     .hero-art { width: 96px; }
   }
-  @container (max-width: 260px) {
+  @container tk-card (max-width: 260px) {
     .hero { flex-direction: column; align-items: stretch; }
     .hero-art { width: 120px; margin: 0 auto; }
     .mini .hero { flex-direction: row; align-items: center; }
     .mini .hero-art { display: none; }
   }
-  @container (max-width: 200px) {
+  @container tk-card (max-width: 200px) {
     .mini .btn.ring { display: none; }
   }
 `;
@@ -2544,7 +2544,7 @@ const BANNER_STYLE = `
            background-size: 100% 2px; background-repeat: no-repeat; background-position: 0 55%; box-shadow: inset 0 2px 0 #fff; }
   .night .g-map { background-color: #22303a; box-shadow: inset 0 2px 0 #2e3c50; }
   /* The text on the sky at the left: the round icon (its colour follows the state), the title and the subtitle. */
-  .htext { position: absolute; left: 12px; top: 0; bottom: var(--g); right: calc(var(--tk-scene-w) * .84); display: flex; align-items: center; gap: 10px; min-width: 0; z-index: 1; }
+  .htext { position: absolute; left: 12px; top: 0; bottom: var(--g); right: calc(var(--tk-scene-w) * .7); display: flex; align-items: center; gap: 10px; min-width: 0; z-index: 1; }
   .htext .titles { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
   .htext .name { font-size: 16px; font-weight: 500; }
   .htext .sub { font-size: 13px; color: #3b5b78; }
@@ -2553,11 +2553,44 @@ const BANNER_STYLE = `
   .banner .type-icon .icon { fill: color-mix(in srgb, var(--tk-tint) 82%, #0d2a45); }
   .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
   .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--tk-tint) 62%, #fff); }
-  .banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; z-index: 2; color: #0d2a45; background: rgba(255,255,255,.6); }
-  .banner.night .zoom { color: #fff; background: rgba(10,20,40,.5); }
+  /* The mini card's detail button: a frosted round button in the banner's top-right corner. */
+  .banner .zoom { all: unset; position: absolute; z-index: 2; top: 5px; right: 5px; margin: 0; cursor: pointer; width: 24px; height: 24px;
+                  border-radius: 50%; display: grid; place-items: center; box-sizing: border-box; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .banner .zoom .icon { width: 16px; height: 16px; }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom { color: #ffffff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #ffffff; }
+  .banner .zoom:focus-visible { outline: 2px solid var(--primary-color, #03a9f4); outline-offset: 2px; }
+  /* The title row: the title gives way first (down to 4 characters), the status pill keeps its whole label. The titles
+     are their own container: when the row runs out of room, the pill drops under the subtitle. */
+  .htext .titles { container: tk-titles / inline-size; flex: 1 1 0; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  .tstack { display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; width: 100%; }
+  .tstack > * { max-width: 100%; }
+  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; }
+  .trow .name { flex: 0 1 auto; min-width: 4ch; }
+  /* The status pill on the banner: the status colour on frosted glass. */
+  .banner .chip { display: inline-flex; align-items: center; gap: 4px; flex: 0 0 auto; margin: 0; max-width: 51%; padding: 1px 8px; border-radius: 12px;
+                  font-size: 11px; font-weight: 500; line-height: 16px; white-space: nowrap; overflow: hidden; box-sizing: border-box;
+                  background: color-mix(in srgb, var(--c, var(--tk-accent)) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c, var(--tk-accent)) 45%, #0d2a45); }
+  .banner.night .chip { background: color-mix(in srgb, var(--c, var(--tk-accent)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--tk-accent)) 35%, #ffffff); }
+  .banner .chip .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; background: var(--c, var(--tk-accent)); }
+  .banner .chip .chip-text { display: inline; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  @container tk-titles (max-width: 180px) {
+    .tstack { display: grid; justify-items: start; row-gap: 1px; }
+    .trow { display: contents; }
+    .trow .name { max-width: 100%; }
+    .banner .chip { order: 3; max-width: 100%; }
+  }
+  @container tk-card (max-width: 200px) { .banner .chip { padding: 4px; } .banner .chip .chip-text { display: none; } }
   .banner + .content { padding-top: 12px; }
   /* Narrow card: no room for the map beside the text, the background alone stays. */
-  @container (max-width: 250px) { .tk-scene { display: none; } .htext { right: 36px; } }
+  /* The mini card: the map steps aside for the detail button in the top-right corner. */
+  @container tk-card (min-width: 251px) {
+    .banner:has(> .zoom) .tk-scene { right: 30px; }
+    .banner:has(> .zoom) .htext { right: calc(var(--tk-scene-w) * .7 + 30px); }
+  }
+  @container tk-card (max-width: 250px) { .tk-scene { display: none; } .htext { right: 36px; } }
 `;
 
 // ---------------------------------------------------------------------------
@@ -2842,10 +2875,19 @@ class TrackerCard extends CardBase {
     const title = c.title || this._t("tracked");
     if (c.illustration === false) return this._header({ icon: ICONS.tracker, cls: st, title, sub, chip: sum.chip });
     const night = isNight(this._hass, c);
+    const text = this._bannerSub(sum, st);
     return `<div class="banner st-${st}${night ? " night" : ""}">${this._scene(sum, st)}<div class="ground g-map"></div>
-      <div class="htext"><div class="type-icon ${st}">${svgIcon(ICONS.home)}</div><div class="titles"><div class="name">${esc(title)}</div>${
-        sub !== false ? `<div class="sub">${esc(this._bannerSub(sum, st))}</div>` : ""
-      }</div></div>${this._zoomButton()}</div>`;
+      <div class="htext"><div class="type-icon ${st}">${svgIcon(ICONS.home)}</div><div class="titles"><div class="tstack"><div class="trow"><div class="name">${esc(title)}</div>${this._pill(sum, st)}</div>${
+        sub !== false && text ? `<div class="sub">${esc(text)}</div>` : ""
+      }</div></div></div>${this._zoomButton()}</div>`;
+  }
+
+  // The banner's status pill, in the icon's colour: not seen, low battery, how many are away, or all at home.
+  _pill(sum, st) {
+    const away = sum.rows.filter((r) => r.place !== "home").length;
+    const label = sum.chip?.text || (st === "active" ? this._t("sum_away", { n: away }) : this._t("home"));
+    const entity = sum.chip?.entity;
+    return `<span class="chip ${st}${entity ? " clickable" : ""}"${moreInfo(entity)} title="${esc(label)}" aria-label="${esc(label)}"><span class="dot"></span><span class="chip-text">${esc(label)}</span></span>`;
   }
 
   // The banner's subtitle: the item that needs a look (not seen, low battery), else where the items are.
@@ -2853,13 +2895,15 @@ class TrackerCard extends CardBase {
     const c = this._config;
     if (st === "crit") {
       const r = sum.lost[0];
-      return `${r.it.name} · ${r.flagged ? this._t("marked_lost_inline") : this._t("lost_inline", { span: fmtSpan(this._hass, c, Date.now() - r.seen) })}`;
+      return `${r.it.name} · ${r.flagged ? this._t("marked_lost_inline") : fmtSpan(this._hass, c, Date.now() - r.seen)}`;
     }
     if (st === "warn") {
       const r = sum.low[0];
       return `${r.it.name} · ${r.battery !== null ? `${fmtNum(r.battery, 0, this._locale())} %` : this._t("low_battery_inline")}`;
     }
-    return sum.sub;
+    // Items away: the pill counts them, the subtitle those at home.
+    const home = sum.rows.filter((r) => r.place === "home").length;
+    return st === "active" ? (home ? this._t("sum_home", { n: home }) : "") : sum.sub;
   }
 
   // The map of the banner: home at the radar's centre, the items at home round it, those away at their bearing and

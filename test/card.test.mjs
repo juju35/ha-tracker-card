@@ -121,7 +121,9 @@ test("full card: header, radar and the items with place, area, last seen, distan
 test("an item not seen for long: in red, and the header says so", async () => {
   const { html } = await mount({}, "lost");
   assert.match(html(), /class="banner st-crit"/);
-  assert.match(html(), /class="sub">Suitcase · not seen for 2d</);
+  // The pill on the title row says "Not seen", the subtitle which item and for how long.
+  assert.match(html(), /class="trow"><div class="name">Tracked items<\/div><span class="chip crit clickable"[^>]*><span class="dot"><\/span><span class="chip-text">Not seen</);
+  assert.match(html(), /class="sub">Suitcase · 2d</);
   assert.match(html(), /tk-pin away lost/);
   assert.match(html(), /class="tk-pulse"/);
   const classic = await mount({ illustration: false }, "lost");
@@ -247,10 +249,12 @@ test("banner: all at home in green, away in blue; night by the sun, the theme or
   assert.match(home.html(), /class="banner st-ok"/);
   assert.match(home.html(), /type-icon ok/);
   assert.match(home.html(), /class="sub">6 at home</);
+  assert.match(home.html(), /class="chip ok"[^>]*>.*?chip-text">Home</s);
   assert.doesNotMatch(home.html(), /class="tk-pin away|class="tk-route"/);
   const away = await mount({ show_battery: false });
   assert.match(away.html(), /class="banner st-active"/);
-  assert.match(away.html(), /class="sub">3 at home · 3 away</);
+  assert.match(away.html(), /class="chip active"[^>]*>.*?chip-text">3 away</s);
+  assert.match(away.html(), /class="sub">3 at home</);
   assert.doesNotMatch(away.html(), /class="tk-batt"/);
   assert.doesNotMatch((await mount()).html(), /class="banner[^"]*night/);
   const sun = makeHass();
