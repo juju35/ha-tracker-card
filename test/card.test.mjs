@@ -259,6 +259,9 @@ test("banner: all at home in green, away in blue; night by the sun, the theme or
   assert.doesNotMatch((await mount()).html(), /class="banner[^"]*night/);
   const sun = makeHass();
   sun.states["sun.sun"] = { entity_id: "sun.sun", state: "below_horizon", attributes: {} };
+  // A light theme keeps the day picture after sunset; a dark one takes the night.
+  assert.doesNotMatch((await mount({}, "default", TrackerCard, { data: sun })).html(), /class="banner[^"]*night/);
+  sun.themes = { darkMode: true };
   assert.match((await mount({}, "default", TrackerCard, { data: sun })).html(), /banner st-warn night/);
   assert.doesNotMatch((await mount({ illustration_theme: "day" }, "default", TrackerCard, { data: sun })).html(), /class="banner[^"]*night/);
   assert.match((await mount({ illustration_theme: "night" })).html(), /banner st-warn night/);
