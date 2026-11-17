@@ -38,7 +38,7 @@ The device trackers of tag, collar and GPS tracker integrations are found throug
 - Lines next to the radar: how many items are away and the farthest one, the items not seen or with a low battery, when they were all last seen
 - Each item as a **tile**, as on the other cards: grey at home, tinted blue when away, amber with a low battery, red when not seen; its **place** (home and the **room** Bermuda sees it in, a zone such as *Park*, away) and **distance** from home; pills with when it was **last seen** and its **battery**
 - **Ring** an item with its device's button (play sound, ring, locate): the bell of its *Ring* pill shakes for a moment
-- **Illustrated header** (90 px, full and mini card): a street map with home in the middle of a radar whose beam sweeps, a **pin per item** in its own colour (round home, or at its direction and distance when away, with a dashed route to the farthest one), over a 10 px map strip; day and night pictures (`illustration_theme`, by default night when `sun.sun` is below the horizon or with the dark theme)
+- **Illustrated header** (90 px, full and mini card): a street map with home in the middle of a radar whose beam sweeps, a **pin per item** in its own colour (round home, or at its direction and distance when away, with a dashed route to the farthest one), over a 10 px map strip; day and night pictures (`illustration_theme`, by default following the Home Assistant theme: night with a dark theme, day with a light theme)
 - The header follows the state: **all home** in green, items **away** in blue (their pins bob), a **low battery** in amber (a battery blinks by the pin, the item and its level in the subtitle), an item **not seen** in red (its pin fades and pulses, the subtitle says since when); the round icon takes the same colour
 - An item **not seen** for a day (`lost_after`) in red and dimmed on the radar; `illustration: false` brings back the classic header with a *Not seen* or *Low battery* chip
 - Kilometres and metres, or miles and feet when Home Assistant uses them
@@ -162,7 +162,7 @@ zoom: true
 |---|---|---|---|
 | `title` | both | Tracked items | Card title |
 | `illustration` | both | `true` | The illustrated header (map, radar and pins); `false`: the classic header with a status chip |
-| `illustration_theme` | both | `auto` | The header's picture: `auto` (night when `sun.sun` is below the horizon or with the dark theme, even while the sun is up), `day` or `night` |
+| `illustration_theme` | both | `auto` | The header's picture: `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night` |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | both | `true` | Show the subtitle (how many items are home and away, or the item that needs a look) |
 | `trackers` | both | Every tracker found | Device trackers: entity ids, or objects with `entity`, `name`, `icon`, `color`, `battery`, `area` and `button` |
