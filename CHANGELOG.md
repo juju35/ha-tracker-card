@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.2 - 2026-11-20
+
+### Fixes
+- Automatic list: phones are left out as the README says — iCloud devices (iPhone, iPad, Mac), and the phones, tablets and computers that Google Find My Device and SmartThings Find also list (by their device's model or name). List them in `trackers` to show them anyway.
+- Last seen: a timestamp sensor named *last seen* (*last located*, *last update*) is picked before a looser name with *seen* in it.
+- Visual editor: `trackers` written as objects (`entity`, `name`, `icon`…) is YAML-only — the field is hidden instead of showing blank entity pickers that would rewrite the list as plain entity ids.
+- README: `show_items`, `show_seen` and `collapsed` are marked *both* (the mini card's expanded view uses them, and its editor shows them).
+
+### Performance
+- The number of states is counted once per update for every card on the page (it was counted twice per card), the time and distance formats are made once per language, and the cache of the visual editor's successive configurations stays small.
+
 ## 1.2.1 - 2026-11-18
 
 ### Fixes

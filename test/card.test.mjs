@@ -72,6 +72,24 @@ test("the trackers of tag, collar and GPS integrations are found, not the phones
   );
 });
 
+test("phones are left out of the automatic list: iCloud devices, and the phones of tag integrations", () => {
+  const hass = makeHass();
+  const add = (key, platform, device) => {
+    hass.devices[`dev_${key}`] = { id: `dev_${key}`, name_by_user: null, area_id: null, ...device };
+    hass.states[`device_tracker.${key}`] = { entity_id: `device_tracker.${key}`, state: "home", attributes: {} };
+    hass.entities[`device_tracker.${key}`] = { entity_id: `device_tracker.${key}`, device_id: `dev_${key}`, platform };
+  };
+  add("iphone", "icloud", { name: "iPhone", model: "iPhone 15" });
+  add("pixel", "googlefindmy", { name: "My phone", model: "Pixel 8 Pro" });
+  add("galaxy", "smartthings_find", { name: "Galaxy S23" });
+  add("smarttag", "smartthings_find", { name: "Galaxy SmartTag2" });
+  const names = tk.resolve(hass, {}).items.map((it) => it.name);
+  assert.ok(names.includes("Galaxy SmartTag2"));
+  for (const phone of ["iPhone", "My phone", "Galaxy S23"]) assert.ok(!names.includes(phone), phone);
+  // Listed in trackers, they show anyway.
+  same(tk.resolve(hass, { trackers: ["device_tracker.iphone", "device_tracker.pixel"] }).items.map((it) => it.name), ["iPhone", "My phone"]);
+});
+
 test("their devices give the battery, the Bermuda area and the ring button", () => {
   const hass = makeHass();
   const none = { battery: null, area: null, seen: null, estimate: null, lost: null, button: null, buzzer: null };
@@ -80,6 +98,18 @@ test("their devices give the battery, the Bermuda area and the ring button", () 
   // Play sound, not the stop sound or locate buttons listed before it.
   assert.equal(tk.companions(hass, "device_tracker.fmd_wallet").button, "button.fmd_wallet_play_sound");
   assert.equal(tk.companions(hass, "device_tracker.airtag_suitcase").button, "button.airtag_suitcase_play_sound");
+});
+
+test("last seen: a sensor named last seen wins over a looser timestamp name", () => {
+  const hass = makeHass();
+  const put = (id, name) => {
+    hass.states[id] = { entity_id: id, state: "2026-11-20T10:00:00Z", attributes: { device_class: "timestamp", friendly_name: name } };
+    hass.entities[id] = { entity_id: id, device_id: "dev_gps_bike", platform: "paj_gps" };
+  };
+  put("sensor.gps_bike_seen_by_gateway", "Bike Seen by gateway");
+  put("sensor.gps_bike_last_seen", "Bike Last seen");
+  hass.entities = { ...hass.entities };
+  assert.equal(tk.companions(hass, "device_tracker.gps_bike").seen, "sensor.gps_bike_last_seen");
 });
 
 test("configured trackers keep their order, names and colors", () => {
@@ -358,6 +388,17 @@ test("visual editor: defaults left out of the YAML; the mini editor adds the det
   }
   assert.ok(MiniEditor.toggles.some(([n]) => n === "zoom"));
   assert.ok(new MiniEditor()._fields().some((f) => f.name === "mini_count"));
+});
+
+test("visual editor: trackers written as objects stay YAML-only, plain entity ids keep the picker", () => {
+  const Editor = tk.element("tracker-card-editor");
+  const ed = new Editor();
+  ed._config = { trackers: ["device_tracker.keys"] };
+  assert.ok(ed._fields().some((f) => f.name === "trackers"));
+  const plain = ed._schemaKey();
+  ed._config = { trackers: ["device_tracker.keys", { entity: "device_tracker.bag", name: "Bag" }] };
+  assert.ok(!ed._fields().some((f) => f.name === "trackers"));
+  assert.notEqual(ed._schemaKey(), plain);
 });
 
 test("every clickable element can be reached and used from the keyboard", async () => {

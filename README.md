@@ -23,7 +23,7 @@
 
 Lovelace cards for Home Assistant for **the things you track**: keys, bags, wallets, bikes, suitcases and pets with Bluetooth or GPS tags (Tile, Bermuda, Google Find My Device, Apple Find My, SmartThings Find, Tractive, PAJ GPS, Traccar…) on a **radar around home**, with where each one is (home and its **room**, a zone, away), when it was **last seen**, its **battery**, its **distance** and a button to **ring** it.
 
-The device trackers of tag, collar and GPS tracker integrations are found through the entity registry, and each one's battery, Bermuda area, last-seen time and ring button through its device: nothing to configure. Phones and people (Mobile App, routers) are left out; list any tracker in `trackers` to show it anyway.
+The device trackers of tag, collar and GPS tracker integrations are found through the entity registry, and each one's battery, Bermuda area, last-seen time and ring button through its device: nothing to configure. Phones and people (Mobile App, routers, iCloud devices, and the phones, tablets and computers that Google Find My Device and SmartThings Find also list) are left out; list any tracker in `trackers` to show it anyway.
 
 [![Open your Home Assistant instance and open a repository inside the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=juju35&repository=ha-tracker-card&category=plugin)
 
@@ -56,10 +56,10 @@ The device trackers of tag, collar and GPS tracker integrations are found throug
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/bermuda.png" alt="" width="16"> [Bermuda BLE Trilateration](https://github.com/agittins/bermuda) (custom) | Bluetooth tags, beacons and devices: home or away, and the **area** they are in (its area sensor, else the tracker's `area` attribute) |
 | [Private BLE Device](https://www.home-assistant.io/integrations/private_ble_device/) (core) | Apple devices and tags with a rotating address: home or away, **estimated distance** |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/ibeacon.png" alt="" width="16"> [iBeacon Tracker](https://www.home-assistant.io/integrations/ibeacon/) (core) | iBeacons: home or away, **estimated distance** |
-| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/googlefindmy.png" alt="" width="16"> [Google Find My Device](https://github.com/BSkando/GoogleFindMy-HA) (custom) | Find My Device tags and phones: position, last seen, **play sound** button (locate when there is none) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/googlefindmy.png" alt="" width="16"> [Google Find My Device](https://github.com/BSkando/GoogleFindMy-HA) (custom) | Find My Device tags (phones only when listed in `trackers`): position, last seen, **play sound** button (locate when there is none) |
 | [SmartThings Find](https://github.com/Vedeneb/HA-SmartThings-Find) (custom) | Galaxy SmartTags: position, battery, **ring** button |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/findmy.png" alt="" width="16"> [Apple Find My](https://github.com/malmeloo/hass-FindMy) (custom) | AirTags and Find My accessories: position, last seen, **play sound** button |
-| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/icloud.png" alt="" width="16"> [Apple iCloud](https://www.home-assistant.io/integrations/icloud/) (core) | iCloud devices: position, battery |
+| <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/icloud.png" alt="" width="16"> [Apple iCloud](https://www.home-assistant.io/integrations/icloud/) (core) | iCloud devices (iPhone, iPad, Mac), only when listed in `trackers`: position, battery |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/tractive.png" alt="" width="16"> [Tractive](https://www.home-assistant.io/integrations/tractive/) (core) | Pet collars: position, zone, battery, **buzzer** to ring the collar |
 | [Fressnapf Tracker](https://www.home-assistant.io/integrations/fressnapf_tracker/) (core) | Pet collars: position, battery |
 | <img src="https://raw.githubusercontent.com/juju35/ha-tracker-card/main/images/paj_gps.png" alt="" width="16"> [PAJ GPS](https://www.home-assistant.io/integrations/paj_gps/) (core) | GPS trackers (bikes, cars, luggage): position, battery |
@@ -165,17 +165,17 @@ zoom: true
 | `illustration_theme` | both | `auto` | The header's picture: `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night` |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | both | `true` | Show the subtitle (how many items are home and away, or the item that needs a look) |
-| `trackers` | both | Every tracker found | Device trackers: entity ids, or objects with `entity`, `name`, `icon`, `color`, `battery`, `area` and `button` |
+| `trackers` | both | Every tracker found | Device trackers: entity ids, or objects with `entity`, `name`, `icon`, `color`, `battery`, `area` and `button` (objects: YAML only, the visual editor then hides the field) |
 | `battery_threshold` | both | `20` | Battery level (%) at or below which a battery is low |
 | `lost_after` | both | `24` | Hours without news after which an item counts as not seen (`0`: never) |
 | `radar_range` | both | Automatic | Distance (km) at the radar's edge; by default the first round distance past the farthest item |
 | `show_radar` | both | `true` | The radar (the lines stay) |
-| `show_items` | full | `true` | The item tiles |
+| `show_items` | both | `true` | The item tiles |
 | `show_distance` | both | `true` | Distances from home |
 | `show_battery` | both | `true` | Batteries (and the *Low battery* chip) |
-| `show_seen` | full | `true` | When each item was last seen |
+| `show_seen` | both | `true` | When each item was last seen |
 | `mini_count` | mini | `3` | Lines next to the mini card's radar: those away and the farthest, the items not seen or with a low battery, when they were all last seen |
-| `collapsed` | full | `[]` | Sections folded by default: `items`. Click a section's title (or Tab to it and press Enter or Space) to fold or unfold it |
+| `collapsed` | both | `[]` | Sections folded by default: `items`. Click a section's title (or Tab to it and press Enter or Space) to fold or unfold it |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content (with the same options, which can be set on the mini card too, in its visual editor as well) and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |
 | `language` | both | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 
