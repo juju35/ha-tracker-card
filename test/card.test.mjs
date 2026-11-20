@@ -360,6 +360,17 @@ test("visual editor: defaults left out of the YAML; the mini editor adds the det
   assert.ok(new MiniEditor()._fields().some((f) => f.name === "mini_count"));
 });
 
+test("visual editor: trackers written as objects stay YAML-only, plain entity ids keep the picker", () => {
+  const Editor = tk.element("tracker-card-editor");
+  const ed = new Editor();
+  ed._config = { trackers: ["device_tracker.keys"] };
+  assert.ok(ed._fields().some((f) => f.name === "trackers"));
+  const plain = ed._schemaKey();
+  ed._config = { trackers: ["device_tracker.keys", { entity: "device_tracker.bag", name: "Bag" }] };
+  assert.ok(!ed._fields().some((f) => f.name === "trackers"));
+  assert.notEqual(ed._schemaKey(), plain);
+});
+
 test("every clickable element can be reached and used from the keyboard", async () => {
   const { html } = await mount();
   for (const m of html().matchAll(/<(div|span|g)[^>]*data-(entity|action)=[^>]*>/g)) {

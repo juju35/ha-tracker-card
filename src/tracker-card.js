@@ -2279,6 +2279,10 @@ class EditorBase extends HTMLElement {
     return [];
   }
 
+  _schemaKey() {
+    return "";
+  }
+
   _schema() {
     const tr = (k) => t(this._hass, this._config, k);
     const toggles = this.constructor.toggles;
@@ -2318,7 +2322,8 @@ class EditorBase extends HTMLElement {
       this._formConfig = this._config;
       this._form.data = { ...defaults, ...this._config };
     }
-    const l = lang(this._hass, this._config);
+    // The schema is rebuilt with the language, and when a field it depends on changes (see _schemaKey).
+    const l = `${lang(this._hass, this._config)}|${this._schemaKey()}`;
     if (this._schemaLang !== l) {
       this._schemaLang = l;
       this._form.schema = this._schema();
@@ -3065,9 +3070,19 @@ class TrackerCardEditor extends EditorBase {
     return ["items"];
   }
 
+  // `trackers` written with objects ({ entity, name, icon… }) is YAML-only: the entity picker would show them blank
+  // and rewrite them as plain entity ids.
+  _yamlTrackers() {
+    return asList(this._config?.trackers).some((x) => typeof x !== "string");
+  }
+
+  _schemaKey() {
+    return this._yamlTrackers() ? "yaml" : "";
+  }
+
   _fields() {
     return [
-      { name: "trackers", selector: { entity: { multiple: true, domain: "device_tracker" } } },
+      ...(this._yamlTrackers() ? [] : [{ name: "trackers", selector: { entity: { multiple: true, domain: "device_tracker" } } }]),
       { name: "battery_threshold", selector: { number: { min: 0, max: 100, step: 5, mode: "box", unit_of_measurement: "%" } } },
       { name: "lost_after", selector: { number: { min: 0, max: 720, mode: "box", unit_of_measurement: "h" } } },
       { name: "radar_range", selector: { number: { min: 0.5, max: 20000, step: 0.5, mode: "box", unit_of_measurement: "km" } } },
