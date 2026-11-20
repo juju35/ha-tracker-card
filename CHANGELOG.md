@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2 - 2026-11-20
+
+### Fixes
+- Visual editor: `trackers` written as objects (`entity`, `name`, `icon`…) is YAML-only — the field is hidden instead of showing blank entity pickers that would rewrite the list as plain entity ids.
+- README: `show_items`, `show_seen` and `collapsed` are marked *both* (the mini card's expanded view uses them, and its editor shows them).
+
 ## 1.2.1 - 2026-11-18
 
 ### Fixes
