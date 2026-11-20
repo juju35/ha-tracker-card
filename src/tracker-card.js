@@ -36,6 +36,7 @@ const CARD_ICONS = {
 };
 
 // Integrations whose device trackers are tracked items (tags, pet collars, GPS trackers), found on their own.
+// iCloud is left out (its devices are iPhones, iPads and Macs): list them in `trackers` to show them.
 const TRACKER_PLATFORMS = [
   "tile",
   "bermuda",
@@ -44,7 +45,6 @@ const TRACKER_PLATFORMS = [
   "googlefindmy",
   "smartthings_find",
   "findmy",
-  "icloud",
   "tractive",
   "fressnapf_tracker",
   "paj_gps",
@@ -2407,6 +2407,14 @@ const ringer = (it) => it.button || it.buzzer || null;
 
 const _cache = new WeakMap();
 
+// Phones, tablets and computers that tag integrations (Google Find My Device, SmartThings Find) also list: left out
+// of the automatic list, by their device's model or name.
+const PHONE_RE = /\b(i?phone|smartphone|ipad|tablet|pixel \d+[a-z]*|pixel (fold|tablet)|galaxy (s|a|z|note|tab)\s?\d*|macbook|imac)\b/i;
+const isPhone = (hass, e) => {
+  const d = hass.devices?.[e?.device_id];
+  return PHONE_RE.test(`${d?.model || ""} ${d?.name_by_user || ""} ${d?.name || ""}`);
+};
+
 // The trackers of the configuration (entity ids, or { entity, name, icon, color, battery, area, button }), else every
 // visible device tracker of a tag, collar or GPS tracker integration; each one with its companions.
 const resolve = (hass, config) => {
@@ -2418,7 +2426,7 @@ const resolve = (hass, config) => {
   const src = listed
     ? asList(config.trackers).map((x) => (typeof x === "string" ? { entity: x } : x))
     : Object.values(hass.entities || {})
-        .filter((e) => domainOf(e.entity_id) === "device_tracker" && TRACKER_PLATFORMS.includes(e.platform) && visible(hass, e.entity_id))
+        .filter((e) => domainOf(e.entity_id) === "device_tracker" && TRACKER_PLATFORMS.includes(e.platform) && visible(hass, e.entity_id) && !isPhone(hass, e))
         .map((e) => ({ entity: e.entity_id }));
   const items = src
     .filter((x) => x?.entity && hass.states[x.entity])

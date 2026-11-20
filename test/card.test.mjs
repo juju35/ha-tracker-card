@@ -72,6 +72,24 @@ test("the trackers of tag, collar and GPS integrations are found, not the phones
   );
 });
 
+test("phones are left out of the automatic list: iCloud devices, and the phones of tag integrations", () => {
+  const hass = makeHass();
+  const add = (key, platform, device) => {
+    hass.devices[`dev_${key}`] = { id: `dev_${key}`, name_by_user: null, area_id: null, ...device };
+    hass.states[`device_tracker.${key}`] = { entity_id: `device_tracker.${key}`, state: "home", attributes: {} };
+    hass.entities[`device_tracker.${key}`] = { entity_id: `device_tracker.${key}`, device_id: `dev_${key}`, platform };
+  };
+  add("iphone", "icloud", { name: "iPhone", model: "iPhone 15" });
+  add("pixel", "googlefindmy", { name: "My phone", model: "Pixel 8 Pro" });
+  add("galaxy", "smartthings_find", { name: "Galaxy S23" });
+  add("smarttag", "smartthings_find", { name: "Galaxy SmartTag2" });
+  const names = tk.resolve(hass, {}).items.map((it) => it.name);
+  assert.ok(names.includes("Galaxy SmartTag2"));
+  for (const phone of ["iPhone", "My phone", "Galaxy S23"]) assert.ok(!names.includes(phone), phone);
+  // Listed in trackers, they show anyway.
+  same(tk.resolve(hass, { trackers: ["device_tracker.iphone", "device_tracker.pixel"] }).items.map((it) => it.name), ["iPhone", "My phone"]);
+});
+
 test("their devices give the battery, the Bermuda area and the ring button", () => {
   const hass = makeHass();
   const none = { battery: null, area: null, seen: null, estimate: null, lost: null, button: null, buzzer: null };

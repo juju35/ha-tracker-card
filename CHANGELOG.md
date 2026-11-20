@@ -3,6 +3,7 @@
 ## 1.2.2 - 2026-11-20
 
 ### Fixes
+- Automatic list: phones are left out as the README says — iCloud devices (iPhone, iPad, Mac), and the phones, tablets and computers that Google Find My Device and SmartThings Find also list (by their device's model or name). List them in `trackers` to show them anyway.
 - Visual editor: `trackers` written as objects (`entity`, `name`, `icon`…) is YAML-only — the field is hidden instead of showing blank entity pickers that would rewrite the list as plain entity ids.
 - README: `show_items`, `show_seen` and `collapsed` are marked *both* (the mini card's expanded view uses them, and its editor shows them).
 
