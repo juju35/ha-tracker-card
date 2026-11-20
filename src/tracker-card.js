@@ -1411,6 +1411,21 @@ const DAY_MS = 8.64e7;
 const NUM_FMT = {};
 const fmtNum = (v, digits, locale) =>
   (NUM_FMT[`${locale}|${digits}`] ||= new Intl.NumberFormat(locale, { minimumFractionDigits: digits, maximumFractionDigits: digits })).format(v);
+// The other Intl formats, made once per locale and options (a render formats many times and distances).
+const INTL_FMT = new Map();
+const intlFmt = (Kind, locale, opts) => {
+  const key = `${Kind.name}|${locale}|${JSON.stringify(opts)}`;
+  let f = INTL_FMT.get(key);
+  if (!f) INTL_FMT.set(key, (f = new Kind(locale, opts)));
+  return f;
+};
+// The number of states, counted once per `hass.states` (shared by every card on the page).
+const _stateCount = new WeakMap();
+const stateCount = (hass) => {
+  let n = _stateCount.get(hass.states);
+  if (n === undefined) _stateCount.set(hass.states, (n = Object.keys(hass.states).length));
+  return n;
+};
 
 // "8:12", "1:05:00": a countdown, rounded up to the second.
 const fmtCountdown = (ms) => {
@@ -1437,7 +1452,7 @@ const parseTime = (v) => {
 const fmtRelative = (hass, config, ms) => {
   const diff = ms - Date.now();
   const abs = Math.abs(diff);
-  const rtf = new Intl.RelativeTimeFormat(intlLocale(hass, config), { numeric: "auto", style: "short" });
+  const rtf = intlFmt(Intl.RelativeTimeFormat, intlLocale(hass, config), { numeric: "auto", style: "short" });
   if (abs < 6e4) return rtf.format(0, "minute");
   if (abs < 3.6e6) return rtf.format(Math.round(diff / 6e4), "minute");
   if (abs < DAY_MS) return rtf.format(Math.round(diff / 3.6e6), "hour");
@@ -1447,7 +1462,7 @@ const fmtRelative = (hass, config, ms) => {
 // A length of time in its largest unit: "45 min", "7 h", "3 d" (the unit names from Intl).
 const fmtSpan = (hass, config, ms) => {
   const locale = intlLocale(hass, config);
-  const unit = (n, u) => new Intl.NumberFormat(locale, { style: "unit", unit: u, unitDisplay: "narrow" }).format(n);
+  const unit = (n, u) => intlFmt(Intl.NumberFormat, locale, { style: "unit", unit: u, unitDisplay: "narrow" }).format(n);
   if (ms < 3.6e6) return unit(Math.max(0, Math.round(ms / 6e4)), "minute");
   if (ms < 2 * DAY_MS) return unit(Math.round(ms / 3.6e6), "hour");
   return unit(Math.round(ms / DAY_MS), "day");
@@ -1832,7 +1847,7 @@ class CardBase extends HTMLElement {
   _resolve() {
     const h = this._hass;
     if (!h?.entities || !h?.devices) return null;
-    const key = [h.entities, h.devices, h.areas, Object.keys(h.states).length];
+    const key = [h.entities, h.devices, h.areas, stateCount(h)];
     if (this._model && this._modelKey?.every((k, i) => k === key[i])) return this._model;
     this._modelKey = key;
     this._model = this._build();
@@ -2392,8 +2407,11 @@ const companions = (hass, id) => {
     of("binary_sensor").find((x) => deviceClass(hass, x.entity_id) === "battery")?.entity_id ||
     null;
   const area = of("sensor").find((x) => x.translation_key === "area" || /_area$/.test(x.entity_id))?.entity_id || null;
+  // Last seen: a timestamp sensor named so (last_seen, last_located, last_update) first, a looser name only else.
+  const stamps = of("sensor").filter((x) => deviceClass(hass, x.entity_id) === "timestamp");
   const seen =
-    of("sensor").find((x) => deviceClass(hass, x.entity_id) === "timestamp" && /last_seen|last_located|last_update|seen|located/.test(keyText(x, hass)))?.entity_id || null;
+    (stamps.find((x) => /last[ _-]?(seen|located|update)/i.test(keyText(x, hass))) || stamps.find((x) => /seen|located/i.test(keyText(x, hass))))
+      ?.entity_id || null;
   const estimate = of("sensor").find((x) => x.translation_key === "estimated_distance" || /estimated_distance$/.test(x.entity_id))?.entity_id || null;
   const lostFlag = of("binary_sensor").find(isLostFlag)?.entity_id || null;
   const buttons = of("button").filter((x) => !ownMatch(hass, x, STOP));
@@ -2420,8 +2438,10 @@ const isPhone = (hass, e) => {
 const resolve = (hass, config) => {
   let per = _cache.get(hass.entities);
   if (!per) _cache.set(hass.entities, (per = new Map()));
-  const sig = `${JSON.stringify(config.trackers ?? null)}|${Object.keys(hass.states).length}`;
+  const sig = `${JSON.stringify(config.trackers ?? null)}|${stateCount(hass)}`;
   if (per.has(sig)) return per.get(sig);
+  // Edited in the visual editor, each new configuration is a new key: only the last few are kept.
+  if (per.size >= 16) per.clear();
   const listed = config.trackers !== undefined;
   const src = listed
     ? asList(config.trackers).map((x) => (typeof x === "string" ? { entity: x } : x))
@@ -2741,7 +2761,7 @@ class TrackerCard extends CardBase {
   _dist(km) {
     const locale = this._locale();
     const imperial = this._hass.config?.unit_system?.length === "mi";
-    const u = (v, unit, digits = 0) => new Intl.NumberFormat(locale, { style: "unit", unit, unitDisplay: "short", maximumFractionDigits: digits }).format(v);
+    const u = (v, unit, digits = 0) => intlFmt(Intl.NumberFormat, locale, { style: "unit", unit, unitDisplay: "short", maximumFractionDigits: digits }).format(v);
     if (imperial) {
       const mi = km / 1.609344;
       return mi < 0.1 ? u(Math.round((mi * 5280) / 10) * 10, "foot") : u(mi, "mile", mi < 10 ? 1 : 0);

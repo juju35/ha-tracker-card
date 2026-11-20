@@ -100,6 +100,18 @@ test("their devices give the battery, the Bermuda area and the ring button", () 
   assert.equal(tk.companions(hass, "device_tracker.airtag_suitcase").button, "button.airtag_suitcase_play_sound");
 });
 
+test("last seen: a sensor named last seen wins over a looser timestamp name", () => {
+  const hass = makeHass();
+  const put = (id, name) => {
+    hass.states[id] = { entity_id: id, state: "2026-11-20T10:00:00Z", attributes: { device_class: "timestamp", friendly_name: name } };
+    hass.entities[id] = { entity_id: id, device_id: "dev_gps_bike", platform: "paj_gps" };
+  };
+  put("sensor.gps_bike_seen_by_gateway", "Bike Seen by gateway");
+  put("sensor.gps_bike_last_seen", "Bike Last seen");
+  hass.entities = { ...hass.entities };
+  assert.equal(tk.companions(hass, "device_tracker.gps_bike").seen, "sensor.gps_bike_last_seen");
+});
+
 test("configured trackers keep their order, names and colors", () => {
   const m = tk.resolve(makeHass(), { trackers: ["device_tracker.gps_bike", { entity: "device_tracker.tag_keys", name: "House keys", color: "#ff0000" }, "device_tracker.nope"] });
   same(
