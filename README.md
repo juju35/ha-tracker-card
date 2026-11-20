@@ -165,17 +165,17 @@ zoom: true
 | `illustration_theme` | both | `auto` | The header's picture: `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night` |
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | both | `true` | Show the subtitle (how many items are home and away, or the item that needs a look) |
-| `trackers` | both | Every tracker found | Device trackers: entity ids, or objects with `entity`, `name`, `icon`, `color`, `battery`, `area` and `button` |
+| `trackers` | both | Every tracker found | Device trackers: entity ids, or objects with `entity`, `name`, `icon`, `color`, `battery`, `area` and `button` (objects: YAML only, the visual editor then hides the field) |
 | `battery_threshold` | both | `20` | Battery level (%) at or below which a battery is low |
 | `lost_after` | both | `24` | Hours without news after which an item counts as not seen (`0`: never) |
 | `radar_range` | both | Automatic | Distance (km) at the radar's edge; by default the first round distance past the farthest item |
 | `show_radar` | both | `true` | The radar (the lines stay) |
-| `show_items` | full | `true` | The item tiles |
+| `show_items` | both | `true` | The item tiles |
 | `show_distance` | both | `true` | Distances from home |
 | `show_battery` | both | `true` | Batteries (and the *Low battery* chip) |
-| `show_seen` | full | `true` | When each item was last seen |
+| `show_seen` | both | `true` | When each item was last seen |
 | `mini_count` | mini | `3` | Lines next to the mini card's radar: those away and the farthest, the items not seen or with a low battery, when they were all last seen |
-| `collapsed` | full | `[]` | Sections folded by default: `items`. Click a section's title (or Tab to it and press Enter or Space) to fold or unfold it |
+| `collapsed` | both | `[]` | Sections folded by default: `items`. Click a section's title (or Tab to it and press Enter or Space) to fold or unfold it |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content (with the same options, which can be set on the mini card too, in its visual editor as well) and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |
 | `language` | both | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 
