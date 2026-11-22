@@ -2358,7 +2358,7 @@ const register = (cards, url) => {
   for (const [name, cls] of cards) define(name, cls);
   window.customCards = window.customCards || [];
   for (const [type, , card] of cards) {
-    if (card && !window.customCards.some((c) => c.type === type)) window.customCards.push({ type, ...card, preview: true, documentationURL: url });
+    if (card && !window.customCards.some((c) => c.type === type)) window.customCards.push({ type, ...card, preview: false, documentationURL: url });
   }
 };
 
