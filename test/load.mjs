@@ -1,14 +1,13 @@
-// Evaluates src/tracker-card.js (a classic script, bundled as is by scripts/build.mjs) in a sandbox with minimal DOM
+// Evaluates the bundled card source (test/source.mjs) (a classic script, bundled as is by scripts/build.mjs) in a sandbox with minimal DOM
 // stand-ins and a clock fixed at the mocks' NOW, and returns the top-level names the tests ask for and the custom
 // elements it defined. No dependency, no browser.
-import { readFileSync } from "node:fs";
 // The mocks are written in UTC, as the captures are rendered: the tests run in UTC whatever the machine's time zone.
 process.env.TZ = "UTC";
 
 import vm from "node:vm";
 import { NOW } from "../scripts/mock-states.mjs";
+import { source } from "./source.mjs";
 
-const source = readFileSync(new URL("../src/tracker-card.js", import.meta.url), "utf8");
 
 // Shadow root stand-in: keeps the HTML it is given and the listeners it gets.
 const fakeRoot = () => ({
