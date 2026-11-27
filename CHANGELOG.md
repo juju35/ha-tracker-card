@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.6 - 2026-11-27
+
+### Fixes
+- Idle states use the theme's secondary text colour (`--secondary-text-color`), like every ha-* card.
+- Items away, with a low battery or not seen: the tile background stays neutral, the tinted icon, border and state show it (card charter).
+
 ## 1.2.5 - 2026-11-24
 
 ### Maintenance
