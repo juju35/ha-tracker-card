@@ -1,6 +1,6 @@
 {
   "name": "ha-tracker-card",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Lovelace cards for Home Assistant: the things you track: keys, bags, bikes and pets with Bluetooth or GPS tags, on a radar around home, with battery and a ring button.",
   "private": true,
   "type": "module",

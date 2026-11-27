@@ -4,7 +4,7 @@
 
 export const BASE_STYLE = `
   :host { --tk-accent: #3949ab; --tk-ok: var(--success-color, #43a047); --tk-warn: var(--warning-color, #ffa600);
-          --tk-crit: var(--error-color, #db4437); --tk-idle: var(--disabled-text-color, #9e9e9e); --tk-active: var(--info-color, #039be5);
+          --tk-crit: var(--error-color, #db4437); --tk-idle: var(--secondary-text-color, #9e9e9e); --tk-active: var(--info-color, #039be5);
           /* Text in a state color is mixed with the text color so that it reads at 4.5:1 at least. */
           --tk-accent-text: color-mix(in srgb, var(--tk-accent) 50%, var(--primary-text-color)); }
   ha-card { overflow: hidden; container: tk-card / inline-size; }
@@ -124,7 +124,7 @@ export const BASE_STYLE = `
   .tiles { display: grid; gap: 8px; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); }
   .tile { min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 10px; box-sizing: border-box;
           background: var(--secondary-background-color, rgba(127,127,127,.12)); border: 1px solid transparent; }
-  .tile.tint { background: color-mix(in srgb, var(--c) 13%, var(--secondary-background-color, rgba(127,127,127,.12)));
+  .tile.tint { background: var(--secondary-background-color, rgba(127,127,127,.12));
                border-color: color-mix(in srgb, var(--c) 30%, transparent); }
   .tile-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
   .tile .row-icon { width: 30px; height: 30px; } .tile .row-icon > .icon { width: 18px; height: 18px; }
